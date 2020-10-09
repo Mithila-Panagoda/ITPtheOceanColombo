@@ -30,9 +30,16 @@
 
     {% for roomTypeList,roomDescList in rooms %}
     <div class="container bg-light" style="margin-top: 0.6rem;">
-        <div class="row room-row">
-            <div class="col-xl-4 p-2"><img id="room-image" src="{% static 'images/room1.jpg'%}"
-                    style="width: 362px;height: 236px;"></div>
+        <div class="row room-row gallery">
+            <div class="col-xl-4 p-2">
+                <img id="room-image" src="{% static 'images/room1.jpg'%}" style="width: 370px;height: 236px;"><br />
+                <img id="room-image" src="{% static 'images/room2.jpg'%}"
+                    style="width: auto;height: 88px; margin-top: 0.3rem;margin-left: 0.1rem;">
+                <img id="room-image" src="{% static 'images/room2.jpg'%}"
+                    style="width: auto;height: 88px; margin-top: 0.3rem;margin-right: 0.1rem;">
+                <img id="room-image" src="{% static 'images/room2.jpg'%}"
+                    style="width: auto;height: 88px; margin-top: 0.3rem;">
+            </div>
             <div class="col-xl-8">
                 <h3 id="room-name">{{roomTypeList}}</h3>
                 <p id="rooom-des">
@@ -44,36 +51,25 @@
     </div>
     <div class="container bg-light">
         <div class="row">
-            <div class="col-xl-6 d-xl-flex justify-content-xl-start align-items-xl-center">
-                <h4 class="text-warning">ACCOMODATION TYPE</h4>
+            <div class="col-xl-3 d-xl-flex justify-content-xl-start align-items-xl-center">
+                <h4 class="text-warning">ROOM</h4>
             </div>
             <div class="col-xl-3 d-xl-flex justify-content-xl-center align-items-xl-center p-1">
-                <h4 class="text-warning d-xl-flex">ROOM</h4>
+                <h4 class="text-warning d-xl-flex">CHARGE</h4>
             </div>
             <div class="col d-xl-flex justify-content-xl-center align-items-xl-center">
-                <h4 class="text-warning d-xl-flex justify-content-xl-center p-1">CHARGE</h4>
+                <h4 class="text-warning d-xl-flex justify-content-xl-center p-1"></h4>
             </div>
         </div>
         <div class="row">
-            <div class="col-xl-6 d-xl-flex align-items-xl-center p-1"><span style="margin-left: 1rem;">Ocean Elite
-                    Twin
-                    Refundable Room Only - Single Occupancy Basis</span></div>
             <div class="col-xl-3 d-xl-flex justify-content-xl-center p-1"><input class="form-control-sm" type="number"
                     placeholder="1"></div>
-            <div class="col-xl-3 d-xl-flex justify-content-xl-center align-items-xl-center p-1"><span>$$$</span>
+            <div class="col-xl-3 d-xl-flex justify-content-xl-center p-1"><span>$$$</span></div>
+            <div class="col-xl-6 d-xl-flex justify-content-xl-center align-items-xl-center p-1">
+                <div class="container p-2 display-flex text-right" id="reserveBoooking">
+                    <button class="btn btn-warning text-right" type="submit" form="selectRoomForm">RESERVE</button>
+                </div>
             </div>
-        </div>
-        <div class="row">
-            <div class="col-xl-6 d-xl-flex align-items-xl-center p-1"><span style="margin-left: 1rem;">Ocean Elite
-                    Twin
-                    Refundable Bed & Breakfast - Single Occupancy Basis</span></div>
-            <div class="col-xl-3 d-xl-flex justify-content-xl-center p-1"><input class="form-control-sm" type="number"
-                    placeholder="0"></div>
-            <div class="col-xl-3 d-xl-flex justify-content-xl-center align-items-xl-center p-1"><span>$$$</span>
-            </div>
-        </div>
-        <div class="container p-2 display-flex text-right" id="reserveBoooking">
-            <button class="btn btn-warning text-right" type="submit" form="selectRoomForm">RESERVE</button>
         </div>
 
         {% endfor %}
@@ -100,6 +96,7 @@
             }
 
         </script>
+
 </body>
 
 </html>
