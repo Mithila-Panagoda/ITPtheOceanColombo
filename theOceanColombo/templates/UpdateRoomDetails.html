@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Update Room Details</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    {% load static %}
+</head>
+<body>
+    <header>
+        <div class="container-fluid">
+            <img src="{% static 'images/logo.png' %}" width="110px" height="110px" alt="logo" />
+        </div>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="../backendHome">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Insert Room Details</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">View Room Details</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Housekeeping Report</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Continuous Report</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Sign out</a>
+                    </li>
+                </ul>
+                <form class="form-inline my-2 my-lg-0">
+                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                </form>
+            </div>
+        </nav>
+    </header>
+    <main>
+        <div class="container-fluid">
+            <br>
+            <h1 class="text-center" style = "color:#DC8A1B">Update Room Details</h1>
+            <br><br>
+            <form class = "container" action = "updateRoomDetails" method = "post">
+                {% csrf_token %}
+                <div class="form-group row">
+                    <label for="roomNumber" class="col-sm-2 col-form-label">Room Number</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="roomNumber" name= "roomNumber" value = "" oninvalid = "this.setCustomValidity('Invalid Room Number')" onchange = "try{setCustomValidity('')}catch(e){}" pattern = "[Rr][0-9]{4}" required>
+                        <br>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="roomType" class="col-sm-2 col-form-label">Room Type</label>
+                    <div class="col-sm-10">
+                        <select class="form-control" id="roomType" name = "roomType" value = "">
+                            <option>Superior Twin Room with Ocean View</option>
+                            <option>Family Room with Ocean View</option>
+                            <option>Studio with Ocean View</option>
+                            <option>Deluxe Room</option>
+                        </select>
+                        <br>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="description" class="col-sm-2 col-form-label">Description</label>
+                    <div class="col-sm-10">
+                        <textarea class="form-control" id="description" rows="3" name = "description" value = "" required></textarea>
+                        <br>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="image" class="col-sm-2 col-form-label">Image of Room</label>
+                    <div class="col-sm-10">
+                        <input type="file" id="image" name="image" value = "" accept="image/*" required>
+                        <br><br><br>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="col-3">
+                        <button class="btn btn-warning" type="submit">Update Room Details</button>
+                    </div>
+                    <div class="col-3">
+                        <button class="btn btn-secondary" type="reset">Reset</button>
+                    </div>
+                    <div class="col-4">
+                        <a href="#" class="btn btn-secondary" role="button" aria-pressed="true">Back to Room Management</a>
+                    </div>
+                </div>
+            </form>
+            <br><br>
+        </div>
+    </main>
+</body>
+</html>
