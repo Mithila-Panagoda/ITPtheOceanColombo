@@ -1,0 +1,56 @@
+{}
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Room Booking</title>
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Aldrich">
+    <link rel="stylesheet" href="assets/css/styles.min.css">
+</head>
+
+<body>
+    <div class="container text-uppercase bg-light border-dark">
+        <div class="row" style="padding: 2px;">
+            <div class="col-xl-3 p-2"><label class="d-block">Check In</label><input type="date"></div>
+            <div class="col-xl-3 p-2"><label class="d-block">Check Out</label><input type="date"></div>
+            <div class="col-xl-6 p-2"><label class="d-block">Promo Code</label>
+                <div><input type="text"><button class="btn btn-warning btn-sm" type="button">Search</button></div>
+            </div>
+        </div>
+    </div>
+    <div class="container bg-light" style="margin-top: 0.6rem;">
+        <div class="row room-row">
+            <div class="col-xl-4 p-2"><img id="room-image" style="width: 362px;height: 236px;"></div>
+            <div class="col">
+                <h1 id="room-name">Heading</h1>
+                <p id="rooom-des">Paragraph</p>
+            </div>
+        </div>
+    </div>
+    <div class="container bg-light">
+        <div class="row">
+            <div class="col-xl-6 d-xl-flex justify-content-xl-start align-items-xl-center">
+                <h4 class="text-warning">ACCOMODATION TYPE</h4>
+            </div>
+            <div class="col-xl-3 d-xl-flex justify-content-xl-center align-items-xl-center p-1">
+                <h4 class="text-warning d-xl-flex">ROOM</h4>
+            </div>
+            <div class="col d-xl-flex justify-content-xl-center align-items-xl-center">
+                <h4 class="text-warning d-xl-flex justify-content-xl-center p-1">CHARGE</h4>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xl-6 d-xl-flex align-items-xl-center p-1"><span style="margin-left: 1rem;">Text</span></div>
+            <div class="col-xl-3 d-xl-flex justify-content-xl-center p-1"><input class="form-control-sm" type="number"
+                    placeholder="1"></div>
+            <div class="col-xl-3 d-xl-flex justify-content-xl-center align-items-xl-center p-1"><span>Text</span></div>
+        </div>
+    </div>
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+</body>
+
+</html>
