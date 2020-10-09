@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.shortcuts import render
 from django.http import request
 import pyrebase
 
@@ -16,17 +17,20 @@ firebaseconfig = {
 firebase = pyrebase.initialize_app(firebaseconfig)
 
 
-def loadadddrink(request):
-    return render(request, "addbeverage.html")
+def loadinsertvehicle(request):
+    return render(request, "InsertVehicle.html")
 
 
-def adddrink(request):  # code not implemented
+def insertvehicle(request):  # code not implemented
     firebase = pyrebase.initialize_app(firebaseconfig)
     db = firebase.database()
-    name = request.POST.get('name')
-    price = request.POST.get('price')
-    size = request.POST.get('size')
-    desc = request.POST.get('desc')
-    type = request.POST.get('drink')
-    data = {"price": price, "size": size, "desc": desc, "type": type}
-    db.child("resturant").child("beverages").child(name).set(data)
+    NUMBER_PLATE = request.POST.get('NUMBER_PLATE')
+    VEHICLE_MODEL = request.POST.get('VEHICLEMODEL')
+    NOOFSEATS = request.POST.get('noOfSeats')
+    data = {"Vehicle_Model": VEHICLE_MODEL, "No_Of_Seats": NOOFSEATS}
+
+    db.child('Vehicle').child(NUMBER_PLATE).set(data)
+    return render(request, 'AvailableVehicleList.html')
+
+# Create your views here.
+

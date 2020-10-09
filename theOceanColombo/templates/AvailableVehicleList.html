@@ -1,0 +1,42 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Vehicle Management</title>
+    <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css'%}">
+    <link rel="stylesheet" href="{% static 'css/vehiclemanagement.css'%}">
+</head>
+
+<body class="text-center">
+    <div class="container">
+        <div class="row">
+            <div class="col offset-xl-0 text-center">
+                <h1>Available Vehicle List</h1><input class="border-warning float-right" type="search" placeholder="Search by Number Plate" style="padding: 0.5rem;width: 214px;"></div>
+        </div>
+        <div class="row">
+            <div class="col d-xl-flex justify-content-xl-center">
+                <div style="text-align: center;border: 1px;padding: 1rem;"><img class="d-block" style="width: 200px;height: 200px;"><button class="btn btn-danger d-block" type="button">REMOVE</button><button class="btn btn-warning d-block" type="button">UPDATE</button><button class="btn btn-success d-block" type="button">STATUS</button></div>
+            </div>
+            <div class="col d-xl-flex justify-content-xl-center">
+                <div style="text-align: center;border: 1px;padding: 1rem;"><img class="d-block" style="width: 200px;height: 200px;"><button class="btn btn-danger d-block" type="button">REMOVE</button><button class="btn btn-warning d-block" type="button">UPDATE</button><button class="btn btn-success d-block" type="button">STATUS</button></div>
+            </div>
+            <div class="col d-xl-flex justify-content-xl-center">
+                <div style="text-align: center;border: 1px;padding: 1rem;"><img class="d-block" style="width: 200px;height: 200px;"><button class="btn btn-danger d-block" type="button">REMOVE</button><button class="btn btn-warning d-block" type="button">UPDATE</button><button class="btn btn-success d-block" type="button">STATUS</button></div>
+            </div>
+            <div class="col d-xl-flex justify-content-xl-center">
+                <div style="text-align: center;border: 1px;padding: 1rem;"><img class="d-block" style="width: 200px;height: 200px;"><button class="btn btn-danger d-block" type="button">REMOVE</button><button class="btn btn-warning d-block" type="button">UPDATE</button><button class="btn btn-success d-block" type="button">STATUS</button></div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col"></div>
+            <div class="col"><button class="btn btn-success" type="button">ADD VEHICLES</button><button class="btn btn-secondary" type="button">CHECK DAILT RECORDS</button></div>
+        </div>
+    </div>
+    <script src="{% static 'js/jquery.min.js'%}"></script>
+    <script src="{% static 'bootstrap/js/bootstrap.min.js'%}"></script>
+</body>
+
+</html>

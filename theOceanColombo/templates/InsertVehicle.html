@@ -1,0 +1,40 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Vehicle Management</title>
+    <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css'%}">
+    <link rel="stylesheet" href="{% static 'css/vehiclemanagement.css'%}">
+</head>
+<body>
+    
+
+    <div class="container">
+        <div class="row">
+            <div class="col text-center p-2">
+                <h3 class="display-3 text-uppercase">INSERT VEHICLE</h3>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <form method="POST" class="form-group" action="/insertVehicle/addVehicle/">
+                    {% csrf_token %}
+                    <label>NUMBER PLATE :&nbsp;</label><input class="form-control" type="text" placeholder="xx - xxxx" name="NUMBER_PLATE"><label>VEHICLE MODEL :&nbsp;</label><input class="form-control" type="text" name="VEHICLEMODEL">
+                    <label>NO. OF SEATS :&nbsp;</label>
+                    <input class="form-control" name="noOfSeats" type="number">
+                    <input class="border rounded border-warning" type="file" accept="image/*">
+                    <div class="text-right p-2"><button class="btn btn-success text-uppercase" type="submit">confirm</button></div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script src="{% static 'js/jquery.min.js'%}"></script>
+    <script src="{% static 'bootstrap/js/bootstrap.min.js'%}"></script>
+</form>
+</body>
+
+
+</html>
