@@ -1,9 +1,10 @@
 {% load  static %}
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
-    <title>Add bebverages</title>
+    <title>Update meals</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
         integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <style>
@@ -25,7 +26,7 @@
 <body>
     <header>
         <div class="container-fluid">
-            <img src="{% static 'images/logo.png' %}" alt="logo" />
+            <img src="{% static 'images/logo.png' %}" width="110px" height="110px" alt="logo" />
         </div>
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -51,41 +52,41 @@
         </nav>
         
     </header>
-    <form class="addmeal" action="/restaurant/addDrink/" method="POST">
+    <form class="addmeal" method="POST" action="/restaurant/updatemeal/">
         {% csrf_token %}
-    <center><h1>Add Beverage</h1></center><br><br>
+    <center><h1>Update Meal</h1></center><br><br>
         <div class="form-row">
-            <input type="file" name="beveragePic">
-
-        </div>
-        <div class="form-row">
+        {%for name,desc,price,spice,available,veg in final_data %}
             <div class="form-group col-md-6">
                 <label>Title</label>
-                <input type="text" class="form-control" placeholder="beverage name" name="name" required>
+                <input type="text" class="form-control" placeholder="Dish name" name="name" value="{{name}}">
             </div>
             <div class="form-group col-md-6">
                 <label>Price</label>
-                <input type="number" class="form-control" placeholder="Price" name="price">
+                <input type="number" class="form-control" placeholder="Price" name="price" value="{{price}}">
             </div>
         </div>
         <div class="form-group">
-            <label>size</label>
-            <input type="text" class="form-control" placeholder="regular/larger" name="size">
+            <label>Spiceiness</label>
+            <input type="number" class="form-control" placeholder="1:no spice - 5:very spicy" name="spicelvl" value="{{spice}}">
         </div>
         <div class="form-group">
             <label>Description</label>
-            <input type="text" class="form-control" placeholder="" name="desc">
+            <input type="text" class="form-control" placeholder="" name="desc"value="{{desc}}">
+        </div>
+        <div class="form-group">
+            <label>Availability</label>
+            <input type="text" class="form-control" placeholder="yes/no" name="status" value="{{available}}" required>
         </div>
         <div class="form-group">
             <div class="form-group">
-                <label for="inputCity">Type</label><br>
-                <input type="radio" name="drink" value="cocktail"> cocktail &nbsp&nbsp&nbsp
-                <input type="radio" name="drink" value="mocktail"> mocktail &nbsp&nbsp&nbsp
-                <input type="radio" name="drink" value="milkshake"> milkshake
+                <label>Veg</label><br>
+                <span><input type="radio" name="veg" value="yes" checked/> Yes </span>
+                <input type="radio" name="veg" value="no"> No
             </div>
         </div>
-        <input type="submit" class="btn btn-lg btn-success formbtn" value="Add Drink">
-        <input type="reset" class="btn btn-lg btn-warning text-white formbtn" value="Reset">
+        <input type="submit" class="btn btn-lg btn-success formbtn" value="Confirm Changes">
+        {% endfor %}
     </form>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
         integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous">

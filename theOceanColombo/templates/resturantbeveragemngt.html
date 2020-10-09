@@ -1,0 +1,98 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Meal managment</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+</head>
+
+<body>
+    <p id="test"></p>
+    <header>
+        <div class="container-fluid">
+            <img src="{% static 'images/logo.png' %}" width="110px" height="110px" alt="logo" />
+        </div>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../loadupdatemeal">update meals</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../loadupdatebeverage">update beverages</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Sign out</a>
+                    </li>
+                </ul>
+                <form class="form-inline my-2 my-lg-0">
+                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                </form>
+            </div>
+        </nav>
+
+    </header>
+
+    </div>
+    </nav>
+    <br>
+    <br>
+    <h1 class=text-center style="color: #DC8A1B">Meal Managment</h1>
+    <br>
+    <form method="get" action="/restaurant/#/">
+        <input type="submit" name="btnbevmngt" value="Beverage Managment" class="linebreaks">
+    </form>
+    <br>
+    <form method="get" action="/restaurant/loadaddmeal/">
+        <input type="submit" class="btn btn-secondary" name="btnaddmeal" value="Add Meal">
+    </form>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">meal Name</th>
+                <th scope="col">Description</th>
+                <th scope="col">Price</th>
+                <th scope="col">Spiceness</th>
+                <th scope="col">veg</th>
+                <th scope="col">avalability</th>
+
+            </tr>
+        </thead>
+        <tbody>
+                {%for name,desc,price,spice,available,veg in final_data %}
+                <tr>
+                    <td scope="row"> {{name}} </td>
+                    <td>{{desc}}</td>
+                    <td>{{price}}/=</td>
+                    <td>{{spice}}</td>
+                    <td>{{veg}}</td>
+                    <td>{{available}}</td>
+                    <td>
+                        <form method="POST" action="/restaurant/loadupdatemeal/">
+                            {% csrf_token %}
+                            <input type="submit" name="btn_send" value="edit" class="btn btn-warning">
+                            <input type="hidden" name="mealName" value ="{{name}}">
+                        </form>
+                        <br>
+                        <form method="POST" action="/restaurant/deletemeal/">
+                            {% csrf_token %}
+                            <input type="submit" class="btn btn-danger formbtn" value="Remove">
+                            <input type="hidden" name="mealName" value ="{{name}}">
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+        </tbody>
+    </table>
+</body>
+
+</html>
