@@ -1,0 +1,105 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Room Booking</title>
+    <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Aldrich">
+    <link rel="stylesheet" href="{% static 'css/roombooking.css' %}">
+</head>
+
+<body>
+    <form class="form" onsubmit="return checkDates()" action="/roomBooking/confirmBooking/" id="selectRoomForm"
+        method="POST">
+        {% csrf_token %}</form>
+    <div class="container text-uppercase bg-light border-dark">
+        <div class="row" style="padding: 1px;">
+            <div class="col-xl-3 p-1"></div>
+            <div class="col-xl-3 p-1"><label class="d-block">Check In</label><input class="min-today" name="checkIn"
+                    placeholder="9 Sept 2020" type="date" id="checkIn" form="selectRoomForm" required></div>
+            <div class="col-xl-3 p-1"><label class="d-block">Check Out</label><input type="date" form="selectRoomForm"
+                    name="checkOut" placeholder="10 Sept 2020" id="checkOut" required></div>
+            <div class="col-xl-3 p-1"></div>
+            <!-- <div class="col-xl-6 p-2"><label class="d-block">Promo Code</label>
+                <div><input type="text"><button class="btn btn-warning btn-sm" type="button">Search</button></div> -->
+        </div>
+    </div>
+
+    {% for roomTypeList,roomDescList in rooms %}
+    <div class="container bg-light" style="margin-top: 0.6rem;">
+        <div class="row room-row">
+            <div class="col-xl-4 p-2"><img id="room-image" src="{% static 'images/room1.jpg'%}"
+                    style="width: 362px;height: 236px;"></div>
+            <div class="col-xl-8">
+                <h3 id="room-name">{{roomTypeList}}</h3>
+                <p id="rooom-des">
+                    {{roomDescList}}
+                </p>
+            </div>
+        </div>
+    </div>
+    </div>
+    <div class="container bg-light">
+        <div class="row">
+            <div class="col-xl-6 d-xl-flex justify-content-xl-start align-items-xl-center">
+                <h4 class="text-warning">ACCOMODATION TYPE</h4>
+            </div>
+            <div class="col-xl-3 d-xl-flex justify-content-xl-center align-items-xl-center p-1">
+                <h4 class="text-warning d-xl-flex">ROOM</h4>
+            </div>
+            <div class="col d-xl-flex justify-content-xl-center align-items-xl-center">
+                <h4 class="text-warning d-xl-flex justify-content-xl-center p-1">CHARGE</h4>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xl-6 d-xl-flex align-items-xl-center p-1"><span style="margin-left: 1rem;">Ocean Elite
+                    Twin
+                    Refundable Room Only - Single Occupancy Basis</span></div>
+            <div class="col-xl-3 d-xl-flex justify-content-xl-center p-1"><input class="form-control-sm" type="number"
+                    placeholder="1"></div>
+            <div class="col-xl-3 d-xl-flex justify-content-xl-center align-items-xl-center p-1"><span>$$$</span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xl-6 d-xl-flex align-items-xl-center p-1"><span style="margin-left: 1rem;">Ocean Elite
+                    Twin
+                    Refundable Bed & Breakfast - Single Occupancy Basis</span></div>
+            <div class="col-xl-3 d-xl-flex justify-content-xl-center p-1"><input class="form-control-sm" type="number"
+                    placeholder="0"></div>
+            <div class="col-xl-3 d-xl-flex justify-content-xl-center align-items-xl-center p-1"><span>$$$</span>
+            </div>
+        </div>
+        <div class="container p-2 display-flex text-right" id="reserveBoooking">
+            <button class="btn btn-warning text-right" type="submit" form="selectRoomForm">RESERVE</button>
+        </div>
+
+        {% endfor %}
+
+        <script src="{% static 'js/jquery.min.js' %}"></script>
+        <script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
+        <script>
+            function checkDates() {
+                var checkIn = document.getElementById('checkIn').value;
+                var checkOut = document.getElementById('checkOut').value;
+
+                var indate = new Date(checkIn);
+                var outDate = new Date(checkOut)
+                var currDate = new Date();
+
+                if (indate < currDate) {
+                    alert('Choose a valid check in date');
+                    return false;
+                } else if (outDate < indate) {
+                    alert('Check Out date cannot be before check in date');
+                    return false;
+                }
+
+            }
+
+        </script>
+</body>
+
+</html>
