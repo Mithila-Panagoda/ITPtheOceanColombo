@@ -67,30 +67,31 @@ def getRoomDetails():
     firebase = pyrebase.initialize_app(firebaseconfig)
     db = firebase.database()
     data = db.child("Rooms").shallow().get().val()
-    list_roomNumber = []
-    for j in data:
-        list_roomNumber.append(j)
 
+    list_roomNumber = []
     list_roomNo = []
     list_roomType = []
     list_description = []
     list_price = []
 
-    for j in list_roomNumber:
-        query = db.child("Rooms").child(j).child("RoomNo").get().val()
-        list_roomNo.append(query)
+    for j in data:
+        list_roomNumber.append(j)
 
     for j in list_roomNumber:
-        query = db.child("Rooms").child(j).child("RoomType").get().val()
-        list_roomType.append(query)
+        roomNo = db.child("Rooms").child(j).child("RoomNo").get().val()
+        list_roomNo.append(roomNo)
 
     for j in list_roomNumber:
-        query = db.child("Rooms").child(j).child("Description").get().val()
-        list_description.append(query)
+        type = db.child("Rooms").child(j).child("RoomType").get().val()
+        list_roomType.append(type)
 
     for j in list_roomNumber:
-        query = db.child("Rooms").child(j).child("Price").get().val()
-        list_price.append(query)
+        description = db.child("Rooms").child(j).child("Description").get().val()
+        list_description.append(description)
+
+    for j in list_roomNumber:
+        price = db.child("Rooms").child(j).child("Price").get().val()
+        list_price.append(price)
 
     data = zip(list_roomNo, list_roomType, list_description, list_price)
     return data
@@ -130,6 +131,7 @@ def dirUpdateRoomDetails(request):
 def UpdateRoomDetailsToDB(request):
     firebase = pyrebase.initialize_app(firebaseconfig)
     db = firebase.database()
+
     roomNo = request.POST.get('roomNumber')
     roomType = request.POST.get("roomType")
     description = request.POST.get("description")
