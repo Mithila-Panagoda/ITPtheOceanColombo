@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Capital </title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+
+          <li class="nav-item">
+                <a class="nav-link" href="#">Home</a>
+          </li>
+          <li class="nav-item">
+                <a class="nav-link" href="../Expenses1">Expenses </a>
+          </li>
+          <li class="nav-item">
+                <a class="nav-link" href="../AddRevenue">Revenue</a>
+          </li>
+          <li class="nav-item">
+                <a class="nav-link" href="../Capital">Capital Account</a>
+          </li>
+          <li class="nav-item">
+                <a class="nav-link" href="../Expenses7">Ledgers</a>
+          </li>
+          <li class="nav-item">
+                <a class="nav-link" href="../Expenses9">Reports</a>
+          </li>
+
+            </ul>
+
+            <form class="form-inline my-2 my-lg-0">
+                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-warning my-2 my-sm-0" type="button">Search</button>
+            </form>
+      </div>
+  </nav>
+</head>
+<body>
+
+<br>
+<h1 class="text-center"  style="color:#DC8A1B">Capital Account</h1>
+  <br>
+  <br>
+  <div class="container-fluid">
+        <div class = "container" action="/Expenses/ExaddCapital/" method="post">
+            {% csrf_token %}
+            <div class="container-fluid">
+
+                <div class="form-group row">
+                    <label for="inputPassword" class="col-sm-2 col-form-label">CapitalId</label>
+                            <div class="col-sm-5">
+                                <input type="text"  name="capId" class="form-control"  class="col-sm-2 col-form-label" pattern = "[Cc][0-9]{4}" placeholder="id" required>
+                            </div>
+                </div>
+            <div class="form-group row">
+                    <label for="inputPassword" class="col-sm-2 col-form-label">Date</label>
+                            <div class="col-sm-5">
+                                <input type="date"  name="capDate" class="form-control"id="date"  class="col-sm-2 col-form-label" placeholder="enter date" required>
+                            </div>
+            </div>
+    <br>
+
+                      <div class="form-group row">
+                            <label for="inputState" class="col-sm-2 col-form-label">Type</label>
+                                <div class="col-sm-5">
+                                      <select id="inputState" class="form-control" name="capType">
+                                          <option>Addition</option>
+                                          <option>deduction</option>
+
+                                      </select>
+                                </div>
+                      </div>
+    <br>
+                      <div class="form-group row">
+                          <label for="inputPassword" class="col-sm-2 col-form-label" >price </label>
+                              <div class="col-sm-5">
+                                    <input type="numbers"  class="form-control"  name="capPrice" placeholder="Price" required>
+                              </div>
+                      </div>
+  </br>
+                      <div class="form-group row">
+                            <label for="inputPassword"   class="col-sm-2 col-form-label">description</label>
+                                <div class="col-sm-8">
+                                      <input type="text" class="form-control"id="inputPassword"  name="capDes" placeholder="Discription" required>
+                                </div>
+                      </div>
+
+    <br>
+    <br>
+                  <div class="container-fluid">
+
+                      <div class="col-sm-4">
+                            <button type="submit"  class="btn btn-warning ">Submit</button>
+                      </div>
+                  </div>
+
+          </div>
+  </div>
+        </form>
+  </div>
+</body>
+</html>

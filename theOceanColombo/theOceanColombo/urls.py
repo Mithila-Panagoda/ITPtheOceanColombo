@@ -19,8 +19,15 @@ from django.conf.urls import include, url
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+
+    
+    path('complaint/', include('ComplaintManagement.urls')),
+
+    path('Expenses/', include('expensesManagement.urls')),
+
     path('restaurant/', include('restaurant.urls')),
     path("payroll/", include('payrollManagement.urls')),
     path("Rooms/", include('roomManagement.urls')),
+
 
 ]
