@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>complaint front</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                        <li class="nav-item active">
+                                <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                        </li>
+                        <li class="nav-item">
+                                <a class="nav-link active" href="../complaint5">View Feedbooks</a>
+                        </li>
+
+                        <li class="nav-item">
+                                <a class="nav-link active" href="../complaint2">Reply to Feedbacks</a>
+                        </li>
+                </ul>
+          <form class="form-inline my-2 my-lg-0">
+                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-warning my-2 my-sm-0" type="submit">Search</button>
+          </form>
+        </div>
+      </nav>
+    <br>
+
+                <h1 class="text-center"  style="color:#DC8A1B">Give us your Ideas</h1>
+    <br>
+        <div class="container">
+             <form class="container-fluid"  action= "/complaint/complaintFrontend/" method="post">
+                {% csrf_token %}
+                    <div class="form-group">
+                            <label >Customer Name</label>
+                                    <input type="text" class="form-control" name="cusname" placeholder="please Enter name" required>
+                    </div>
+
+
+                <div class="form-group">
+                  <label >Email</label>
+                  <input type="email" class="form-control" name="email" placeholder="please Enter email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" required>
+                </div>
+
+                    <div class="form-group">
+                      <label for="">Contact Number</label>
+                      <input type="tel" class="form-control" name="phn" placeholder="please Enter contact number" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label >Feedback</label>
+                        <textarea class="form-control" name="feed" placeholder="please Enter your feedback"  rows="3" required></textarea>
+                      </div>
+        <br>
+        <br>
+            <div class="form-row">
+                <div class="col-3">
+                        <button type="submit" class="btn btn-secondary mb-5">cansel</button>
+                </div>
+                <div class="col-3">
+                        <button type="submit" class="btn btn-warning mb-3">Submit</button>
+                </div>
+            </div>
+        </form>
+    </div>
+    </body>
+</html>

@@ -1,7 +1,64 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
+  </component>
   <component name="ChangeListManager">
-    <list default="true" id="f483ffcf-1734-4d60-adbc-d530f5533040" name="Default Changelist" comment="" />
+    <list default="true" id="f483ffcf-1734-4d60-adbc-d530f5533040" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/theOceanColombo/ComplaintManagement/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/theOceanColombo/ComplaintManagement/admin.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/theOceanColombo/ComplaintManagement/apps.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/theOceanColombo/ComplaintManagement/migrations/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/theOceanColombo/ComplaintManagement/models.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/theOceanColombo/ComplaintManagement/tests.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/theOceanColombo/ComplaintManagement/urls.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/theOceanColombo/ComplaintManagement/views.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/theOceanColombo/expensesManagement/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/theOceanColombo/expensesManagement/admin.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/theOceanColombo/expensesManagement/apps.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/theOceanColombo/expensesManagement/migrations/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/theOceanColombo/expensesManagement/models.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/theOceanColombo/expensesManagement/tests.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/theOceanColombo/expensesManagement/urls.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/theOceanColombo/expensesManagement/views.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/theOceanColombo/templates/ExAddExpense.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/theOceanColombo/templates/ExLedgers.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/theOceanColombo/templates/ExReportsDisplay.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/theOceanColombo/templates/ExRevenueList.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/theOceanColombo/templates/ExViewCapital.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/theOceanColombo/templates/ExViewLedgers.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/theOceanColombo/templates/ExaddCapital.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/theOceanColombo/templates/ExaddRevenue.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/theOceanColombo/templates/ExpensesList.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/theOceanColombo/templates/ExpensesReports.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/theOceanColombo/templates/ExupdateTransacktion.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/theOceanColombo/templates/complaintCheckReply.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/theOceanColombo/templates/complaintTypereply.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/theOceanColombo/templates/complaintUpdate.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/theOceanColombo/templates/complaintView.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/theOceanColombo/templates/complaintfrontend.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/theOceanColombo/templates/complaintreplaytable.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/ITPTheOceanColombo.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/ITPTheOceanColombo.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/theOceanColombo/theOceanColombo/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/theOceanColombo/theOceanColombo/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/theOceanColombo/theOceanColombo/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/theOceanColombo/theOceanColombo/urls.py" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -18,6 +75,12 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="last_opened_file_path" value="$USER_HOME$/PycharmProjects/theOceanColombo" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="E:\2nd year 2 sem\ITPtheOceanColombo\theOceanColombo\templates" />
+    </key>
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -31,5 +94,27 @@
       <updated>1602147858454</updated>
     </task>
     <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="463" y="119" key="FileChooserDialogImpl" timestamp="1602222013587">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="463" y="119" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1602222013587" />
+    <state x="360" y="152" key="git4idea.merge.GitPullDialog" timestamp="1602168121724">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="360" y="152" key="git4idea.merge.GitPullDialog/0.0.1366.728@0.0.1366.728" timestamp="1602168121724" />
   </component>
 </project>
