@@ -5,5 +5,6 @@ from . import views
 urlpatterns = [
     path("newEmployee/", views.Newemployee),
     path("viewEmployee/", views.Viewemployee),
-    path("HireNew/", views.loadNewemployee)
+    path("HireNew/", views.loadNewemployee),
+     path("deletemp/",views.deleteEmp)
 ]

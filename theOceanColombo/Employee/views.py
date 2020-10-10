@@ -43,4 +43,71 @@ def Viewemployee(request):
     return render(request, "ViewEmployee.html")
 
 def loadViewemployee(request):
-    return render(request, "ViewEmployee.html")
+    final_data = getempdata()
+    return render(request, "ViewEmployee.html",{'final_data':final_data})
+
+def getempdata():
+    firebase = pyrebase.initialize_app(firebaseconfig)
+    db = firebase.database()
+    data = db.child("Staff").child('Employee').shallow().get().val()
+    list_empepf=[]
+    for i in data:
+            list_empepf.append(i)
+            list_empepf.sort(reverse = True)
+
+    list_empFname=[]
+    list_empLname=[]
+    list_nic=[]
+    list_title=[]
+    list_Emptype=[]
+    list_email=[]
+    list_adrs=[]
+    list_phone=[]
+    list_EmergCont=[]
+
+    for i in list_empepf:
+        query = db.child("Staff").child('Employee').child(i).child("firstName").get().val()
+        list_empFname.append(query)
+
+    for i in list_empepf:
+        query = db.child("Staff").child('Employee').child(i).child("lastName").get().val()
+        list_empLname.append(query)
+
+    for i in list_empepf:
+        query = db.child("Staff").child('Employee').child(i).child("NIC").get().val()
+        list_nic.append(query)
+
+    for i in list_empepf:
+        query = db.child("Staff").child('Employee').child(i).child("Title").get().val()
+        list_title.append(query)
+
+    for i in list_empepf:
+        query = db.child("Staff").child('Employee').child(i).child("employeeType").get().val()
+        list_Emptype.append(query)
+
+    for i in list_empepf:
+        query = db.child("Staff").child('Employee').child(i).child("Email").get().val()
+        list_email.append(query)
+
+    for i in list_empepf:
+        query = db.child("Staff").child('Employee').child(i).child("Address").get().val()
+        list_adrs.append(query)
+
+    for i in list_empepf:
+        query = db.child("Staff").child('Employee').child(i).child("Phone").get().val()
+        list_phone.append(query)
+
+    for i in list_empepf:
+        query = db.child("Staff").child('Employee').child(i).child("EmergencyCo").get().val()
+        list_EmergCont.append(query)
+
+        final_data= zip(list_empepf,list_empFname,list_empLname,list_nic,list_title,list_Emptype,list_email,list_adrs,list_phone,list_EmergCont)
+        return final_data
+
+def deleteEmp(request):
+        firebase = pyrebase.initialize_app(firebaseconfig)
+        db = firebase.database()
+        empepf = request.POST.get('empEPF')
+        db.child("Staff").child("Employee").child(empepf).remove()
+        final_data = getempdata()
+        return render (request,"ViewEmployee.html",{'final_data': final_data})

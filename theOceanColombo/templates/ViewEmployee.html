@@ -176,7 +176,9 @@ table, th, td {
   <form method="post" class="form-group" action="/viewEmployee/"
      enctype="multipart/form-data">
 <table style="width:100%">
+  <thead>
     <tr>
+      <th>EPF</th>
       <th>First Name</th>
       <th>Last Name</th>
       <th>NIC</th>
@@ -185,10 +187,35 @@ table, th, td {
       <th>Email</th>
       <th>Address</th>
       <th>Phone</th>
-      <th>EPF</th>
       <th>Emergency contact</th>
         <th><form>Terminate</form></th>
      </tr>
+    </thead>
+    <tbody>
+      {%for EPF,firstName,lastName,NIC,Title,employeeType,Email,Address,Phone,EmergencyCo in final_data %}
+      <tr>
+          <td scope="row"> {{EPF}} </td>
+          <td>{{firstName}}</td>
+          <td>{{lastName}}/=</td>
+          <td>{{NIC}}</td>
+          <td>{{Title}</td>
+          <td>{{employeeType}}</td>
+          <td>{{Email}}</td>
+          <td>{{Address}}</td>
+          <td>{{Phone}}</td>
+          <td>{{EmergencyCo}}</td>
+          <td>
+              <br>
+              <form method="POST" action="/Employee/deletemp/">
+                  {% csrf_token %}
+                  <input type="submit" class="btn btn-danger formbtn" value="Terminate">
+                  <input type="hidden" name="empEPF" value ="{{name}}">
+              </form>
+          </td>
+      </tr>
+      {% endfor %}
+</tbody>
+    </tbody>
   </table>
   </form>
 </body>
