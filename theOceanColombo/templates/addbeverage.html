@@ -70,18 +70,36 @@
         </div>
         <div class="form-group">
             <label>size</label>
-            <input type="text" class="form-control" placeholder="regular/larger" name="size">
+            <select name ="size" class="btn-block btn-lg btn-light dropdown-toggle" required>
+                <option name="s1" value="Small">Small</option>
+                <option name="s2" value="Regular">Regular</option>
+                <option name="s3" value="Medium">Medium</option>
+                <option name="s4" value="Large">Large</option>
+            </select>
         </div>
         <div class="form-group">
             <label>Description</label>
             <input type="text" class="form-control" placeholder="" name="desc">
         </div>
         <div class="form-group">
+            <label>Availability</label>
+            <select name ="status" class="btn-block btn-lg btn-light dropdown-toggle">
+                <option name="opt1" value="Yes" class="btn btn-success" selected>Yes</option>
+                <option name="opt2" value="No"  class="btn btn-danger">no</option>
+            </select>
+            <input type="text" class="form-control" placeholder="yes/no" name="status" required>
+        </div>
+        <div class="form-group">
             <div class="form-group">
                 <label for="inputCity">Type</label><br>
-                <input type="radio" name="drink" value="cocktail"> cocktail &nbsp&nbsp&nbsp
-                <input type="radio" name="drink" value="mocktail"> mocktail &nbsp&nbsp&nbsp
-                <input type="radio" name="drink" value="milkshake"> milkshake
+                <select name="drink" class="btn-block btn-lg btn-light dropdown-toggle">
+                    <option name="drink1" value="cocktail" class="dropdown-item btn-outline-danger">cocktail</option>
+                    <option name="drink2" value="mocktail" class="dropdown-item">mocktail</option>
+                    <option name="drink3" value="milkshake" class="dropdown-item">milkshake</option>
+                    <option name="drink4" value="softDrink" class="dropdown-item">soft drink</option>
+                    <option name="drink5" value="Tea" class="dropdown-item"selected>Tea</option>
+                    <option name="drink6" value="Bubble Tea" class="dropdown-item">Bubble Tea</option>
+                </select>
             </div>
         </div>
         <input type="submit" class="btn btn-lg btn-success formbtn" value="Add Drink">

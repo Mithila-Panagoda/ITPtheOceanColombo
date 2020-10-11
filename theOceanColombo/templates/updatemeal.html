@@ -59,7 +59,7 @@
         {%for name,desc,price,spice,available,veg in final_data %}
             <div class="form-group col-md-6">
                 <label>Title</label>
-                <input type="text" class="form-control" placeholder="Dish name" name="name" value="{{name}}">
+                <input type="text" class="form-control" placeholder="Dish name" name="name" value="{{name}}" readonly>
             </div>
             <div class="form-group col-md-6">
                 <label>Price</label>
@@ -68,7 +68,13 @@
         </div>
         <div class="form-group">
             <label>Spiceiness</label>
-            <input type="number" class="form-control" placeholder="1:no spice - 5:very spicy" name="spicelvl" value="{{spice}}">
+            <select name ="spicelvl" class="btn-block btn-lg btn-light dropdown-toggle">
+                <option name="opt1" value="Not Spicy">Not Spicy</option>
+                <option name="opt2" value="Normal"selected>Normal</option>
+                <option name="opt3" value="Midly Spicy">Midly Spicy</option>
+                <option name="opt4" value="Very Spicy">Very Spicy</option>
+                <option name="opt5" value="Extra Spicy">Extra Spicy</option>
+            </select>
         </div>
         <div class="form-group">
             <label>Description</label>
@@ -76,14 +82,17 @@
         </div>
         <div class="form-group">
             <label>Availability</label>
-            <input type="text" class="form-control" placeholder="yes/no" name="status" value="{{available}}" required>
+            <select name ="status" class="btn-block btn-lg btn-light dropdown-toggle">
+                <option name="opt1" value="Yes" class="btn btn-success" selected>Yes</option>
+                <option name="opt2" value="No"  class="btn btn-danger">no</option>
+            </select>
         </div>
         <div class="form-group">
-            <div class="form-group">
-                <label>Veg</label><br>
-                <span><input type="radio" name="veg" value="yes" checked/> Yes </span>
-                <input type="radio" name="veg" value="no"> No
-            </div>
+            <label for="veg">Dish Type</label><br>
+            <select name ="veg" class="btn-block btn-lg btn-light dropdown-toggle">
+                <option name="opt1" value="Vegetarian" class="btn btn-success">Vegetarain</option>
+                <option name="opt2" value="Non Vegetarian"  class="btn btn-danger"selected>Non Vegetarain</option>
+            </select>
         </div>
         <input type="submit" class="btn btn-lg btn-success formbtn" value="Confirm Changes">
         {% endfor %}
