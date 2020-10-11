@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Payroll Management</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    {% load static %}
+</head>
+<body>
+    <header>
+        <div class="container-fluid">
+            <img src="{% static 'images/logo.png' %}" width="110px" height="110px" alt="logo" />
+        </div>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="../backendHome">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Sign out</a>
+                    </li>
+                </ul>
+                <form class="form-inline my-2 my-lg-0">
+                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                </form>
+            </div>
+        </nav>
+    </header>
+    <main>
+        <div class="container-fluid">
+            <br>
+            <h1 class="text-center" style = "color:#DC8A1B">Payroll Management</h1>
+            <br><br>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <div class="card text-center">
+                        <img class="card-img-top" src="{% static 'images/salary.jpg' %}" alt="salary">
+                        <div class="card-body">
+
+                            <button onclick="document.location='../EPFToCalculateSalary'">Calculate Salary Details</button>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card text-center" >
+                        <img class="card-img-top" src="{% static 'images/salaryAll.jpg' %}" alt="Salary All">
+                        <div class="card-body">
+
+                            <button onclick="document.location='../SalaryDetailsOfAllEmployees'">View Salary Details of All Employees</button>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card text-center">
+                        <img class="card-img-top" src="{% static 'images/salaryOne.jpg' %}" alt="SalaryHistory">
+                        <div class="card-body">
+
+                            <button onclick="document.location='../SalaryHistoryOfEmployee'">View Salary History of an Employee</button>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

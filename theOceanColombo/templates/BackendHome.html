@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Backend Home</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    {% load static %}
+    <style>
+        .btn{width:300px;}
+        .btn:hover{
+            background-color : green ;
+            transition-delay : 0.2s ease-in
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container-fluid">
+            <img src="{% static 'images/logo.png' %}" width="110px" height="110px" alt="logo" />
+        </div>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="../backendHome">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Sign out</a>
+                    </li>
+                </ul>
+                <form class="form-inline my-2 my-lg-0">
+                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                </form>
+            </div>
+        </nav>
+    </header>
+    <main>
+        <div class="container-fluid">
+            <br>
+            <h1 class="text-center" style = "color:#DC8A1B">Backend Home</h1>
+        </div>
+        <br><br><br>
+        <div class = "container-fluid">
+            <div class="form-row">
+                <div class="col-3">
+                    <button onclick="document.location='#'" class = "btn btn-secondary">Restaurant POS</button>
+                </div>
+                <div class="col-3">
+                    <button onclick="document.location='#'" class = "btn btn-secondary">Booking POS</button>
+                </div>
+                <div class="col-3">
+                    <button onclick="document.location='#'" class = "btn btn-secondary">Event Management</button>
+                </div>
+                <div class="col-3">
+                    <button onclick="document.location='#'" class = "btn btn-secondary">Room Booking Management</button>
+                </div>
+            </div>
+            <br><br>
+            <div class="form-row">
+                <div class="col-3">
+                    <button onclick="document.location='../PayrollManagementHome'" class = "btn btn-secondary">Payroll Management</button>
+                </div>
+                <div class="col-3">
+                    <button onclick="document.location='../roomManagementHome'" class = "btn btn-secondary">Room Management</button>
+                </div>
+                <div class="col-3">
+                    <button onclick="document.location='#'" class = "btn btn-secondary">Customer Relationship Management</button>
+                </div>
+                <div class="col-3">
+                    <button onclick="document.location='#'" class = "btn btn-secondary">Inventory Control(Restaurant)</button>
+                </div>
+            </div>
+            <br><br>
+            <div class="form-row">
+                <div class="col-3">
+                    <button onclick="document.location='#'" class = "btn btn-secondary">Employee Management</button>
+                </div>
+                <div class="col-3">
+                    <button onclick="document.location='#'" class = "btn btn-secondary">Promotion Management</button>
+                </div>
+                <div class="col-3">
+                    <button onclick="document.location='#'" class = "btn btn-secondary">Customer Management</button>
+                </div>
+                <div class="col-3">
+                    <button onclick="document.location='#'" class = "btn btn-secondary">Attendance Management</button>
+                </div>
+            </div>
+            <br><br>
+            <div class="form-row">
+                <div class="col-3">
+                    <button onclick="document.location='#'" class = "btn btn-secondary">Vehicle Management</button>
+                </div>
+                <div class="col-3">
+                    <button onclick="document.location='#'" class = "btn btn-secondary">Vehicle Booking</button>
+                </div>
+                <div class="col-3">
+                    <button onclick="document.location='#'" class = "btn btn-secondary">Complaint Management</button>
+                </div>
+                <div class="col-3">
+                    <button onclick="document.location='#'" class = "btn btn-secondary">Expenses Management</button>
+                </div>
+            </div>
+            <br><br>
+            <div class="form-row">
+                <div class="col-3">
+                    <button onclick="document.location='#'" class = "btn btn-secondary">Restaurant Management System</button>
+                </div>
+            </div>
+        </div>
+        </div>
+    </main>
+</body>
+</html>
