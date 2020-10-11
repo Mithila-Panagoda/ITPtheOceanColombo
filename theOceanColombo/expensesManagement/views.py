@@ -38,14 +38,38 @@ def ExaddExpenses(request):
     return render(request, "ExpensesList.html")
 
 def ExpenseslistLoad(request):
-    return render(request, "ExpensesList.html")
+    list_all = getExpenseslist()
+    return render(request, "ExpensesList.html", {'list_all': list_all})
 
-def Expenseslist(request):
+
+def getExpenseslist():
     firebase = pyrebase.initialize_app(firebaseconfig)
     db = firebase.database()
+
     expenses = db.child("Accounts").child("expenses").shallow().get().val()
-    print(expenses)
-    return render(request, "ExpensesList.html")
+    list_expensesid = []
+    for i in expenses:
+        list_expensesid.append(i)
+
+    list_date = []
+    for i in list_expensesid:
+        email = db.child("Accounts").child("expenses").child(i).child("Date").get().val()
+        list_date.append(email)
+
+    list_amount = []
+    for i in list_expensesid:
+        amount = "Rs." +db.child("Accounts").child("expenses").child(i).child("Price").get().val()
+        list_amount.append(amount)
+
+    list_discription = []
+    for i in list_expensesid:
+        description = db.child("Accounts").child("expenses").child(i).child("Description").get().val()
+        list_discription.append(description)
+
+    list_all = zip(list_expensesid, list_amount,list_date,list_discription)
+    return list_all
+
+
 
 
 
@@ -89,22 +113,63 @@ def ExViewCapital(request):
     return render(request, "ExViewCapital.html")
 
 
-
+#upadate details
 def ExupdateTransacktionLoad(request):
-    return render(request, "ExupdateTransacktion.html")
+    expensesid= request.POST.get('expensesid')
+    loadData=loadingDataToUpdatePage(expensesid)
+    return render(request, "ExupdateTransacktion.html",{'list_all': loadData})
+
+def loadingDataToUpdatePage(expensesid):
+    firebase = pyrebase.initialize_app(firebaseconfig)
+    db = firebase.database()
+
+
+    list_expensesid = []
+    list_expensesid.append(expensesid)
+
+
+    list_amount = []
+    amount = db.child("Accounts").child("expenses").child(expensesid).child("Price").get().val()
+    list_amount.append(amount)
+
+    list_date = []
+    date = db.child("Accounts").child("expenses").child(expensesid).child("Date").get().val()
+    list_date.append(date)
+
+    list_discription = []
+    description = db.child("Accounts").child("expenses").child(expensesid).child("Description").get().val()
+    list_discription.append(description)
+
+    list_all = zip(list_expensesid,list_amount ,list_date, list_discription)
+    return list_all
+
+
 def ExupdateTransacktion(request):
     firebase = pyrebase.initialize_app(firebaseconfig)
     db = firebase.database()
-    id = request.POST.get('id1')
-    date = request.POST.get('date1')
-    price = request.POST.get('price1')
-    description = request.POST.get('des1')
+    id = request.POST.get('expensesid')
+    date = request.POST.get('date')
+    price = request.POST.get('price')
+    description = request.POST.get('description')
 
-    data = {"Date": date, "Price": price, "Description": description}
+    data = { "Date": date, "Price": price, "Description": description}
     db.child("Accounts").child("expenses").child(id).update(data)
-    return render(request, "ExpensesList.html")
+    list_all = getExpenseslist()
+    return render(request, "ExpensesList.html", {"list_all": list_all})
+
+#--------Delete expenses,revenue___________________________
+def deleteExpensesRevenue(request):
+    firebase = pyrebase.initialize_app(firebaseconfig)
+    db = firebase.database()
+    id =request.POST.get('expensesid')
+    db.child("Accounts").child("expenses").child(id).remove()
+    data =getExpenseslist()
+    return render(request, "ExpensesList.html", {"list_all": data})
 
 
+
+
+#-----------------------------------------------------------------------------------------
 def ExledgersLoad(request):
     return render(request, "ExLedgers.html")
 def Exledgers(request):
