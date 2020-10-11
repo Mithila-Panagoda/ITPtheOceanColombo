@@ -33,6 +33,8 @@ def loadselectroom(request):
     for i in roomIDs:
         roomIDList.append(i)
 
+    print(roomIDList)
+
     roomTypeList = []
     for i in roomIDList:
         type = db.child('Rooms').child(i).child('RoomType').get().val()
@@ -121,7 +123,7 @@ def confirmbooking(request):
         'checkOut': checkOut,
         'roomType': roomName,
         'roomTotal': roomTotal,
-        'roomQty':roomQty
+        'roomQty': roomQty
     }
 
     emailSubject = 'Your Booking Is Confirmed'
@@ -164,7 +166,20 @@ def cancelbooking(request):
 
 
 def loadcancelbooking(request):
-    return render(request, 'cancelBooking.html')
+    firebase = pyrebase.initialize_app(firebaseconfig)
+    db = firebase.database()
+    NICs = db.child('Customer').child('Contact Details').shallow().get().val()
+
+    NICList = []
+
+    for i in NICs:
+        NICList.append(i)
+
+    fNameList = []
+
+    for i in NICList:
+        fNames = db.child('Customer').child('Contact Details').child(i).
+    return render(request, 'cancelBooking.html',)
 
 
 def updatebooking(request):
