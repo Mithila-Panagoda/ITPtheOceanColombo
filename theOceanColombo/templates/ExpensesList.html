@@ -60,6 +60,7 @@
                           <thead>
                               <tr>
                                   <th>ExID</th>
+                                  <th>Type</th>
                                   <th>Amount</th>
                                   <th>Date</th>
                                   <th>Description</th>
@@ -68,9 +69,10 @@
                               </tr>
                           </thead>
                           <tbody>
-                          {% for expensesid,price,date,description in  list_all %}
+                          {% for expensesid,type,price,date,description in  list_all %}
                               <tr>
                                     <td>{{expensesid}}</td>
+                                    <td>{{type}}</td>
                                     <td>{{price}}</td>
                                     <td>{{date}}</td>
                                     <td>{{description}}</td>
