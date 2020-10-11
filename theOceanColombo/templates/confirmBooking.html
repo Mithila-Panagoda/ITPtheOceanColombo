@@ -15,38 +15,48 @@
     <div class="container text-uppercase bg-light">
         <div class="row">
             <div class="col d-xl-flex justify-content-xl-center align-items-xl-center"><strong>CHECK IN</strong></div>
-            <div class="col d-xl-flex justify-content-xl-center align-items-xl-center"><span>{{checkIn}}</span></div>
+            <div class="col d-xl-flex justify-content-xl-center align-items-xl-center">
+                <input type="text" style="border: none;text-align:center" name="checkIn" value="{{checkIn}}"
+                    form="confirmBookingForm" readonly>
+            </div>
             <div class="col d-xl-flex justify-content-xl-center align-items-xl-center"><strong>CHECK OUT</strong>
             </div>
-            <div class="col d-xl-flex justify-content-xl-center align-items-xl-center"><span>{{checkOut}}</span></div>
             <div class="col d-xl-flex justify-content-xl-center align-items-xl-center">
-                <a class="btn btn-primary text-uppercase bg-warning" href="/selectRoom/" type="button">change dates</a>
+                <input type="text" style="border: none;text-align:center" name="checkOut" value="{{checkOut}}"
+                    form="confirmBookingForm" readonly>
+            </div>
+            <div class="col d-xl-flex justify-content-xl-center align-items-xl-center">
+                <a class="btn btn-primary text-uppercase bg-warning" href="/roomBooking/selectRoom/"
+                    type="button">change dates</a>
             </div>
         </div>
     </div>
     <div class="container bg-light">
         <div class="row">
-            <div class="col-xl-5">
+            <div class="col-xl-7">
                 <div class="table-responsive table-borderless">
                     <table class="table table-bordered">
                         <thead>
                             <tr>
                                 <th class="text-uppercase">Rooms</th>
+                                <th class="text-uppercase">No.</th>
                                 <th class="text-uppercase text-right">Cost</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
-                                <td>Cell 1</td>
-                                <td class="text-right"></td>
-                            </tr>
-                            <tr>
-                                <td>Cell 3</td>
-                                <td class="text-right"></td>
+                                <td><input type="text" style="border: none;text-align:left" value="{{roomName}}"
+                                        form="confirmBookingForm" name="roomName" readonly></td>
+                                <td><input type="text" style="border: none;text-align:left" value="{{roomQty}}"
+                                        form="confirmBookingForm" name="roomQty" readonly></td>
+                                <td class="text-right"><input type="text" style="border: none;text-align:right"
+                                        value="{{roomCost}}" name="roomCost" form="confirmBookingForm" readonly></td>
                             </tr>
                             <tr>
                                 <td class="text-uppercase">Total</td>
-                                <td class="text-right"></td>
+                                <td></td>
+                                <td class="text-right"><input type="text" style="border: none;text-align:right;"
+                                        value="{{roomTotal}}" form="confirmBookingForm" name="roomTotal" readonly></td>
                             </tr>
                         </tbody>
                     </table>
@@ -54,13 +64,14 @@
             </div>
             <div class="col" id="outsideCol">
                 <div class="row">
-                    <div class="col p-2"><span>Estimated Time of Arrival</span><input class="float-right" type="time">
+                    <div class="col p-2"><span>Estimated Time of Arrival</span>
+                        <input class="float-right" name="ETA" form="confirmBookingForm" type="time" required>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col p-2"><span class="d-inline-block">Special Requests</span><textarea
-                            class="form-control-lg d-block"
-                            style="margin-top: 0.5rem;width: 645px;height: 100px;"></textarea></div>
+                            class="form-control-lg d-block" name="splRequests" form="confirmBookingForm"
+                            style="margin-top: 0.5rem;width: 445px;height: 100px;"></textarea></div>
                 </div>
             </div>
         </div>
@@ -74,7 +85,7 @@
         </div>
     </div>
     <div class="container bg-light">
-        <form action="/roomBooking/addBooking/" method="POST">
+        <form action="/roomBooking/addBooking/" id="confirmBookingForm" method="POST">
             {% csrf_token %}
             <div class="row">
                 <div class="col p-2">
@@ -101,8 +112,9 @@
                 </div>
                 <div class="col p-2">
                     <h4 class="text-uppercase">card details</h4>
-                    <input class="form-control" type="text" placeholder="CARD NUMBER" inputmode="numeric" name="cardNo">
-                    <input class="form-control" type="text" placeholder="NAME ON CARD" name="nameOnCard">
+                    <input class="form-control" placeholder="CARD NUMBER" inputmode="numeric" name="cardNo" id="cardNo">
+                    <input class="form-control" type="text" placeholder="NAME ON CARD" name="nameOnCard"
+                        id="nameOnCard">
                     <h5 class="text-uppercase">EXPIRY DATE</h5>
                     <div class="form-row">
                         <div class="col p-1">
@@ -121,16 +133,22 @@
 
             <div class="row p-2">
                 <div class="col">
-                    <div class="custom-control text-uppercase custom-checkbox"><input class="custom-control-input"
-                            type="checkbox" id="formCheck-1"><label class="custom-control-label" for="formCheck-1">I
-                            ACCPET
+                    <div class="custom-control text-uppercase custom-checkbox">
+                        <input class="custom-control-input" type="checkbox" id="formCheck-1" required><label
+                            class="custom-control-label" for="formCheck-1"
+                            onchange="document.getElementById('confirmBooking').disabled = !this.checked;">I
+                            ACCEPT
                             THE TERMS AND CONDITIONS, PAYMENT TERMS</label></div>
-                    <div class="custom-control text-uppercase custom-checkbox"><input class="custom-control-input"
-                            type="checkbox" id="formCheck-1"><label class="custom-control-label" for="formCheck-1">I
+                    <div class="custom-control text-uppercase custom-checkbox">
+                        <input class="custom-control-input" type="checkbox" id="formCheck-2" required><label
+                            class="custom-control-label" for="formCheck-2"
+                            onchange="document.getElementById('confirmBooking').disabled = !this.checked;">I
                             WOULD
                             LIKE TO RECIEVE INFORMATION ABOUT PROMOTIONS AND DETAILS</label></div>
                     <div class="text-center p-2">
-                        <button class="btn btn-success text-uppercase" type="submit" style="margin-top: 0.5rem;">confirm
+                        <button class="btn btn-success text-uppercase" type="submit"
+                            onclick="checkCreditCard(cardNo,nameOnCard)" style="margin-top: 0.5rem;"
+                            id="confirmBooking">confirm
                             booking</button>
                     </div>
                 </div>
@@ -139,6 +157,7 @@
     </div>
 
     <script src="{% static 'js/jquery.min.js' %}"></script>
+    <script src="{% static 'js/creditcard.js' %}"></script>
     <script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
 </body>
 

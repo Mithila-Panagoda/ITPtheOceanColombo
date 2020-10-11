@@ -35,7 +35,7 @@ def loadselectroom(request):
 
     roomTypeList = []
     for i in roomIDList:
-        type = db.child('Rooms').child(i).child('Room Type').get().val()
+        type = db.child('Rooms').child(i).child('RoomType').get().val()
         roomTypeList.append(type)
 
     roomDescList = []
@@ -43,7 +43,12 @@ def loadselectroom(request):
         desc = db.child('Rooms').child(i).child('Description').get().val()
         roomDescList.append(desc)
 
-    rooms = zip(roomTypeList, roomDescList)
+    roomPriceList = []
+    for i in roomIDList:
+        price = db.child('Rooms').child(i).child('Price').get().val()
+        roomPriceList.append(price)
+
+    rooms = zip(roomTypeList, roomDescList, roomPriceList)
 
     return render(request, 'selectroom.html', {'rooms': rooms})
 
@@ -56,15 +61,43 @@ def confirmbooking(request):
     email = request.POST.get('email')
     contactNumber = request.POST.get('contactNo')
     NIC = request.POST.get('NIC')
+    checkIn = request.POST.get('checkIn')
+    checkOut = request.POST.get('checkOut')
+    ETA = request.POST.get('ETA')
+    roomName = request.POST.get('roomName')
+    roomQty = request.POST.get('roomQty')
+    roomCost = request.POST.get('roomCost')
+    roomTotal = request.POST.get('roomTotal')
+    splRequests = request.POST.get('splRequests')
 
-    data = {
+    contactDetails = {
         "FirstName": firstName,
         "LastName": lastName,
         "Email": email,
         "ContactNumber": contactNumber,
     }
 
-    db.child("Customer").child("Contact Details").child(NIC).set(data)
+    db.child("Customer").child("Contact Details").child(
+        NIC).set(contactDetails)
+
+    rooms = {
+        "RoomType": roomName,
+        "RoomQty": roomQty,
+        "TotalCost": roomTotal
+    }
+
+    db.child("Customer").child("Contact Details").child(
+        NIC).child("Rooms").set(rooms)
+
+    booking = {
+        "CheckIn": checkIn,
+        "CheckOut": checkOut,
+        "ETA": ETA,
+        "SpecialRequests": splRequests
+    }
+
+    db.child("Customer").child("Contact Details").child(
+        NIC).child("BookingDetails").set(booking)
 
     address = request.POST.get('address')
     suburb = request.POST.get('suburb')
@@ -82,10 +115,19 @@ def confirmbooking(request):
     fromEmail = settings.EMAIL_HOST_USER
     pwd = settings.EMAIL_HOST_PASSWORD
 
+    data = {
+        'name': firstName,
+        'checkIn': checkIn,
+        'checkOut': checkOut,
+        'roomType': roomName,
+        'roomTotal': roomTotal,
+        'roomQty':roomQty
+    }
+
     emailSubject = 'Your Booking Is Confirmed'
     emailBody = 'Test'
     template = render_to_string(
-        'bookingConfirmationEmail.html', {'name': firstName})
+        'bookingConfirmationEmail.html', data)
     fromEmail = settings.EMAIL_HOST_USER
     confirmMail = EmailMessage(
         emailSubject,
@@ -102,11 +144,19 @@ def confirmbooking(request):
 def loadconfirmbooking(request):
     checkIn = request.POST.get('checkIn')
     checkOut = request.POST.get('checkOut')
-    dates = {
+    roomName = request.POST.get('roomName')
+    roomQty = request.POST.get('roomQty')
+    roomCost = request.POST.get('roomCost')
+    roomTotal = request.POST.get('roomTotal')
+    bookingInfo = {
         'checkIn': checkIn,
-        'checkOut': checkOut
+        'checkOut': checkOut,
+        'roomName': roomName,
+        'roomQty': roomQty,
+        'roomCost': roomCost,
+        'roomTotal': roomTotal
     }
-    return render(request, 'confirmBooking.html', dates)
+    return render(request, 'confirmBooking.html', bookingInfo)
 
 
 def cancelbooking(request):

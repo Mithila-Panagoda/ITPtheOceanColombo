@@ -11,8 +11,8 @@
 .container-md,
 .container-sm,
 .container-xl {
-    padding-top: .6rem;
-    margin-top: .5rem
+    padding-top: .3rem;
+    margin-top: .2rem
 }
 
 .form-control {
@@ -25,5 +25,15 @@
 
 .custom-control.text-uppercase.custom-checkbox,
 .row {
-    margin-top: .5rem
+    margin-top: .2rem
+}
+
+.room-images {
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+#images img:hover {
+    opacity: 0.6;
 }

@@ -16,7 +16,7 @@
         method="POST">
         {% csrf_token %}</form>
     <div class="container text-uppercase bg-light border-dark">
-        <div class="row" style="padding: 1px;">
+        <div class="row">
             <div class="col-xl-3 p-1"></div>
             <div class="col-xl-3 p-1"><label class="d-block">Check In</label><input class="min-today" name="checkIn"
                     placeholder="9 Sept 2020" type="date" id="checkIn" form="selectRoomForm" required></div>
@@ -28,74 +28,227 @@
         </div>
     </div>
 
-    {% for roomTypeList,roomDescList in rooms %}
+    <div class="container bg-light p-2" id="addedRooms">
+        <div class="row">
+            <div class="col-xl-3 p-2">
+                <div class="col d-xl-flex justify-content-xl-center align-items-xl-center">
+                    <h5 class="text-warning">ROOM</h5>
+                </div>
+            </div>
+            <div class="col-xl-2 p-2">
+                <div class="col d-xl-flex justify-content-xl-center align-items-xl-center">
+                    <h5 class="text-warning"></h5>
+                </div>
+            </div>
+            <div class="col-xl-3 p-2">
+                <div class="col d-xl-flex justify-content-xl-center align-items-xl-center">
+                    <h5 class="text-warning">COST/ROOM</h5>
+                </div>
+            </div>
+            <div class="col-xl-3 p-2">
+                <div class="col d-xl-flex justify-content-xl-center align-items-xl-center">
+                    <h5 class="text-warning">TOTAL</h5>
+                </div>
+            </div>
+            <div class="col-xl-1 p-2">
+                <div class="col d-xl-flex justify-content-xl-center align-items-xl-center ">
+                    <button class="btn btn-success btn-sm" id="btnConfirm" form="selectRoomForm" disabled="disabled"
+                        style="margin-right: 2rem;">CONFIRM</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {% for roomTypeList,roomDescList,roomPriceList in rooms %}
     <div class="container bg-light" style="margin-top: 0.6rem;">
         <div class="row room-row gallery">
-            <div class="col-xl-4 p-2">
-                <img id="room-image" src="{% static 'images/room1.jpg'%}" style="width: 370px;height: 236px;"><br />
-                <img id="room-image" src="{% static 'images/room2.jpg'%}"
+            <div class="col-xl-4 p-2 " id="images">
+                <img id="room-image1" class="room-images" src="{% static 'images/room1.jpg'%}"
+                    style="width: 370px;height: 236px;"><br />
+                <img id="room-image" class="room-images" src="{% static 'images/room2.jpg'%}"
                     style="width: auto;height: 88px; margin-top: 0.3rem;margin-left: 0.1rem;">
-                <img id="room-image" src="{% static 'images/room2.jpg'%}"
+                <img id="room-image" class="room-images" src="{% static 'images/room2.jpg'%}"
                     style="width: auto;height: 88px; margin-top: 0.3rem;margin-right: 0.1rem;">
-                <img id="room-image" src="{% static 'images/room2.jpg'%}"
+                <img id="room-image" class="room-images" src="{% static 'images/room2.jpg'%}"
                     style="width: auto;height: 88px; margin-top: 0.3rem;">
             </div>
-            <div class="col-xl-8">
+
+            <div class="col-xl-6">
                 <h3 id="room-name">{{roomTypeList}}</h3>
                 <p id="rooom-des">
                     {{roomDescList}}
                 </p>
+                <div class="row">
+                    <div class="col d-xl-flex justify-content-xl-start align-items-xl-center">
+                        <h5 class="text-warning">ROOM</h5>
+                    </div>
+                    <div class="col d-xl-flex justify-content-xl-center align-items-xl-center">
+                        <h5 class="text-warning d-xl-flex">COST/ROOM</h5>
+                    </div>
+                    <div class="col d-xl-flex justify-content-xl-center align-items-xl-center">
+                        <h5 class="text-warning d-xl-flex"></h5>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col d-xl-flex justify-content-xl-start "><input style="margin-left: 0.3rem;"
+                            class="form-control-sm" type="number" placeholder="0" min="0" id="roomQty"></div>
+                    <div class="col d-xl-flex justify-content-xl-center ">
+                        <p>{{roomPriceList}}</p>
+                    </div>
+                    <div class="col d-xl-flex align-items-xl-center " style="padding-bottom: 0.9rem;">
+                        <button class="btn btn-warning" onclick="addRoom()">ADD</button>
+                    </div>
+                </div>
             </div>
-        </div>
-    </div>
-    </div>
-    <div class="container bg-light">
-        <div class="row">
-            <div class="col-xl-3 d-xl-flex justify-content-xl-start align-items-xl-center">
-                <h4 class="text-warning">ROOM</h4>
-            </div>
-            <div class="col-xl-3 d-xl-flex justify-content-xl-center align-items-xl-center p-1">
-                <h4 class="text-warning d-xl-flex">CHARGE</h4>
-            </div>
-            <div class="col d-xl-flex justify-content-xl-center align-items-xl-center">
-                <h4 class="text-warning d-xl-flex justify-content-xl-center p-1"></h4>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-xl-3 d-xl-flex justify-content-xl-center p-1"><input class="form-control-sm" type="number"
-                    placeholder="1"></div>
-            <div class="col-xl-3 d-xl-flex justify-content-xl-center p-1"><span>$$$</span></div>
-            <div class="col-xl-6 d-xl-flex justify-content-xl-center align-items-xl-center p-1">
-                <div class="container p-2 display-flex text-right" id="reserveBoooking">
-                    <button class="btn btn-warning text-right" type="submit" form="selectRoomForm">RESERVE</button>
+            <div class="col-xl-2">
+                <div class="d-xl-flex justify-content-xl-center">
+                    <p>from</p>
+                </div>
+
+                <div class="d-xl-flex justify-content-xl-center">
+                    <h3 id="roomCost">{{roomPriceList}}</h3>
                 </div>
             </div>
         </div>
+    </div>
 
-        {% endfor %}
+    {% endfor %}
 
-        <script src="{% static 'js/jquery.min.js' %}"></script>
-        <script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
-        <script>
-            function checkDates() {
-                var checkIn = document.getElementById('checkIn').value;
-                var checkOut = document.getElementById('checkOut').value;
+    <script src="{% static 'js/jquery.min.js' %}"></script>
+    <script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
+    <script>
+        function checkDates() {
+            var checkIn = document.getElementById('checkIn').value;
+            var checkOut = document.getElementById('checkOut').value;
 
-                var indate = new Date(checkIn);
-                var outDate = new Date(checkOut)
-                var currDate = new Date();
+            var indate = new Date(checkIn);
+            var outDate = new Date(checkOut)
+            var currDate = new Date();
 
-                if (indate < currDate) {
-                    alert('Choose a valid check in date');
-                    return false;
-                } else if (outDate < indate) {
-                    alert('Check Out date cannot be before check in date');
-                    return false;
-                }
-
+            if (indate < currDate) {
+                alert('Choose a valid check in date');
+                return false;
+            } else if (outDate < indate) {
+                alert('Check Out date cannot be before check in date');
+                return false;
             }
 
-        </script>
+        }
+
+        let getNewElement = (function () {
+            const idBase = 'my-unique-id-';
+            let count = 0;
+            return function (type = 'div') {
+                let el = document.createElement(type);
+                el.id = idBase + count;
+                count += 1;
+                return el;
+            }
+        }());
+
+        function addRoom() {
+            var roomRow = getNewElement("div");
+            var colName = document.createElement("div");
+            var colQty = document.createElement("div");
+            var colCost = document.createElement("div");
+            var colTotal = document.createElement("div");
+            var colRemove = document.createElement("div");
+
+            roomRow.classList.add("row");
+            colName.classList.add("col-xl-3", "d-xl-flex", "justify-content-xl-center", "align-items-xl-center");
+            colQty.classList.add("col-xl-2", "d-xl-flex", "justify-content-xl-center", "align-items-xl-center");
+            colCost.classList.add("col-xl-3", "d-xl-flex", "justify-content-xl-center", "align-items-xl-center");
+            colTotal.classList.add("col-xl-3", "d-xl-flex", "justify-content-xl-center", "align-items-xl-center");
+            colRemove.classList.add("col-xl-1", "d-xl-flex", "justify-content-xl-center", "align-items-xl-center");
+
+            var pName = document.createElement("input");
+            var pQty = document.createElement("input");
+            var pCost = document.createElement("input");
+            var pTotal = document.createElement("input");
+            var btnRemove = document.createElement("button");
+
+
+            pName.setAttribute("type", "text");
+            pName.setAttribute("form", "selectRoomForm");
+            pName.setAttribute('readonly', true);
+            pName.setAttribute("name", "roomName");
+            pName.style.border = "none";
+            pName.style.textAlign = "center";
+
+            pQty.setAttribute("type", "text");
+            pQty.setAttribute("form", "selectRoomForm");
+            pQty.setAttribute('readonly', true);
+            pQty.setAttribute("name", "roomQty");
+            pQty.style.border = "none";
+            pQty.style.textAlign = "center";
+
+            pCost.setAttribute("type", "text");
+            pCost.setAttribute('readonly', true);
+            pCost.setAttribute("form", "selectRoomForm");
+            pCost.setAttribute("name", "roomCost");
+            pCost.style.border = "none";
+            pCost.style.textAlign = "center";
+
+            pTotal.setAttribute("type", "text");
+            pTotal.setAttribute('readonly', true);
+            pTotal.setAttribute("form", "selectRoomForm");
+            pTotal.setAttribute("name", "roomTotal");
+            pTotal.style.border = "none";
+            pTotal.style.textAlign = "center";
+
+            btnRemove.classList.add("btn", "btn-danger", "btn-sm", "removeDiv");
+            btnRemove.setAttribute("onclick", "removeDiv(this)");
+            btnRemove.style.marginRight = "2rem";
+
+
+
+            var rooomName = String(document.getElementById("room-name").innerHTML);
+            var qty = document.getElementById("roomQty").value;
+            var cost = parseFloat(document.getElementById("roomCost").innerText);
+            var total = cost * qty;
+
+
+            if (qty == 0) {
+                alert("select number of rooms");
+            }
+            else {
+                pQty.value = "X " + String(qty);
+                pCost.value = String(cost);
+                pName.value = rooomName;
+                pTotal.value = String(total);
+                btnRemove.innerHTML = "REMOVE";
+
+                var rooms = document.getElementById("addedRooms");
+
+                rooms.appendChild(roomRow);
+                roomRow.appendChild(colName);
+                roomRow.appendChild(colQty);
+                roomRow.appendChild(colCost);
+                roomRow.appendChild(colTotal);
+                roomRow.appendChild(colRemove);
+                colName.appendChild(pName);
+                colQty.appendChild(pQty);
+                colCost.appendChild(pCost);
+                colTotal.appendChild(pTotal);
+                colRemove.appendChild(btnRemove);
+
+                var btnConfirm = document.getElementById("btnConfirm");
+                btnConfirm.disabled = false;
+
+
+            }
+        }
+
+
+        function removeDiv(elem) {
+            $(elem).parent('div').parent('div').remove();
+        }
+
+
+
+    </script>
+
+
 
 </body>
 
