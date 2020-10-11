@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Room Management</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    {% load static %}
+</head>
+<body>
+    <header>
+        <div class="container-fluid">
+            <img src="{% static 'images/logo.png' %}" width="110px" height="110px" alt="logo" />
+        </div>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="../backendHome">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Sign out</a>
+                    </li>
+                </ul>
+                <form class="form-inline my-2 my-lg-0">
+                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                </form>
+            </div>
+        </nav>
+    </header>
+    <main>
+        <div class="container-fluid">
+            <br>
+            <h1 class="text-center" style = "color:#DC8A1B">Room Management</h1>
+            <br><br>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <div class="card text-center">
+                        <img class="card-img-top" src="{% static 'images/room1.jpg' %}" alt="room">
+                        <div class="card-body">
+
+                            <button onclick="document.location='../InsertRoomDetails'">Insert Rooms and Required Descriptions</button>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card text-center" >
+                        <img class="card-img-top" src="{% static 'images/room2.jpg' %}" alt="room">
+                        <div class="card-body">
+
+                            <button onclick="document.location='../roomDetails'">View, Update and Delete Rooms/ Descriptions</button>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card text-center">
+                        <img class="card-img-top" src="{% static 'images/housekeeping.jpg' %}" alt="housekeeping">
+                        <div class="card-body">
+
+                            <button onclick="document.location='../HousekeepingReport'">Housekeeping <br> Report</button>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card text-center">
+                        <img class="card-img-top" src="{% static 'images/time.jpg' %}" alt="time">
+                        <div class="card-body">
+
+                            <button onclick="document.location='../continuousReport'">Continuous <br> Report</button>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

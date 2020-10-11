@@ -1,0 +1,12 @@
+.col {
+    padding: 1.7rem
+}
+
+.form-control {
+    margin-bottom: 1.5REM
+}
+
+.btn:not(:disabled):not(.disabled) {
+    margin-top: .5rem;
+    width: 100%
+}
