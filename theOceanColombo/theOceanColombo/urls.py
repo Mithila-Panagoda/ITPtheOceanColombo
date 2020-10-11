@@ -20,6 +20,5 @@ from django.conf.urls import include, url
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('restaurant/', include('restaurant.urls')),
-    path('insertVehicle/', include('vehicleMngt.urls')),
-    path('updatevehicle/', include('vehicleMngt.urls'))
+    path('insertVehicle/', include('vehicleMngt.urls'))
 ]
