@@ -20,9 +20,11 @@ from django.conf.urls import include, url
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('insertVehicle/', include('vehicleMngt.urls')),
+    path('updatevehicle/', include('vehicleMngt.urls'))
     path('restaurant/',include('restaurant.urls')),
     path('inventory/',include('inventory.urls')),
-    path('crm/',include('crm.urls'))
+    path('crm/',include('crm.urls')),
     path('complaint/', include('ComplaintManagement.urls')),
     path('Expenses/', include('expensesManagement.urls')),
     path('restaurant/', include('restaurant.urls')),
@@ -31,5 +33,3 @@ urlpatterns = [
     path("Employee",include('Employee.urls')),
     path("Promotion",include('Promotion.urls')),
     path('roomBooking/', include('RoomBooking.urls'))
-
-]
