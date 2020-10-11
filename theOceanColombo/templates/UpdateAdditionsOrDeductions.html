@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Update Additions or Deductions</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    {% load static %}
+</head>
+<body>
+    <header>
+        <div class="container-fluid">
+            <img src="{% static 'images/logo.png' %}" width="110px" height="110px" alt="logo" />
+        </div>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="../backendHome">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../EPFToCalculateSalary">Calculate Salary</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../SalaryDetailsOfAllEmployees">Salary Details of All Employees</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../SalaryHistoryOfEmployee">Salary History of an Employee</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Sign out</a>
+                    </li>
+                </ul>
+                <form class="form-inline my-2 my-lg-0">
+                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                </form>
+            </div>
+        </nav>
+    </header>
+    <main>
+        <div class="container-fluid">
+            <br><br><br>
+            <h1 class="text-center" style = "color:#DC8A1B">Update Additions or Deductions</h1>
+            <br><br>
+            <form class = "container" action = "UpdateAdditionsDeductions" method = "post">
+                <div class="form-group">
+                    <label>Name: </label>
+                    <input type="text" class="form-control" id="name" name = "name" placeholder="sports club" value = "" required>
+                    <br><br>
+                </div>
+                <div class="form-group">
+                    <label for="additionOrDeduction">Addition or Deduction: </label>
+                    <input type="text" class="form-control" id="additionDeduction" name = "AdditionDeduction" placeholder="Deduction" value = "" pattern = "^([dD][Ee][Dd][Uu][Cc][Tt][Ii][oo][Nn]|[Aa][Dd][Dd][Ii][Tt][Ii][Oo][Nn]).*$" required>
+                    <br><br>
+                </div>
+                <div class="form-group">
+                    <label for="amount">Amount: </label>
+                    <input type="number" class="form-control" id="amount" name = "amount" placeholder="1000" step = ".01" min = "100" value = "" required>
+                    <br><br>
+                </div>
+                <div class="form-row">
+                    <div class="col-3">
+                        <button class="btn btn-warning" type="submit">Update</button>
+                    </div>
+                    <div class="col-3">
+                        <button class="btn btn-secondary" type="reset">Reset</button>
+                    </div>
+                    <div class="col-4">
+                        <a href="#" class="btn btn-secondary" role="button" aria-pressed="true">Cancel</a>
+                    </div>
+                </div>
+            </form>
+            <br><br><br>
+        </div>
+    </main>
+</body>
+</html>

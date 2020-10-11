@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Revenue</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+
+          <li class="nav-item">
+                <a class="nav-link" href="#">Home</a>
+          </li>
+          <li class="nav-item">
+                <a class="nav-link" href="../Expenses1">Expenses </a>
+          </li>
+          <li class="nav-item">
+                <a class="nav-link" href="../AddRevenue">Revenue</a>
+          </li>
+          <li class="nav-item">
+                <a class="nav-link" href="../Capital">Capital Account</a>
+          </li>
+          <li class="nav-item">
+                <a class="nav-link" href="../Expenses7">Ledgers</a>
+          </li>
+          <li class="nav-item">
+                <a class="nav-link" href="../Expenses9">Reports</a>
+          </li>
+
+            </ul>
+
+            <form class="form-inline my-2 my-lg-0">
+                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-warning my-2 my-sm-0" type="button">Search</button>
+            </form>
+      </div>
+  </nav>
+</head>
+<body>
+
+
+<br>
+<br>
+<h1 class="text-center"  style="color:#DC8A1B">Addition of Revenue</h1>
+  <br>
+  <br>
+  <div class="container-fluid">
+  <form class = "container"  action="/Expenses/ExaddRevenue/" method="post">
+    {% csrf_token %}
+    <div class="container-fluid">
+      <div class="form-group row">
+          <label for="id" class="col-sm-2 col-form-label">RevenueId</label>
+              <div class="col-sm-5">
+                  <input type="text"  class="form-control" id="id"  name="revId"  pattern = "[Rr][0-9]{4}"required>
+              </div>
+      </div>
+
+        <div class="form-group row">
+                    <label for="roomType" class="col-sm-2 col-form-label">Room Type</label>
+                    <div class="col-sm-5">
+                        <select class="form-control" id="roomType" name = "roomType">
+                            <option>Ocean Elite Twin</option>
+                            <option>Ocean Premier</option>
+                            <option>Ocean Charm</option>
+                            <option>Ocean Panorama Studio</option>
+                        </select>
+                        <br>
+                    </div>
+                </div>
+      <div class="form-group row">
+            <label for="date" class="col-sm-2 col-form-label">Date</label>
+                <div class="col-sm-5">
+                      <input type="date"   class="form-control"id="date" placeholder="enter date" name="revDate" required>
+                </div>
+      </div>
+    <br>
+    <div class="form-group row">
+            <label for="inputPrice" class="col-sm-2 col-form-label">price</label>
+                  <div class="col-sm-5">
+                        <input type="numbers"  class="form-control" id="inputPrice" placeholder="Price" name="revPrice" required>
+                  </div>
+    </div>
+  </br>
+    <div class="form-group row">
+          <label for="dis3" class="col-sm-2 col-form-label">discription</label>
+              <div class="col-sm-10">
+                  <input type="text" class="form-control"id="dis3" placeholder="Discription" name="revDis" required>
+              </div>
+    </div>
+
+    <br>
+    <br>
+          <div class="col-sm-4">
+              <button type="submit"  class="btn btn-warning ">Submit</button>
+
+          </div>
+
+</div>
+          </form>
+
+      </div>
+
+
+</body>
+</html>

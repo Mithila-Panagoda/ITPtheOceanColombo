@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Payslip</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    {% load static %}
+</head>
+<body>
+    <header>
+        <div class="container-fluid">
+            <img src="{% static 'images/logo.png' %}" width="110px" height="110px" alt="logo" />
+        </div>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="../backendHome">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../EPFToCalculateSalary">Calculate Salary</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../SalaryDetailsOfAllEmployees">Salary Details of All Employees</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../SalaryHistoryOfEmployee">Salary History of an Employee</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Sign out</a>
+                    </li>
+                </ul>
+                <form class="form-inline my-2 my-lg-0">
+                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                </form>
+            </div>
+        </nav>
+    </header>
+    <main>
+        <div class="container-fluid">
+            <br>
+            <h1 class="text-center" style = "color:#DC8A1B">Payslip</h1>
+            <form>
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">EPF No: </label>
+                    <div class="col-sm-10">
+                        <input type="text" readonly class="form-control-plaintext" id="epfNo" value="">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="name" class="col-sm-2 col-form-label">Name: </label>
+                    <div class="col-sm-10">
+                        <input type="text" readonly class="form-control-plaintext" id="name" value="">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="designation" class="col-sm-2 col-form-label">Designation: </label>
+                    <div class="col-sm-10">
+                        <input type="text" readonly class="form-control-plaintext" id="designation" value="">
+                    </div>
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                            </tr>
+                        </thead>
+                        <tbody>
+                           <tr>
+                                <td scope="row"></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="form-row">
+                        <div class="col-3">
+                            <a onclick="document.location='../PayrollManagementHome'" class="btn btn-secondary" role="button" aria-pressed="true">Back to Payroll Management</a>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </main>
+</body>
+</html>
