@@ -16,5 +16,6 @@ urlpatterns = [
     path("updatemeal/",views.updateMeal),
     path("loadaddmeal/",views.loadAddMeal),
     path("addmeal/", views.addMeal),
-    path("deletemeal/",views.deleteMeal)
+    path("deletemeal/",views.deleteMeal),
+    path("addDrink/",views.adddrink),
 ]

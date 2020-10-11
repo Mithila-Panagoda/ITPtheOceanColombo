@@ -14,9 +14,3 @@ firebaseconfig = {
 }
 firebase = pyrebase.initialize_app(firebaseconfig)
 
-
-
-def loadmessages(request):
-    return render(request, "Messages.html")
-def loadaddsendmessages(request):
-    return render(request, "SendMessages.html")

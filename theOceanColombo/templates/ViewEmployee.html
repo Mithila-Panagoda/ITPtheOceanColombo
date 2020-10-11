@@ -149,7 +149,6 @@ table, th, td {
   } /*table style end*/
 </style>
     <h1>The Ocean Colombo</h1>
-    <link rel="stylesheet" type="text/css" href="ViewEmployee.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <title>View Employee data</title>
 </head>
@@ -162,7 +161,7 @@ table, th, td {
     <input type="text" placeholder="Search..">
   </div>
   <br>
-   <form class="newEmp" action="/HireNew/">
+   <form class="newEmp" action="/Employee/HireNew/">
        {% csrf_token %}
       <button class="btn">HIRE NEW EMPLOYEE</button>
    </form>
@@ -192,13 +191,13 @@ table, th, td {
      </tr>
     </thead>
     <tbody>
-      {%for EPF,firstName,lastName,NIC,Title,employeeType,Email,Address,Phone,EmergencyCo in final_data %}
+      {% for EPF,firstName,lastName,NIC,Title,employeeType,Email,Address,Phone,EmergencyCo in final_data %}
       <tr>
           <td scope="row"> {{EPF}} </td>
           <td>{{firstName}}</td>
-          <td>{{lastName}}/=</td>
+          <td>{{lastName}}</td>
           <td>{{NIC}}</td>
-          <td>{{Title}</td>
+          <td>{{Title}}</td>
           <td>{{employeeType}}</td>
           <td>{{Email}}</td>
           <td>{{Address}}</td>
@@ -209,7 +208,7 @@ table, th, td {
               <form method="POST" action="/Employee/deletemp/">
                   {% csrf_token %}
                   <input type="submit" class="btn btn-danger formbtn" value="Terminate">
-                  <input type="hidden" name="empEPF" value ="{{name}}">
+                  <input type="hidden" name="empEPF" value ="{{EPF}}">
               </form>
           </td>
       </tr>

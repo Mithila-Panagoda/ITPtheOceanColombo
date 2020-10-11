@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.http import request
 import pyrebase
+
 # Create your views here.
 firebaseconfig = {
     'apiKey': "AIzaSyBew42hA7iZHy7zs47WMqIg-GSBnxP-ttM",
@@ -126,10 +127,12 @@ def loadBeverageMngt(request):
     final_data=getBeverageData()
     return render(request,"resturantbeveragemngt.html",{'final_data':final_data})
 
+
 def loadadddrink(request):
     return render(request, "addbeverage.html")
 
-def adddrink(request):#code not implemented
+
+def adddrink(request):  # code not implemented
     firebase = pyrebase.initialize_app(firebaseconfig)
     db = firebase.database()
     storage = firebase.storage()

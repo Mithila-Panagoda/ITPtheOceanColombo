@@ -90,7 +90,7 @@ def getRoomDetails():
         list_description.append(description)
 
     for j in list_roomNumber:
-        price = db.child("Rooms").child(j).child("Price").get().val()
+        price = "Rs. " + db.child("Rooms").child(j).child("Price").get().val()
         list_price.append(price)
 
     data = zip(list_roomNo, list_roomType, list_description, list_price)
@@ -131,7 +131,6 @@ def dirUpdateRoomDetails(request):
 def UpdateRoomDetailsToDB(request):
     firebase = pyrebase.initialize_app(firebaseconfig)
     db = firebase.database()
-
     roomNo = request.POST.get('roomNumber')
     roomType = request.POST.get("roomType")
     description = request.POST.get("description")
@@ -149,3 +148,25 @@ def deleteRoom(request):
     db.child("Rooms").child(roomNo).remove()
     data = getRoomDetails()
     return render(request, "roomDetails.html", {'data': data})
+
+
+def dirInsertAssignedEmployees(request):
+    return render(request, "statusAndAssignmentOfEmployees.html")
+
+
+def InsertAssignedEmployees(request):
+    firebase = pyrebase.initialize_app(firebaseconfig)
+    db = firebase.database()
+    assigningDate = request.POST.get('assigningDate')
+    roomNumber = request.POST.get('roomNumber')
+    status = request.POST.get('status')
+    condition = request.POST.get('condition')
+    assigningTime = request.POST.get('assigningTime')
+    assignedEmployee = request.POST.get('employee')
+    date = assigningTime, " ", assigningDate
+
+    # push data
+    data = {"AssignedDate": assigningDate, "RoomNo": roomNumber, "Status": status, "Condition": condition,
+            "AssignedTime": assigningTime, "AssignedEmployee": assignedEmployee}
+    db.child("Housekeeping").child(date).set(data)
+    return render(request, "statusAndAssignmentOfEmployees.html")

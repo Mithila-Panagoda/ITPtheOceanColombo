@@ -5,7 +5,7 @@ urlpatterns = [
         path("ExaddExpensesLoad/", views.ExaddExpensesLoad),
         path("ExaddExpenses/", views.ExaddExpenses),
         path("ExpenseslistLoad/", views.ExpenseslistLoad),
-        path("Expenseslist/", views.Expenseslist),
+        path("Expenseslist/", views.getExpenseslist),
         path("ExaddRevenueLoad/", views.ExaddRevenueLoad),
         path("ExaddRevenue/", views.ExaddRevenue),
         path("ExRevenueListLoad/", views.ExRevenueListLoad),
@@ -15,6 +15,9 @@ urlpatterns = [
         path("ExViewCapitalLoad/", views.ExViewCapitalLoad),
         path("ExViewCapital/", views.ExViewCapital),
         path("ExupdateTransacktionLoad/", views.ExupdateTransacktionLoad),
+        path("loadingDataToUpdatePage/", views.loadingDataToUpdatePage),
+        path("deleteExpensesRevenue/", views.deleteExpensesRevenue),
+
         path("ExupdateTransacktion/", views.ExupdateTransacktion),
         path("ExledgersLoad/", views. ExledgersLoad),
         path("Exledgers/", views. Exledgers),
