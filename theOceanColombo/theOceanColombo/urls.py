@@ -30,6 +30,10 @@ urlpatterns = [
     path('restaurant/', include('restaurant.urls')),
     path("payroll/", include('payrollManagement.urls')),
     path("Rooms/", include('roomManagement.urls')),
-    path("Employee",include('Employee.urls')),
-    path("Promotion",include('Promotion.urls')),
+    path("Employee/",include('Employee.urls')),
+    path("Promotion/",include('Promotion.urls'))
     path('roomBooking/', include('RoomBooking.urls'))
+
+]
+
+
