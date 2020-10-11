@@ -49,11 +49,12 @@ def loadViewemployee(request):
 def getempdata():
     firebase = pyrebase.initialize_app(firebaseconfig)
     db = firebase.database()
-    data = db.child("Staff").child('Employee').shallow().get().val()
+    data = db.child('Staff').child('Employee').shallow().get().val()
     list_empepf=[]
     for i in data:
-            list_empepf.append(i)
-            list_empepf.sort(reverse = True)
+        list_empepf.append(i)
+
+    print(list_empepf)
 
     list_empFname=[]
     list_empLname=[]
@@ -66,27 +67,29 @@ def getempdata():
     list_EmergCont=[]
 
     for i in list_empepf:
-        query = db.child("Staff").child('Employee').child(i).child("firstName").get().val()
+        query = db.child('Staff').child('Employee').child(i).child('firstName').get().val()
         list_empFname.append(query)
 
+    print(list_empFname)
+
     for i in list_empepf:
-        query = db.child("Staff").child('Employee').child(i).child("lastName").get().val()
+        query = db.child('Staff').child('Employee').child(i).child('lastName').get().val()
         list_empLname.append(query)
 
     for i in list_empepf:
-        query = db.child("Staff").child('Employee').child(i).child("NIC").get().val()
+        query = db.child('Staff').child('Employee').child(i).child('NIC').get().val()
         list_nic.append(query)
 
     for i in list_empepf:
-        query = db.child("Staff").child('Employee').child(i).child("Title").get().val()
+        query = db.child('Staff').child('Employee').child(i).child('Title').get().val()
         list_title.append(query)
 
     for i in list_empepf:
-        query = db.child("Staff").child('Employee').child(i).child("employeeType").get().val()
+        query = db.child('Staff').child('Employee').child(i).child('employeeType').get().val()
         list_Emptype.append(query)
 
     for i in list_empepf:
-        query = db.child("Staff").child('Employee').child(i).child("Email").get().val()
+        query = db.child('Staff').child('Employee').child(i).child('Email').get().val()
         list_email.append(query)
 
     for i in list_empepf:
@@ -101,8 +104,8 @@ def getempdata():
         query = db.child("Staff").child('Employee').child(i).child("EmergencyCo").get().val()
         list_EmergCont.append(query)
 
-        final_data= zip(list_empepf,list_empFname,list_empLname,list_nic,list_title,list_Emptype,list_email,list_adrs,list_phone,list_EmergCont)
-        return final_data
+    final_data= zip(list_empepf,list_empFname,list_empLname,list_nic,list_title,list_Emptype,list_email,list_adrs,list_phone,list_EmergCont)
+    return final_data
 
 def deleteEmp(request):
         firebase = pyrebase.initialize_app(firebaseconfig)
