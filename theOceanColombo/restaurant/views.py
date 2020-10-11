@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.http import request
 import pyrebase
+
 # Create your views here.
 firebaseconfig = {
     'apiKey': "AIzaSyBew42hA7iZHy7zs47WMqIg-GSBnxP-ttM",
@@ -14,10 +15,12 @@ firebaseconfig = {
 }
 firebase = pyrebase.initialize_app(firebaseconfig)
 
+
 def loadadddrink(request):
     return render(request, "addbeverage.html")
 
-def adddrink(request):#code not implemented
+
+def adddrink(request):  # code not implemented
     firebase = pyrebase.initialize_app(firebaseconfig)
     db = firebase.database()
     name = request.POST.get('name')
@@ -25,6 +28,5 @@ def adddrink(request):#code not implemented
     size = request.POST.get('size')
     desc = request.POST.get('desc')
     type = request.POST.get('drink')
-    data={"price":price,"size":size,"desc":desc,"type":type }
+    data = {"price": price, "size": size, "desc": desc, "type": type}
     db.child("resturant").child("beverages").child(name).set(data)
-    
