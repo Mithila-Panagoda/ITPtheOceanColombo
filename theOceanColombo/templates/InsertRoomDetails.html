@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Insert Room Details</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    {% load static %}
+</head>
+<body>
+    <header>
+        <div class="container-fluid">
+            <img src="{% static 'images/logo.png' %}" width="110px" height="110px" alt="logo" />
+        </div>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="../backendHome">Home</a>
+                    </li>
+                    <li>
+                        <a class="nav-link" href="../InsertRoomDetails">Insert Room Details</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../roomDetails">View Room Details</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../HousekeepingReport">Housekeeping Report</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../continuousReport">Continuous Report</a>
+
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Sign out</a>
+                    </li>
+                </ul>
+                <form class="form-inline my-2 my-lg-0">
+                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                </form>
+            </div>
+        </nav>
+    </header>
+    <main>
+
+        <div class="container-fluid">
+            <br>
+            <h1 class="text-center" style = "color:#DC8A1B">Insert Room Details</h1>
+            <br><br>
+
+            <form class = "container" action = "/Rooms/InsertRoomDetails/" method = "post" >
+                {% csrf_token %}
+
+                <div class="form-group row">
+                    <label for="roomNumber" class="col-sm-2 col-form-label">Room Number</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="roomNumber" name="roomNumber" placeholder="R4100" oninvalid = "this.setCustomValidity('Invalid Room Number')" onchange = "try{setCustomValidity('')}catch(e){}" pattern = "[Rr][0-9]{4}" required>
+                        <br>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="roomType" class="col-sm-2 col-form-label">Room Type</label>
+                    <div class="col-sm-10">
+                        <select class="form-control" id="roomType" name = "roomType">
+                            <option>Ocean Elite Twin</option>
+                            <option>Ocean Premier</option>
+                            <option>Ocean Charm</option>
+                            <option>Ocean Panorama Studio</option>
+                        </select>
+                        <br>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="price" class="col-sm-2 col-form-label">Price (per day)</label>
+                    <div class="col-sm-10">
+                        <input type="number" class="form-control" id="price" name="price" placeholder="12000.00" oninvalid = "this.setCustomValidity('Enter a valid price')" onchange = "try{setCustomValidity('')}catch(e){}" step="0.01">
+                        <br>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="description" class="col-sm-2 col-form-label">Description</label>
+                    <div class="col-sm-10">
+                        <textarea class="form-control" id="description" name = "description" rows="3" required></textarea>
+                        <br>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="image" class="col-sm-2 col-form-label">Image of Room</label>
+                    <div class="col-sm-10">
+                        <input type="file" id="image" name="image" accept="image/*" required>
+                        <br><br><br>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="col-3">
+                        <button id = "select" class="btn btn-warning" type="submit">Submit</button>
+                    </div>
+                    <div class="col-3">
+                        <button class="btn btn-secondary" type="reset">Reset</button>
+                    </div>
+
+                    <div class="col-2">
+                        <a onclick="document.location='../roomManagementHome'" class="btn btn-secondary" role="button" aria-pressed="true">Back to Room Management</a>
+                    </div>
+                </div>
+                    <br><br><br>
+            </form>
+            <div class="col-4 container">
+                <button onclick = "#" class="btn btn-secondary" role="button" aria-pressed="true">Check Room Details</button>
+            </div>
+            <br><br>
+        </div>
+
+    </main>
+</body>
+</html>
