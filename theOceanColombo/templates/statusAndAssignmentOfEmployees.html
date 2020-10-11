@@ -47,12 +47,17 @@
 
         <div class="container-fluid">
             <br>
-            <h1 class="text-center" style = "color:#DC8A1B">Insert Room Details</h1>
+            <h1 class="text-center" style = "color:#DC8A1B">Assign Employees For Housekeeping</h1>
             <br><br>
-
-            <form class = "container" action = "/Rooms/InsertRoomDetails/" method = "post" >
+            <form class = "container" action = "/Rooms/insertAssignedEmployees/" method = "post" >
                 {% csrf_token %}
-
+                <div class="form-group row">
+                    <label for="assigningDate" class="col-sm-2 col-form-label">Assigning Date</label>
+                    <div class="col-sm-10">
+                        <input type="text" id = "assigningDate" class="form-control" name="assigningDate" readonly>
+                        <br>
+                    </div>
+                </div>
                 <div class="form-group row">
                     <label for="roomNumber" class="col-sm-2 col-form-label">Room Number</label>
                     <div class="col-sm-10">
@@ -61,36 +66,37 @@
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label for="roomType" class="col-sm-2 col-form-label">Room Type</label>
+                    <label for="status" class="col-sm-2 col-form-label">Status</label>
                     <div class="col-sm-10">
-                        <select class="form-control" id="roomType" name = "roomType">
-                            <option>Ocean Elite Twin</option>
-                            <option>Ocean Premier</option>
-                            <option>Ocean Charm</option>
-                            <option>Ocean Panorama Studio</option>
+                        <select class="form-control" id="status" name = "status">
+                            <option>Occupied</option>
+                            <option>Not Occupied</option>
                         </select>
                         <br>
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label for="price" class="col-sm-2 col-form-label">Price (per day)</label>
+                    <label for="condition" class="col-sm-2 col-form-label" onclick = "checkEmployee()">Condition</label>
                     <div class="col-sm-10">
-                        <input type="number" class="form-control" id="price" name="price" placeholder="12000.00" oninvalid = "this.setCustomValidity('Enter a valid price')" onchange = "try{setCustomValidity('')}catch(e){}" step="0.01">
+                        <select class="form-control" id="condition" name = "condition">
+                            <option>Clean</option>
+                            <option>Dirty</option>
+                        </select>
                         <br>
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label for="description" class="col-sm-2 col-form-label">Description</label>
+                    <label for="assignedTime" class="col-sm-2 col-form-label">Assigned Time To Clean</label>
                     <div class="col-sm-10">
-                        <textarea class="form-control" id="description" name = "description" rows="3" required></textarea>
+                        <input type="time" id = "assignedTime" class="form-control" name="assigningTime">
                         <br>
                     </div>
                 </div>
-                <div class="form-group row">
-                    <label for="image" class="col-sm-2 col-form-label">Image of Room</label>
+                <div class="form-group row" id = "check">
+                    <label for="employee" class="col-sm-2 col-form-label">Assigned Employee To Clean</label>
                     <div class="col-sm-10">
-                        <input type="file" id="image" name="image" accept="image/*" required>
-                        <br><br><br>
+                        <input type="text" class="form-control" id="employee" name="employee" placeholder = none>
+                        <br>
                     </div>
                 </div>
                 <div class="form-row">
@@ -107,12 +113,15 @@
                 </div>
                     <br><br><br>
             </form>
-            <div class="col-4 container">
-                <button onclick = "#" class="btn btn-secondary" role="button" aria-pressed="true">Check Room Details</button>
-            </div>
             <br><br>
         </div>
-
+        <script>
+            n =  new Date();
+            y = n.getFullYear();
+            m = n.getMonth() + 1;
+            d = n.getDate();
+            document.getElementById("assigningDate").value = m + "/" + d + "/" + y;
+        </script>
     </main>
 </body>
 </html>
