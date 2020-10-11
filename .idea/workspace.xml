@@ -2,20 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="915050ee-64f4-4635-b147-1c647bd589cf" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/theOceanColombo/templates/UpdateVehicle.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/theOceanColombo/static/bootstrap/css/bootstrap.min.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/theOceanColombo/static/bootstrap/js/bootstrap.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/theOceanColombo/static/css/styles.min.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/theOceanColombo/static/js/jquery.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/theOceanColombo/static/js/script.min.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/ITPTheOceanColombo.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/ITPTheOceanColombo.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/theOceanColombo/static/bootstrap/css/bootstrap.min.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/theOceanColombo/static/bootstrap/js/bootstrap.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/theOceanColombo/static/css/roombooking.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/theOceanColombo/static/css/vehiclemanagement.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/theOceanColombo/static/js/jquery.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/theOceanColombo/templates/AvailableVehicleList.html" beforeDir="false" afterPath="$PROJECT_DIR$/theOceanColombo/templates/AvailableVehicleList.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/theOceanColombo/templates/InsertVehicle.html" beforeDir="false" afterPath="$PROJECT_DIR$/theOceanColombo/templates/InsertVehicle.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/theOceanColombo/theOceanColombo/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/theOceanColombo/theOceanColombo/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/theOceanColombo/theOceanColombo/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/theOceanColombo/theOceanColombo/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/theOceanColombo/vehicleMngt/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/theOceanColombo/vehicleMngt/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/theOceanColombo/vehicleMngt/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/theOceanColombo/vehicleMngt/views.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -134,13 +126,21 @@
       <option name="project" value="LOCAL" />
       <updated>1602222970845</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Vehicle Inserting and retrieving are done">
+      <created>1602396819514</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1602396819514</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="Vehicle Inserting is done" />
-    <option name="LAST_COMMIT_MESSAGE" value="Vehicle Inserting is done" />
+    <MESSAGE value="Vehicle Inserting and retrieving are done" />
+    <option name="LAST_COMMIT_MESSAGE" value="Vehicle Inserting and retrieving are done" />
   </component>
   <component name="WindowStateProjectService">
     <state x="223" y="72" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1602182601362">
@@ -151,17 +151,17 @@
       <screen x="0" y="0" width="1536" height="834" />
     </state>
     <state x="526" y="219" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1536.834@0.0.1536.834" timestamp="1602235619113" />
-    <state x="223" y="0" key="CommitChangelistDialog2" timestamp="1602222968860">
+    <state x="223" y="0" key="CommitChangelistDialog2" timestamp="1602396817345">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state x="223" y="0" key="CommitChangelistDialog2/0.0.1536.834@0.0.1536.834" timestamp="1602222968860" />
+    <state x="223" y="0" key="CommitChangelistDialog2/0.0.1536.834@0.0.1536.834" timestamp="1602396817345" />
     <state x="549" y="172" key="FileChooserDialogImpl" timestamp="1602171274573">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
     <state x="549" y="172" key="FileChooserDialogImpl/0.0.1536.834@0.0.1536.834" timestamp="1602171274573" />
-    <state x="361" y="150" key="Vcs.Push.Dialog.v2" timestamp="1602223075240">
+    <state x="361" y="150" key="Vcs.Push.Dialog.v2" timestamp="1602396853313">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state x="361" y="150" key="Vcs.Push.Dialog.v2/0.0.1536.834@0.0.1536.834" timestamp="1602223075240" />
+    <state x="361" y="150" key="Vcs.Push.Dialog.v2/0.0.1536.834@0.0.1536.834" timestamp="1602396853313" />
   </component>
 </project>
