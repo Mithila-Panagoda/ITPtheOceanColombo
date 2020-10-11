@@ -11,5 +11,6 @@ urlpatterns = [
     path('InsertRooms', views.InsertRooms, name="InsertRooms"),
     path("backendHome/", views.dirBackendHome),
     path("updateDataInDB/", views.UpdateRoomDetailsToDB),
-    path("deleteRoom/", views.deleteRoom)
+    path("deleteRoom/", views.deleteRoom),
+    path("insertAssignedEmployees/", views.InsertAssignedEmployees)
 ]
