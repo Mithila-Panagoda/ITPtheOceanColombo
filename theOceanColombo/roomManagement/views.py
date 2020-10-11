@@ -2,6 +2,7 @@ from django.core.files.storage import FileSystemStorage
 from django.shortcuts import render
 
 import pyrebase
+
 # Create your views here.
 firebaseconfig = {
     'apiKey': "AIzaSyBew42hA7iZHy7zs47WMqIg-GSBnxP-ttM",
@@ -16,6 +17,7 @@ firebaseconfig = {
 firebase = pyrebase.initialize_app(firebaseconfig)
 authe = firebase.auth()
 storage = firebase.storage()
+
 
 def dirContinuousReport(request):
     return render(request, "continuousReport.html")
@@ -32,28 +34,26 @@ def dirInsertRoomDetails(request):
 def dirRoomDetails(request):
     return render(request, "roomDetails.html")
 
-def roomDetails(request):
-    db = firebase.database()
-    #rooms = db.child("Rooms").get()
-    #print(rooms.val())
-    return render(request, 'roomDetails.html', {'content': db.child("Rooms").get()})
 
 def dirRoomManagementHome(request):
     return render(request, "RoomManagementHome.html")
+
 
 def InsertRoomDetails(request):
     firebase = pyrebase.initialize_app(firebaseconfig)
     db = firebase.database()
     roomNo = request.POST.get('roomNumber')
     roomType = request.POST.get('roomType')
-    accommodationType = request.POST.getlist('accommodationType')
     description = request.POST.get('description')
     roomImage = request.POST.get('image')
+    price = request.POST.get('price')
 
-    #push data
-    data = {"Room Number" : roomNo, "Room Type" : roomType, "AccommodationType" : accommodationType, "Description" : description, "Room Image" : roomImage}
+    # push data
+    data = {"RoomNo": roomNo, "RoomType": roomType, "Price": price, "Description": description,
+            "RoomImage": roomImage}
     db.child("Rooms").child(roomNo).set(data)
     return render(request, "InsertRoomDetails.html")
+
 
 def dirBackendHome(request):
     return render(request, "BackendHome.html")
@@ -62,17 +62,90 @@ def dirBackendHome(request):
 def InsertRooms(request):
     return render(request, "roomDetails.html")
 
-def dirUpdateRoomDetails(request):
+
+def getRoomDetails():
     firebase = pyrebase.initialize_app(firebaseconfig)
     db = firebase.database()
-    roomNo = request.POST.get('roomNumber')
-    roomType = request.POST.get('roomType')
-    description = request.POST.get('description')
-    roomImage = request.POST.get('image')
+    data = db.child("Rooms").shallow().get().val()
 
-    # push data
-    data = {"Room Number": roomNo, "Room Type": roomType, "Description": description, "Room Image": roomImage}
-    db.child("Rooms").child(roomNo).update(data)
+    list_roomNumber = []
+    list_roomNo = []
+    list_roomType = []
+    list_description = []
+    list_price = []
+
+    for j in data:
+        list_roomNumber.append(j)
+
+    for j in list_roomNumber:
+        roomNo = db.child("Rooms").child(j).child("RoomNo").get().val()
+        list_roomNo.append(roomNo)
+
+    for j in list_roomNumber:
+        type = db.child("Rooms").child(j).child("RoomType").get().val()
+        list_roomType.append(type)
+
+    for j in list_roomNumber:
+        description = db.child("Rooms").child(j).child("Description").get().val()
+        list_description.append(description)
+
+    for j in list_roomNumber:
+        price = db.child("Rooms").child(j).child("Price").get().val()
+        list_price.append(price)
+
+    data = zip(list_roomNo, list_roomType, list_description, list_price)
+    return data
+
+
+def roomDetails(request):
+    data = getRoomDetails()
+    return render(request, "roomDetails.html", {'data': data})
+
+
+def UpdateRoomDetails(request):
+    roomNo = request.POST.get('roomNo')
+    data = getSingleRoomData(roomNo)
+    return render(request, "UpdateRoomDetails.html", {'data': data})
+
+
+def getSingleRoomData(RoomNo):
+    firebase = pyrebase.initialize_app(firebaseconfig)
+    db = firebase.database()
+    list_roomNo = []
+    list_roomType = []
+    list_description = []
+    list_price = []
+    list_roomNo.append(RoomNo)
+    list_roomNo.append(db.child("Rooms").child(RoomNo).child("RoomNo").get().val())
+    list_roomType.append(db.child("Rooms").child(RoomNo).child("RoomType").get().val())
+    list_description.append(db.child("Rooms").child(RoomNo).child("Description").get().val())
+    list_price.append(db.child("Rooms").child(RoomNo).child("Price").get().val())
+    data = zip(list_roomNo, list_roomType, list_description, list_price)
+    return data
+
+
+def dirUpdateRoomDetails(request):
     return render(request, "UpdateRoomDetails.html")
 
 
+def UpdateRoomDetailsToDB(request):
+    firebase = pyrebase.initialize_app(firebaseconfig)
+    db = firebase.database()
+
+    roomNo = request.POST.get('roomNumber')
+    roomType = request.POST.get("roomType")
+    description = request.POST.get("description")
+    price = request.POST.get("price")
+    data1 = {"RoomNo": roomNo, "RoomType": roomType, "Description": description, "Price": price}
+    db.child("Rooms").child(roomNo).update(data1)
+    data = getRoomDetails()
+    return render(request, "roomDetails.html", {'data': data})
+
+
+def deleteRoom(request):
+    firebase = pyrebase.initialize_app(firebaseconfig)
+    db = firebase.database()
+    roomNo = request.POST.get('roomNo')
+    db.child("Rooms").child(roomNo).remove()
+    data = getRoomDetails()
+    return render(request, "roomDetails.html", {'data': data})

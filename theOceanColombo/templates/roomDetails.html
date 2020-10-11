@@ -47,33 +47,40 @@
             <br>
             <h1 class="text-center" style = "color:#DC8A1B">Room Details</h1>
             <br><br>
-          
-            {% for time, work in comb_list %}
-            Room Id : {{time}} &nbsp &nbsp &nbsp{{work}}
-            {% endfor %}
 
             <table class="table table-striped">
                 <thead>
                 <tr>
-                    <th scope="col">Room Number</th>
-                    <th scope="col">Room Type</th>
-                    <th scope="col">Description</th>
-                    <th scope="col">Image</th>
-                    <th scope="col">Update</th>
-                    <th scope = "col"> Delete </th>
+                    <th scope="col" style = "text-align:left">Room Number</th>
+                    <th scope="col" style = "text-align:left">Room Type</th>
+                    <th scope="col" style = "text-align:center; width:700px">Description</th>
+                    <th scope="col" style = "text-align:left">Price</th>
+                    <th scope="col" style = "text-align:left">Update</th>
+                    <th scope = "col" style = "text-align:left"> Delete </th>
                 </tr>
                 </thead>
                 <tbody>
+                {% for roomNumber,roomType,description,price in data %}
                 <tr>
 
-                    <td scope="row"></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td> <a href = "#" class = "btn btn-warning" role = "button">Update</a></td>
-                    <td><a href = "#" class = "btn btn-warning" role = "button">Delete</a></td>
-
+                    <td scope="row">{{roomNumber}}</td>
+                    <td>{{roomType}}</td>
+                    <td style = "text-align:justify">{{description}}</td>
+                    <td>{{price}}</td>
+                    <td> <form class = "container" action = "/Rooms/updateRoomDetails/" method = "post">
+                            {% csrf_token %}
+                            <input type="submit" value = "Update" class = "btn btn-warning">
+                            <input type="hidden" name="roomNo" value = "{{roomNumber}}">
+                          </form>
+                    </td>
+                    <td> <form class = "container" action = "/Rooms/deleteRoom/" method = "post">
+                            {% csrf_token %}
+                            <input type="submit" value = "Delete" class = "btn btn-danger">
+                            <input type="hidden" name="roomNo" value = "{{roomNumber}}">
+                          </form>
+                    </td>
                 </tr>
+                {% endfor %}
                 </tbody>
             </table>
             <br><br>
@@ -82,10 +89,11 @@
                     <a onclick="document.location='../InsertRoomDetails'" class="btn btn-warning" role="button" aria-pressed="true">Add Room with Details</a>
                 </div>
                 <div class="col-4">
-                    <a onclick="document.location='../updateRoomDetails'" class="btn btn-secondary" role="button" aria-pressed="true">Back to Room Management</a>
+                    <a onclick="document.location='../roomManagementHome'" class="btn btn-secondary" role="button" aria-pressed="true">Back to Room Management</a>
                 </div>
             </div>
         </div>
     </main>
+    <br><br>
 </body>
 </html>

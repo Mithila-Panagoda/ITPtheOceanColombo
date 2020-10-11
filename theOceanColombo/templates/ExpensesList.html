@@ -60,32 +60,37 @@
                           <thead>
                               <tr>
                                   <th>ExID</th>
-                                  <th>Description</th>
                                   <th>Amount</th>
                                   <th>Date</th>
+                                  <th>Description</th>
                                   <th>Update</th>
                                   <th>Delete</th>
                               </tr>
                           </thead>
                           <tbody>
+                          {% for expensesid,price,date,description in  list_all %}
                               <tr>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
+                                    <td>{{expensesid}}</td>
+                                    <td>{{price}}</td>
+                                    <td>{{date}}</td>
+                                    <td>{{description}}</td>
                                     <td>
-                                      <form action="/Expenses6/" method="GET">
+                                      <form action="/Expenses/ExupdateTransacktionLoad/" method="POST">
+                                          {%csrf_token%}
                                         <button type="submit" class="btn btn-warning">Update</button>
+                                          <input type="hidden" name="expensesid" value="{{expensesid}}">
                                       </form>
                                     </td>
                                     <td>
-                                      <form>
+                                      <form  action="/Expenses/deleteExpensesRevenue/" method="POST" >
+                                           {%csrf_token%}
                                         <button type="submit" class="btn btn-danger">Delete</button>
+                                          <input type="hidden" name="expensesid" value="{{expensesid}}">
                                       </form>
                                     </td>
 
                               </tr>
-
+                          {% endfor %}
                           </tbody>
                   </table>
 
@@ -106,6 +111,7 @@
           </div>
         </div>
 
+              </div>
 
 </body>
 </html>

@@ -1,0 +1,20 @@
+.col {
+    padding: 2rem;
+    text-align: center;
+    background: rgb(212, 231, 218);
+}
+
+h1 {
+    color: green;
+    margin-bottom: 2rem;
+}
+
+.container {
+    margin-top: 5rem;
+}
+
+span {
+    margin-top: 0.5rem;
+    font-size: larger;
+    display: block;
+}

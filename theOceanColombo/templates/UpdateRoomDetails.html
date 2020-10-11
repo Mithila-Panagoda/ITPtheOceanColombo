@@ -45,41 +45,38 @@
             <br>
             <h1 class="text-center" style = "color:#DC8A1B">Update Room Details</h1>
             <br><br>
-            <form class = "container" action = "updateRoomDetails" method = "post">
+            <form class = "container" action = "/Rooms/updateDataInDB/" method = "post">
                 {% csrf_token %}
+                {% for roomNumber,roomType,description,price in data %}
                 <div class="form-group row">
                     <label for="roomNumber" class="col-sm-2 col-form-label">Room Number</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" id="roomNumber" name= "roomNumber" value = "" oninvalid = "this.setCustomValidity('Invalid Room Number')" onchange = "try{setCustomValidity('')}catch(e){}" pattern = "[Rr][0-9]{4}" required>
+                        <input type="text" class="form-control" id="roomNumber" name= "roomNumber" value = "{{roomNumber}}" oninvalid = "this.setCustomValidity('Invalid Room Number')" onchange = "try{setCustomValidity('')}catch(e){}" pattern = "[Rr][0-9]{4}" readonly>
                         <br>
                     </div>
                 </div>
                 <div class="form-group row">
                     <label for="roomType" class="col-sm-2 col-form-label">Room Type</label>
                     <div class="col-sm-10">
-                        <select class="form-control" id="roomType" name = "roomType" value = "">
-                            <option>Superior Twin Room with Ocean View</option>
-                            <option>Family Room with Ocean View</option>
-                            <option>Studio with Ocean View</option>
-                            <option>Deluxe Room</option>
-                        </select>
+                        <input type="text" class="form-control" id="roomType" name = "roomType" value = "{{roomType}}" oninvalid = "this.setCustomValidity('Enter correct room type')" onchange = "try{setCustomValidity('')}catch(e){}" required>
                         <br>
                     </div>
                 </div>
                 <div class="form-group row">
                     <label for="description" class="col-sm-2 col-form-label">Description</label>
                     <div class="col-sm-10">
-                        <textarea class="form-control" id="description" rows="3" name = "description" value = "" required></textarea>
+                        <textarea class="form-control" id="description" name = "description" rows = "9" required>{{description}}</textarea>
                         <br>
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label for="image" class="col-sm-2 col-form-label">Image of Room</label>
+                    <label for="price" class="col-sm-2 col-form-label">Price (per day)</label>
                     <div class="col-sm-10">
-                        <input type="file" id="image" name="image" value = "" accept="image/*" required>
-                        <br><br><br>
+                        <input type="number" class="form-control" id="price" name="price" placeholder="12000.00" value = "{{price}}" oninvalid = "this.setCustomValidity('Enter a valid price')" onchange = "try{setCustomValidity('')}catch(e){}" step="0.01">
+                        <br>
                     </div>
                 </div>
+                {% endfor %}
                 <div class="form-row">
                     <div class="col-3">
                         <button class="btn btn-warning" type="submit">Update Room Details</button>
