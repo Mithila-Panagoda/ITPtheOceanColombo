@@ -48,25 +48,25 @@ def getcomplaintsdetails():
     list_cusName = []
     for i in cusName:
         list_cusName.append(i)
-    print(list_cusName)
+
 
     list_email = []
     for i in list_cusName:
         email = db.child("Complaint").child("customerFeedback").child(i).child("Email").get().val()
         list_email.append(email)
-    print(list_email)
+
 
     list_phnNo = []
     for i in list_cusName:
         phnNo = db.child("Complaint").child("customerFeedback").child(i).child("phnNumber").get().val()
         list_phnNo.append(phnNo)
-    print(list_phnNo)
+
 
     list_feedback = []
     for i in list_cusName:
         feedback = db.child("Complaint").child("customerFeedback").child(i).child("Feed").get().val()
         list_feedback.append(feedback)
-    print(list_feedback)
+
 
     list_all = zip(list_cusName,list_email,list_feedback)
     return list_all
