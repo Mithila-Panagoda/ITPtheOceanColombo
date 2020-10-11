@@ -1,4 +1,4 @@
-{% load static %}
+{% load  static %}
 <!DOCTYPE html>
 <html>
 
@@ -7,36 +7,58 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     <title>Vehicle Management</title>
     <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css'%}">
-    <link rel="stylesheet" href="{% static 'css/vehiclemanagement.css'%}">
+    <link rel="stylesheet" href="{% static 'https://fonts.googleapis.com/css?family=Baloo'%}">
+    <link rel="stylesheet" href="{% static 'https://fonts.googleapis.com/css?family=Copse'%}">
+    <link rel="stylesheet" href="{% static 'https://cdnjs.cloudflare.com/ajax/libs/aos/2.1.1/aos.css'%}">
+    <link rel="stylesheet" href="{% static 'css/styles.min.css'%}">
 </head>
 
 <body class="text-center">
     <div class="container">
         <div class="row">
             <div class="col offset-xl-0 text-center">
-                <h1>Available Vehicle List</h1><input class="border-warning float-right" type="search" placeholder="Search by Number Plate" style="padding: 0.5rem;width: 214px;"></div>
+                <h1 data-aos="fade-up" data-aos-delay="100" style="font-family: Copse, serif;font-size: 50PX;">Available Vehicle List</h1><input class="border-warning float-right" type="search" placeholder="Search by Number Plate" style="padding: 0.4rem;width: 214px;"></div>
         </div>
         <div class="row">
-            <div class="col d-xl-flex justify-content-xl-center">
-                <div style="text-align: center;border: 1px;padding: 1rem;"><img class="d-block" style="width: 200px;height: 200px;"><button class="btn btn-danger d-block" type="button">REMOVE</button><button class="btn btn-warning d-block" type="button">UPDATE</button><button class="btn btn-success d-block" type="button">STATUS</button></div>
-            </div>
-            <div class="col d-xl-flex justify-content-xl-center">
-                <div style="text-align: center;border: 1px;padding: 1rem;"><img class="d-block" style="width: 200px;height: 200px;"><button class="btn btn-danger d-block" type="button">REMOVE</button><button class="btn btn-warning d-block" type="button">UPDATE</button><button class="btn btn-success d-block" type="button">STATUS</button></div>
-            </div>
-            <div class="col d-xl-flex justify-content-xl-center">
-                <div style="text-align: center;border: 1px;padding: 1rem;"><img class="d-block" style="width: 200px;height: 200px;"><button class="btn btn-danger d-block" type="button">REMOVE</button><button class="btn btn-warning d-block" type="button">UPDATE</button><button class="btn btn-success d-block" type="button">STATUS</button></div>
-            </div>
-            <div class="col d-xl-flex justify-content-xl-center">
-                <div style="text-align: center;border: 1px;padding: 1rem;"><img class="d-block" style="width: 200px;height: 200px;"><button class="btn btn-danger d-block" type="button">REMOVE</button><button class="btn btn-warning d-block" type="button">UPDATE</button><button class="btn btn-success d-block" type="button">STATUS</button></div>
+            <div class="col offset-md-0" data-aos="fade-up" data-aos-duration="900" data-aos-delay="250" data-aos-once="true">
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th style="background-color: #b1b0b0;">NUMBER PLATE</th>
+                                <th style="background-color: #b1b0b0;">VEHICLE MODEL</th>
+                                <th style="background-color: #b1b0b0;color: rgb(7,7,7);">NO.OF SEATS</th>
+                                <th style="background-color: #b1b0b0;"></th>
+                                <th style="background-color: #b1b0b0;"></th>
+                                <th style="background-color: #b1b0b0;"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        {% for noplate,vmodel,noseats in final_list %}
+                            <tr>
+                                <td>{{noplate}}</td>
+                                <td>{{vmodel}}</td>
+                                <td>{{noseats}}</td>
+                                <td><button class="btn btn-primary align-content-center" type="button" style="background-color: rgb(255,184,0);color: rgb(7,7,7);font-family: Baloo, cursive;">UPDATE</button></td>
+                                <td><button class="btn btn-primary" type="button" style="background-color: rgb(255,15,0);color: rgb(7,7,7);font-family: Baloo, cursive;">REMOVE</button></td>
+                                <td><button class="btn btn-primary" type="button" style="background-color: rgb(66,163,7);color: rgb(7,7,7);font-family: Baloo, cursive;">STATUS</button></td>
+                            </tr>
+                           {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
         <div class="row">
-            <div class="col"></div>
-            <div class="col"><button class="btn btn-success" type="button">ADD VEHICLES</button><button class="btn btn-secondary" type="button">CHECK DAILT RECORDS</button></div>
+
+            <div class="col"><form method="POST" class="form-group" action="/insertVehicle/loadvehicle/">{% csrf_token %}<button class="btn btn-success" type="submit">ADD VEHICLES</button></form><button class="btn btn-secondary" type="button">CHECK DAILT RECORDS</button></div>
+            </form>
         </div>
     </div>
     <script src="{% static 'js/jquery.min.js'%}"></script>
     <script src="{% static 'bootstrap/js/bootstrap.min.js'%}"></script>
+    <script src="{% static 'https://cdnjs.cloudflare.com/ajax/libs/aos/2.1.1/aos.js'%}"></script>
+    <script src="{% static 'js/script.min.js'%}"></script>
 </body>
 
 </html>

@@ -2,36 +2,20 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="915050ee-64f4-4635-b147-1c647bd589cf" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/theOceanColombo/VehicleBooking/admin.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/theOceanColombo/VehicleBooking/apps.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/theOceanColombo/VehicleBooking/models.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/theOceanColombo/VehicleBooking/tests.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/theOceanColombo/VehicleBooking/urls.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/theOceanColombo/VehicleBooking/views.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/theOceanColombo/static/bootstrap/css/bootstrap.min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/theOceanColombo/static/bootstrap/js/bootstrap.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/theOceanColombo/static/css/roombooking.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/theOceanColombo/static/css/vehiclemanagement.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/theOceanColombo/static/js/jquery.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/theOceanColombo/templates/AvailableVehicleList.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/theOceanColombo/templates/BookVehicle.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/theOceanColombo/templates/InsertVehicle.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/theOceanColombo/vehicleMngt/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/theOceanColombo/vehicleMngt/admin.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/theOceanColombo/vehicleMngt/apps.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/theOceanColombo/vehicleMngt/migrations/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/theOceanColombo/vehicleMngt/models.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/theOceanColombo/vehicleMngt/tests.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/theOceanColombo/vehicleMngt/urls.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/theOceanColombo/vehicleMngt/views.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/theOceanColombo/templates/UpdateVehicle.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/ITPTheOceanColombo.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/ITPTheOceanColombo.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/theOceanColombo/VehicleBooking/url.py" beforeDir="false" afterPath="$PROJECT_DIR$/theOceanColombo/VehicleBooking/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/theOceanColombo/VehicleManagement/url.py" beforeDir="false" afterPath="$PROJECT_DIR$/theOceanColombo/VehicleBooking/migrations/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/theOceanColombo/restaurant/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/theOceanColombo/restaurant/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/theOceanColombo/static/bootstrap/css/bootstrap.min.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/theOceanColombo/static/bootstrap/js/bootstrap.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/theOceanColombo/static/css/roombooking.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/theOceanColombo/static/css/vehiclemanagement.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/theOceanColombo/static/js/jquery.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/theOceanColombo/templates/AvailableVehicleList.html" beforeDir="false" afterPath="$PROJECT_DIR$/theOceanColombo/templates/AvailableVehicleList.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/theOceanColombo/templates/InsertVehicle.html" beforeDir="false" afterPath="$PROJECT_DIR$/theOceanColombo/templates/InsertVehicle.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/theOceanColombo/theOceanColombo/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/theOceanColombo/theOceanColombo/settings.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/theOceanColombo/theOceanColombo/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/theOceanColombo/theOceanColombo/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/theOceanColombo/vehicleMngt/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/theOceanColombo/vehicleMngt/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/theOceanColombo/vehicleMngt/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/theOceanColombo/vehicleMngt/views.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -54,10 +38,16 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="TERMINAL_CUSTOM_COMMANDS_GOT_IT" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/theOceanColombo/static" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\User\PycharmProjects\ITPtheOceanColombo\theOceanColombo\static" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\User\PycharmProjects\ITPtheOceanColombo\theOceanColombo\templates" />
+      <recent name="C:\Users\User\PycharmProjects\ITPtheOceanColombo\theOceanColombo\static" />
+      <recent name="C:\Users\User\PycharmProjects\ITPtheOceanColombo\theOceanColombo\assets" />
     </key>
   </component>
   <component name="RunManager">
@@ -137,19 +127,41 @@
       <option name="presentableId" value="Default" />
       <updated>1602147858454</updated>
     </task>
+    <task id="LOCAL-00001" summary="Vehicle Inserting is done">
+      <created>1602222970845</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1602222970845</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+    <MESSAGE value="Vehicle Inserting is done" />
+    <option name="LAST_COMMIT_MESSAGE" value="Vehicle Inserting is done" />
   </component>
   <component name="WindowStateProjectService">
     <state x="223" y="72" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1602182601362">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
     <state x="223" y="72" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1536.834@0.0.1536.834" timestamp="1602182601362" />
+    <state x="526" y="219" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1602235619113">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state x="526" y="219" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1536.834@0.0.1536.834" timestamp="1602235619113" />
+    <state x="223" y="0" key="CommitChangelistDialog2" timestamp="1602222968860">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state x="223" y="0" key="CommitChangelistDialog2/0.0.1536.834@0.0.1536.834" timestamp="1602222968860" />
     <state x="549" y="172" key="FileChooserDialogImpl" timestamp="1602171274573">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
     <state x="549" y="172" key="FileChooserDialogImpl/0.0.1536.834@0.0.1536.834" timestamp="1602171274573" />
+    <state x="361" y="150" key="Vcs.Push.Dialog.v2" timestamp="1602223075240">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state x="361" y="150" key="Vcs.Push.Dialog.v2/0.0.1536.834@0.0.1536.834" timestamp="1602223075240" />
   </component>
 </project>
