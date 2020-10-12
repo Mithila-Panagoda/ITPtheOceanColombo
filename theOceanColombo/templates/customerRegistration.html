@@ -1,0 +1,110 @@
+<!DOCTYPE html>    
+<html>    
+<head>    
+    <title>Register</title>    
+       <style>* {box-sizing: border-box;}
+
+        /* Style the input container */
+        .input-container {
+          display: flex;
+          width: 50%;
+          margin-bottom: 15px;
+        }
+        
+        /* Style the form icons */
+        .icon {
+          padding: 10px;
+          background: dodgerblue;
+          color: white;
+          min-width: 50px;
+          text-align: center;
+        }
+        
+        /* Style the input fields */
+        .input-field {
+          width: 50%;
+          padding: 10px;
+          outline: none;
+        }
+        
+        .input-field:focus {
+          border: 2px solid dodgerblue;
+        }
+        
+        /* Set a style for the submit button */
+        .btn {
+          background-color: dodgerblue;
+          color: white;
+          padding: 15px 20px;
+          border: none;
+          cursor: pointer;
+          width: 50%;
+          opacity: 0.9;
+        }
+        
+        .btn:hover {
+          opacity: 1;
+        }</style>
+</head>    
+<body>
+<form method="post" class="form_group" action="/customerRegistration/">
+    <h1>Customer Registration</h1><br>    
+    <div class="register">  
+   
+  <div class="container">
+
+    <hr>
+
+    <div class="input-container">
+    <i class="fa fa-user icon"></i> <input type="text" placeholder="First name" name="fname" id="fname" required>
+        <input type="text" placeholder="Last name" name="lname" id="lname" required>
+    </div>
+
+    
+    <br>
+    <input class="input-field" type="text" placeholder="NIC" name="nic">
+    </div>
+    <br>
+    <div class="input-container">
+    <i class="fa fa-envelope icon"></i>
+    <input class="input-field" type="text" placeholder="Email" name="email">
+    </div>
+    <br>
+    <div class="input-container">
+    <i class="fas fa-phone-alt"></i>
+    <input class="input-field" type="number" placeholder="07XXXXXXXX" name="phone">
+    </div>
+    <br>
+    <div class="input-container">
+    <i class="fas fa-mars"></i>
+    <input type="radio" name="gender" value="male"> Male   
+        <input type="radio" name="gender" value="female"> Female
+            <input type="radio" name="gender" value="other"> Other
+    </div>
+    <br>
+    <div class="input-container">
+    <i class="fa fa-key icon"></i>
+    <input class="input-field" type="password" placeholder="Password" name="psw">
+    <input type="password" placeholder="Repeat Password" name="psw-repeat" id="psw-repeat" required>
+    </div>
+    <br>
+    <div class="input-container">
+    <i class="fas fa-birthday-cake"></i>
+    <input class="input-field" type="date" placeholder="dob" name="dob">
+    </div>
+   
+    <hr>
+
+    <p>By creating an account you agree to our <a href="#">Terms & Privacy</a>.</p>
+    <button type="submit" class="registerbtn">Register</button>
+  </div>
+
+  <div class="container signin">
+    <p>Already have an account? <a href="#">Sign in</a>.</p>
+  </div>
+
+    
+</div>
+</form>
+</body>    
+</html>
