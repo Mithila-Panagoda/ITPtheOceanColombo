@@ -1,0 +1,45 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arrival Report</title>
+</head>
+
+<body>
+    <h2>Arrivals on {{date}}</h2>
+    <table>
+        <tr>
+            <th>NIC</th>
+            <th>ETA</th>
+            <th>Special Requests</th>
+            <th>Rooms</th>
+            <th>No.</th>
+            <th>Total</th>
+        </tr>
+        {% for NIC,ETA,requests,rooms,qty,total in info %}
+        <tr>
+            <td> {{NIC}} </td>
+            <td> {{ETA}} </td>
+            <td> {{requests}} </td>
+            <td> {{rooms}} </td>
+            <td> {{qty}} </td>
+            <td> {{total}} </td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <style>
+        table,
+        th,
+        td {
+            border: 1px solid black;
+            text-align: left;
+            padding: 0.5rem;
+        }
+    </style>
+</body>
+
+</html>

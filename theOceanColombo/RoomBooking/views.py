@@ -4,6 +4,10 @@ from django.core.mail import EmailMessage, send_mail
 from theOceanColombo import settings
 from django.template.loader import render_to_string
 import smtplib
+from django.http import HttpResponse
+from django.template.loader import get_template
+from xhtml2pdf import pisa
+import datetime
 
 # Create your views here.
 
@@ -99,6 +103,16 @@ def confirmbooking(request):
 
     db.child("Customer").child("Contact Details").child(
         NIC).child("BookingDetails").set(booking)
+
+    arrivals = {
+        "ETA": ETA,
+        "Special Requests": splRequests,
+        "RoomName": roomName,
+        "RoomQty": roomQty,
+        "Total": roomTotal,
+    }
+
+    db.child("Arrivals").child(checkIn).child(NIC).set(arrivals)
 
     address = request.POST.get('address')
     suburb = request.POST.get('suburb')
@@ -282,3 +296,66 @@ def loadupdatebooking(request):
 
 def loadbookingconfirmed(request):
     return render(request, 'bookingSuccessful.html')
+
+
+def generateArrivalReport(request):
+    firebase = pyrebase.initialize_app(firebaseconfig)
+    db = firebase.database()
+    tomorrow = datetime.date.today() + datetime.timedelta(days=1)
+
+    NICs = db.child('Arrivals').child(tomorrow).shallow().get().val()
+
+    NICList = []
+
+    for i in NICs:
+        NICList.append(i)
+
+    ETAList = []
+    for i in NICList:
+        ETA = db.child('Arrivals').child(
+            tomorrow).child(i).child('ETA').get().val()
+        ETAList.append(ETA)
+
+    requestList = []
+    for i in NICList:
+        request = db.child('Arrivals').child(
+            tomorrow).child(i).child('Special Requests').get().val()
+        requestList.append(request)
+
+    roomList = []
+    for i in NICList:
+        room = db.child('Arrivals').child(
+            tomorrow).child(i).child('RoomName').get().val()
+        roomList.append(room)
+
+    qtyList = []
+    for i in NICList:
+        qty = db.child('Arrivals').child(
+            tomorrow).child(i).child('RoomQty').get().val()
+        qtyList.append(qty)
+
+    totalList = []
+    for i in NICList:
+        total = db.child('Arrivals').child(
+            tomorrow).child(i).child('Total').get().val()
+        totalList.append(total)
+
+    info = zip(NICList, ETAList, requestList, roomList, qtyList, totalList)
+
+    template_path = 'arrivalReport.html'
+    context = {'date': tomorrow, 'info': info}
+    # Create a Django response object, and specify content_type as pdf
+    response = HttpResponse(content_type='application/pdf')
+    #response['Content-Disposition'] = 'attachment; filename="report.pdf"'
+    response['Content-Disposition'] = 'filename="report.pdf"'
+    # find the template and render it.
+    template = get_template(template_path)
+    html = template.render(context)
+
+    # create a pdf
+    pisa_status = pisa.CreatePDF(
+        html, dest=response)
+    # if error then show some funy view
+    if pisa_status.err:
+        return HttpResponse('We had some errors <pre>' + html + '</pre>')
+    return response

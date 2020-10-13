@@ -11,5 +11,6 @@ urlpatterns = [
     path('deleteBooking/', views.cancelbooking),
     path('updateBooking/', views.loadupdatebooking),
     path('editBooking/', views.updatebooking),
-    path('bookingConfirmed/', views.loadbookingconfirmed)
+    path('bookingConfirmed/', views.loadbookingconfirmed),
+    path('arrivalReport/', views.generateArrivalReport)
 ]
