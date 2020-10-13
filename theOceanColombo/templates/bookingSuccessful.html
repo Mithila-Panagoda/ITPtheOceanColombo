@@ -19,13 +19,21 @@
         <div class="row">
             <div class="col border border-success">
                 <h1 class="display-4"> Booking Confirmed! </h1>
-                <span class="display display-block">Your booking was successful! An E-mail has been sent to you with the
+                <span class="display display-block"> Your booking was successful! An E-mail has been sent to you
+                    with the
                     booking
                     details.</span>
                 <span> We are looking forward to having you at the hotel soon.</span>
+                <form id="cancelForm" method="POST" action="/roomBooking/cancelBooking/">
+                    {% csrf_token %}
+                    <input type="hidden" name="NIC" value="{{NIC}}">
+                </form>
+                <form action="/roomBooking/updateBooking/" id="updateForm" method="POST">
+                    {% csrf_token %}
+                    <input type="hidden" name="NIC" value="{{NIC}}"></form>
                 <div class="p-4">
-                    <a class="btn btn-danger m-2" href="/roomBooking/cancelBooking/"> Cancel Booking </a>
-                    <a class="btn btn-warning m-2" href="/roomBooking/updateBooking"> Update Booking </a>
+                    <button type="submit" form="cancelForm" class="btn btn-danger m-2"> Cancel Booking </button>
+                    <button type="submit" form="updateForm" class="btn btn-warning m-2"> Update Booking </button>
                 </div>
 
             </div>

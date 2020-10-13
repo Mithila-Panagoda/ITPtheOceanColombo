@@ -83,13 +83,12 @@ def confirmbooking(request):
         NIC).set(contactDetails)
 
     rooms = {
-        "RoomType": roomName,
         "RoomQty": roomQty,
         "TotalCost": roomTotal
     }
 
     db.child("Customer").child("Contact Details").child(
-        NIC).child("Rooms").set(rooms)
+        NIC).child("Rooms").child(roomName).set(rooms)
 
     booking = {
         "CheckIn": checkIn,
@@ -118,6 +117,7 @@ def confirmbooking(request):
     pwd = settings.EMAIL_HOST_PASSWORD
 
     data = {
+        "NIC": NIC,
         'name': firstName,
         'checkIn': checkIn,
         'checkOut': checkOut,
@@ -140,7 +140,7 @@ def confirmbooking(request):
     confirmMail.fail_silently = False
     confirmMail.send()
 
-    return render(request, 'bookingSuccessful.html')
+    return render(request, 'bookingSuccessful.html', {"NIC": NIC})
 
 
 def loadconfirmbooking(request):
@@ -162,32 +162,122 @@ def loadconfirmbooking(request):
 
 
 def cancelbooking(request):
-    return render(request, 'cancelBooking.html')
+    firebase = pyrebase.initialize_app(firebaseconfig)
+    db = firebase.database()
+    NIC = request.POST.get('NIC')
+    print(NIC)
+    reason = request.POST.get('cancelReason')
+    try:
+        # db.child('Customer').child('Contact Details').child(
+        #     NIC).child('BookingDetails').remove()
+        # db.child('Customer').child('Contact Details').child(
+        #     NIC).child('Rooms').remove()
+        db.child('Customer').child('Contact Details').child(NIC).remove()
+    except:
+        print('unable to delete')
+
+    if reason != "":
+        db.child('Room Booking Cancellation Reason').child(
+            NIC).set({"Reason": reason})
+
+    return render(request, 'bookingCancelSuccessful.html', {"NIC": NIC})
 
 
 def loadcancelbooking(request):
     firebase = pyrebase.initialize_app(firebaseconfig)
     db = firebase.database()
-    NICs = db.child('Customer').child('Contact Details').shallow().get().val()
+    NIC = request.POST.get('NIC')
 
-    NICList = []
+    checkIn = db.child('Customer').child('Contact Details').child(
+        NIC).child('BookingDetails').child('CheckIn').get().val()
+    checkOut = db.child('Customer').child('Contact Details').child(
+        NIC).child('BookingDetails').child('CheckOut').get().val()
 
-    for i in NICs:
-        NICList.append(i)
+    roomNames = db.child('Customer').child('Contact Details').child(
+        NIC).child('Rooms').shallow().get().val()
 
-    fNameList = []
+    roomsList = []
+    for i in roomNames:
+        roomsList.append(i)
 
-    for i in NICList:
-        fNames = db.child('Customer').child('Contact Details').child(i).
-    return render(request, 'cancelBooking.html',)
+    qtyList = []
+    for i in roomsList:
+        qty = db.child('Customer').child('Contact Details').child(
+            NIC).child('Rooms').child(i).child('RoomQty').get().val()
+        qtyList.append(qty)
+
+    totalList = []
+    for i in roomsList:
+        total = db.child('Customer').child('Contact Details').child(
+            NIC).child('Rooms').child(i).child('TotalCost').get().val()
+        totalList.append(total)
+
+    rooms = zip(roomsList, qtyList, totalList)
+    data = {
+        "NIC": NIC,
+        "checkIn": checkIn,
+        "checkOut": checkOut,
+        "rooms": rooms
+    }
+
+    return render(request, 'cancelBooking.html', data)
 
 
 def updatebooking(request):
-    return render(request, 'updateBooking.html')
+    firebase = pyrebase.initialize_app(firebaseconfig)
+    db = firebase.database()
+    NIC = request.POST.get('NIC')
+    checkIn = request.POST.get('checkIn')
+    checkOut = request.POST.get('checkOut')
+
+    data = {
+        "CheckIn": checkIn,
+        "CheckOut": checkOut
+    }
+    db.child('Customer').child('Contact Details').child(NIC).child(
+        'BookingDetails').update(data)
+
+    return render(request, 'bookingUpdateSuccessful.html')
 
 
 def loadupdatebooking(request):
-    return render(request, 'updateBooking.html')
+    firebase = pyrebase.initialize_app(firebaseconfig)
+    db = firebase.database()
+    NIC = request.POST.get('NIC')
+
+    checkIn = db.child('Customer').child('Contact Details').child(
+        NIC).child('BookingDetails').child('CheckIn').get().val()
+    checkOut = db.child('Customer').child('Contact Details').child(
+        NIC).child('BookingDetails').child('CheckOut').get().val()
+
+    roomNames = db.child('Customer').child('Contact Details').child(
+        NIC).child('Rooms').shallow().get().val()
+
+    roomsList = []
+    for i in roomNames:
+        roomsList.append(i)
+
+    qtyList = []
+    for i in roomsList:
+        qty = db.child('Customer').child('Contact Details').child(
+            NIC).child('Rooms').child(i).child('RoomQty').get().val()
+        qtyList.append(qty)
+
+    totalList = []
+    for i in roomsList:
+        total = db.child('Customer').child('Contact Details').child(
+            NIC).child('Rooms').child(i).child('TotalCost').get().val()
+        totalList.append(total)
+
+    rooms = zip(roomsList, qtyList, totalList)
+    data = {
+        "NIC": NIC,
+        "checkIn": checkIn,
+        "checkOut": checkOut,
+        "rooms": rooms
+    }
+
+    return render(request, 'updateBooking.html', data)
 
 
 def loadbookingconfirmed(request):
