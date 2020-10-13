@@ -107,6 +107,7 @@ def getempdata():
 
     final_data= zip(list_empepf,list_empFname,list_empLname,list_nic,list_title,list_Emptype,list_email,list_adrs,list_phone,list_EmergCont)
     return final_data
+    
 #delete Employee data
 def deleteEmp(request):
         firebase = pyrebase.initialize_app(firebaseconfig)
