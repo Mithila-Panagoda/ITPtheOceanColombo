@@ -5,6 +5,7 @@
     <h1>The Ocean Colombo</h1>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="{% static 'css/viewEmployee.css' %}">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
     <title>View Employee data</title>
 </head>
 <body>
@@ -12,7 +13,9 @@
     <a class="active" href="#home">Home</a>
     <a href="#about">About</a>
     <a href="#contact">Contact</a>
-      <a href="../promoManagement">Promotion</a>
+      <a href="{% static '../Promotion/updatePromo/'%}">Promotion</a>
+      <a href="{% static '../Employee/viewEmployee/'%}">Employee</a>
+
     <input type="text" placeholder="Search..">
   </div>
   <br>
@@ -27,9 +30,11 @@
         <button type="submit"><i class="fa fa-search"></i></button>
       </form>
 <h2>Manage Employees</h2>
+<br><br><br>
   <form method="post" class="form-group" action="Employee/viewEmployee/"
      enctype="multipart/form-data">
-<table style="width:100%">
+
+<table class="table table-hover">
   <thead>
     <tr>
       <th>EPF</th>

@@ -19,17 +19,50 @@ def Promomanagement(request):
     return render(request, "PromoManagement.html")
 
 def loadPromomanagement(request):
-    return render(request, "PromoManagement.html")
-
+    final_data = GetEmp()
+    return render(request, "PromoManagement.html",{'final_data':final_data})
+#Update Employee
 def Updatepromo (request):
     firebase = pyrebase.initialize_app(firebaseconfig)
     db = firebase.database()
     EPF = request.POST.get('EPF')
     First_Name= request.POST.get('firstName')
     Title = request.POST.get('Title')
-    data = {"firstName": First_Name, "Title": Title}
+    Employment_type = request.POST.get('employeeType')
+    data = {"firstName": First_Name, "Title": Title, "employeeType":Employment_type}
     db.child("Staff").child("Employee").child(EPF).update(data)
-    return render(request, "PromoManagement.html")
+    final_data = GetEmp()
+    return render(request, "PromoManagement.html",{'final_data':final_data})
 
 def loadUpdatepromo (request):
     return render(request, "UpdatePromo.html")
+#Retrieve and View Employee
+def GetEmp():
+    firebase = pyrebase.initialize_app(firebaseconfig)
+    db = firebase.database()
+    data = db.child('Staff').child('Employee').shallow().get().val()
+    list_empepf=[]
+    for i in data:
+        list_empepf.append(i)
+
+    print(list_empepf)
+
+
+    list_empFname=[]
+    list_title=[]
+    list_Emptype=[]
+
+    for i in list_empepf:
+        query = db.child('Staff').child('Employee').child(i).child('firstName').get().val()
+        list_empFname.append(query)
+
+    for i in list_empepf:
+        query = db.child('Staff').child('Employee').child(i).child('Title').get().val()
+        list_title.append(query) 
+
+    for i in list_empepf:
+        query = db.child('Staff').child('Employee').child(i).child('employeeType').get().val()
+        list_Emptype.append(query)
+
+    final_data= zip(list_empepf,list_empFname,list_title,list_Emptype)
+    return final_data

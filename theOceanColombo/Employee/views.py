@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.http import request
 import pyrebase
 
-# Create your views here.
+# Firebase Config
 firebaseconfig = {
     'apiKey': "AIzaSyBew42hA7iZHy7zs47WMqIg-GSBnxP-ttM",
     'authDomain': "theoceancolombo-c128a.firebaseapp.com",
@@ -14,7 +14,7 @@ firebaseconfig = {
     'measurementId': "G-YH7TV23J8J"
 }
 firebase = pyrebase.initialize_app(firebaseconfig)
-
+#Insert Employee
 def Newemployee(request):
     firebase = pyrebase.initialize_app(firebaseconfig)
     authe = firebase.auth()
@@ -34,7 +34,8 @@ def Newemployee(request):
             "Email": Email, "Address": Address, "Phone":Phone,"EmergencyCon":Emergency_Contact}
     db.child("Staff").child("Employee").child(EPF).set(data)
     authe.create_user_with_email_and_password(Email,Password)
-    return render(request, "ViewEmployee.html")
+    final_data = getempdata()
+    return render(request, "ViewEmployee.html",{'final_data':final_data})
 
 def loadNewemployee(request):
     return render(request, "NewEmployee.html")
@@ -45,7 +46,7 @@ def Viewemployee(request):
 def loadViewemployee(request):
     final_data = getempdata()
     return render(request, "ViewEmployee.html",{'final_data':final_data})
-
+#Retrieve and view Employee
 def getempdata():
     firebase = pyrebase.initialize_app(firebaseconfig)
     db = firebase.database()
@@ -101,12 +102,12 @@ def getempdata():
         list_phone.append(query)
 
     for i in list_empepf:
-        query = db.child("Staff").child('Employee').child(i).child("EmergencyCo").get().val()
+        query = db.child("Staff").child('Employee').child(i).child("EmergencyCon").get().val()
         list_EmergCont.append(query)
 
     final_data= zip(list_empepf,list_empFname,list_empLname,list_nic,list_title,list_Emptype,list_email,list_adrs,list_phone,list_EmergCont)
     return final_data
-
+#delete Employee data
 def deleteEmp(request):
         firebase = pyrebase.initialize_app(firebaseconfig)
         db = firebase.database()

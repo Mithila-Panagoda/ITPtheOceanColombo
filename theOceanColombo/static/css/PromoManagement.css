@@ -1,5 +1,5 @@
 
-    h1 {
+h1 {
     font-size: 40px;
     text-align: center;
 }
@@ -60,11 +60,37 @@ body {
   }
 } /*Header style end*/
 
-* {
-    box-sizing: border-box;
+.btn {
+    background-color: #1a1aff;
+    float: right;
+    border: none;
+    color: white;
+    padding: 10px 32px;
+    text-align: center;
+    font-size: 16px;
+    margin: 10px 20px;
+    opacity: 0.6;
+    transition: 0.3s;
   }
 
-  /* Style the search field */
+  .btn:hover {opacity: 1}
+
+  .btn2 {
+    background-color: #33ff33;
+    float: right;
+    border: none;
+    color: white;
+    padding: 10px 32px;
+    text-align: center;
+    font-size: 16px;
+    margin: 10px 20px;
+    opacity: 0.6;
+    transition: 0.3s;
+  }
+
+  .btn2:hover {opacity: 1}
+
+ /* Style the search field */
   form.srch input[type=text] {
     padding: 10px;
     font-size: 17px;
@@ -98,32 +124,20 @@ body {
     display: table;
   }
 
-  .btn {
-    background-color: #1a1aff;
-    float: right;
-    border: none;
-    color: white;
-    padding: 10px 32px;
-    text-align: center;
-    font-size: 16px;
-    margin: 10px 20px;
-    opacity: 0.6;
-    transition: 0.3s;
+    /*table style*/
+table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
   }
 
-  .btn:hover {opacity: 1}
-
-  .btn2 {
-    background-color: #33ff33;
-    float: right;
-    border: none;
-    color: white;
-    padding: 10px 32px;
-    text-align: center;
-    font-size: 16px;
-    margin: 10px 20px;
-    opacity: 0.6;
-    transition: 0.3s;
+  th, td {
+    padding: 15px;
   }
 
-  .btn2:hover {opacity: 1}
+  th {
+    text-align: left;
+  }
+
+  table {
+    border-spacing: 5px;
+  } /*table style end*/
