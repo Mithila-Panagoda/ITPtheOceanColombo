@@ -42,11 +42,11 @@
             <br><br><br>
             <h1 class="text-center" style = "color:#DC8A1B">Enter EPF to Calculate Salary</h1>
             <br><br>
-            <form class = "container" action = "/additionsDeductions/" method = "post">
+            <form class = "container" action = "/payroll/additionsDeductions/" method = "post">
                 {% csrf_token %}
                 <div class="form-group">
                     <label for="EPF">EPF Number of Employee: </label>
-                    <input type="text" class="form-control" id="EPF" name = "epfNo" placeholder="EPF Number" oninvalid = "this.setCustomValidity('Invalid EPF Number')" onchange = "try{setCustomValidity('')}catch(e){}" pattern = "[0-9]{4}" required>
+                    <input type="text" class="form-control" id="EPF" name = "epfNo" placeholder="EPF Number" oninvalid = "this.setCustomValidity('Invalid EPF Number')" onchange = "try{setCustomValidity('')}catch(e){}" pattern = "[A-Z][0-9]{2}" required>
                     <br><br>
                 </div>
                 <div class="form-row">

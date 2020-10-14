@@ -1,0 +1,39 @@
+.border.rounded {
+    margin-top: 9px
+}
+
+.col.d-xl-flex.justify-content-xl-center.align-items-xl-center {
+    padding: 1rem
+}
+
+.container,
+.container-lg,
+.container-md,
+.container-sm,
+.container-xl {
+    padding-top: .3rem;
+    margin-top: .2rem
+}
+
+.form-control {
+    margin-bottom: 1.2rem
+}
+
+.custom-control-label {
+    margin-bottom: O.8rem
+}
+
+.custom-control.text-uppercase.custom-checkbox,
+.row {
+    margin-top: .2rem
+}
+
+.room-images {
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+#images img:hover {
+    opacity: 0.6;
+}

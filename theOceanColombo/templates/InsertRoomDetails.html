@@ -30,7 +30,7 @@
                         <a class="nav-link" href="../continuousReport">Continuous Report</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="../statusAndAssignmentOfEmployees">Assign Employees</a>
+                        <a class="nav-link" href="../insertAssignedEmployees">Assign Employees</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">Sign out</a>
@@ -64,9 +64,9 @@
                     <label for="roomType" class="col-sm-2 col-form-label">Room Type</label>
                     <div class="col-sm-10">
                         <select class="form-control" id="roomType" name = "roomType">
+                            <option>Ocean Charm</option>
                             <option>Ocean Elite Twin</option>
                             <option>Ocean Premier</option>
-                            <option>Ocean Charm</option>
                             <option>Ocean Panorama Studio</option>
                         </select>
                         <br>
@@ -86,33 +86,44 @@
                         <br>
                     </div>
                 </div>
-                <div class="form-group row">
-                    <label for="image" class="col-sm-2 col-form-label">Image of Room</label>
-                    <div class="col-sm-10">
-                        <input type="file" id="image" name="image" accept="image/*" required>
-                        <br><br><br>
-                    </div>
-                </div>
+                        <br><br>
                 <div class="form-row">
-                    <div class="col-3">
+                    <div class="col-2">
                         <button id = "select" class="btn btn-warning" type="submit">Submit</button>
                     </div>
-                    <div class="col-3">
-                        <button class="btn btn-secondary" type="reset">Reset</button>
-                    </div>
-
                     <div class="col-2">
+                        <button class="btn btn-secondary" type="reset" onclick = "deleteTextField()">Reset</button>
+                    </div>
+                    <div class="col-3">
                         <a onclick="document.location='../roomManagementHome'" class="btn btn-secondary" role="button" aria-pressed="true">Back to Room Management</a>
+                    </div>
+                    <div class="col-3">
+                        <button id = "demoCorrect" class="btn btn-secondary" onclick="displayData()" type = "button">Demo Correct</button>
+                    </div>
+                    <div class="col-2">
+                        <button class="btn btn-secondary" onclick="displayDataWrong()" type = "button">Demo Wrong</button>
                     </div>
                 </div>
                     <br><br><br>
             </form>
-            <div class="col-4 container">
-                <button onclick = "#" class="btn btn-secondary" role="button" aria-pressed="true">Check Room Details</button>
-            </div>
-            <br><br>
         </div>
+        <script>
+            function displayData(){
+                document.getElementById("roomNumber").value = "R1010";
+                document.getElementById("price").value = "30000.00";
+                document.getElementById("description").innerHTML = "The Two Deluxe Rooms of the hotel are located on the 8th and 9th floors while guests are provided with additional bay windows and great views of the ocean and Colombo Harbor. With a premium king sized bed, the rooms are adorned with interiors of white, green and red, walnut shade wood work and natural timber flooring. Facilities include 32” LED flat screen television, International and local TV channels, in-room music, free high speed Wi-Fi, IDD calls, digital safety lockers, smoke alarms, electronic door lock system, mini bar, tea / coffee making facilities, complimentary mineral water bottles, in-room dining, crisp cotton linen, cozy duvets, black out curtains, wardrobe, work desk and chair, mirror dressing table, coffee table, vanity sink, walk in glass shower cubicle, bidet, hair dryer, complimentary bath amenities, cotton bath linen and daily housekeeping services.";
+            }
 
+            function deleteTextField(){
+                document.getElementById("description").innerHTML = "";
+            }
+
+            function displayDataWrong(){
+                document.getElementById("roomNumber").value = "R101";
+                document.getElementById("price").value = "30000.00";
+                document.getElementById("description").innerHTML = "";
+            }
+        </script>
     </main>
 </body>
 </html>

@@ -1,7 +1,10 @@
+from datetime import datetime
+
 from django.core.files.storage import FileSystemStorage
 from django.shortcuts import render
 
 import pyrebase
+import uuid
 
 # Create your views here.
 firebaseconfig = {
@@ -144,11 +147,19 @@ def UpdateRoomDetailsToDB(request):
 def deleteRoom(request):
     firebase = pyrebase.initialize_app(firebaseconfig)
     db = firebase.database()
+    data = db.child("Housekeeping").shallow().get().val()
+    list_roomNumber = []
+
+    for j in data:
+        list_roomNumber.append(j)
+
     roomNo = request.POST.get('roomNo')
-    db.child("Rooms").child(roomNo).remove()
+
+    for j in list_roomNumber:
+        if roomNo != db.child("Housekeeping").child(j).child("RoomNo").get().val():
+            db.child("Rooms").child(roomNo).remove()
     data = getRoomDetails()
     return render(request, "roomDetails.html", {'data': data})
-
 
 def dirInsertAssignedEmployees(request):
     return render(request, "statusAndAssignmentOfEmployees.html")
@@ -157,16 +168,135 @@ def dirInsertAssignedEmployees(request):
 def InsertAssignedEmployees(request):
     firebase = pyrebase.initialize_app(firebaseconfig)
     db = firebase.database()
+    data1 = db.child("Rooms").shallow().get().val()
+
+    list_roomNumber = []
+
+    for j in data1:
+        list_roomNumber.append(j)
+
     assigningDate = request.POST.get('assigningDate')
-    roomNumber = request.POST.get('roomNumber')
+    roomNumber1 = request.POST.get('roomNumber')
     status = request.POST.get('status')
     condition = request.POST.get('condition')
     assigningTime = request.POST.get('assigningTime')
     assignedEmployee = request.POST.get('employee')
-    date = assigningTime, " ", assigningDate
+    date = uuid.uuid1()
 
     # push data
-    data = {"AssignedDate": assigningDate, "RoomNo": roomNumber, "Status": status, "Condition": condition,
-            "AssignedTime": assigningTime, "AssignedEmployee": assignedEmployee}
-    db.child("Housekeeping").child(date).set(data)
+    for j in list_roomNumber:
+        if roomNumber1 == db.child("Rooms").child(j).child("RoomNo").get().val():
+            data = {"AssignedDate": assigningDate, "RoomNo": roomNumber1, "Status": status, "Condition": condition,
+                    "AssignedTime": assigningTime, "AssignedEmployee": assignedEmployee}
+            db.child("Housekeeping").child(date).set(data)
     return render(request, "statusAndAssignmentOfEmployees.html")
+
+
+def getHousekeepingDetails():
+    firebase = pyrebase.initialize_app(firebaseconfig)
+    db = firebase.database()
+    data = db.child("Housekeeping").shallow().get().val()
+    data1 = db.child("Rooms").shallow().get().val()
+
+    list_id = []
+    list_roomNumber = []
+    list_roomNo = []
+    list_assignedEmployee = []
+    list_assignedTime = []
+    list_condition = []
+    list_status = []
+    list_roomType = []
+
+    for j in data:
+        list_id.append(j)
+
+    for j in data1:
+        list_roomNumber.append(j)
+
+    for i in list_id:
+        for j in list_roomNumber:
+            if db.child("Housekeeping").child(i).child("RoomNo").get().val() == db.child("Rooms").child(j).child("RoomNo").get().val():
+                roomType = db.child("Rooms").child(j).child("RoomType").get().val()
+                list_roomType.append(roomType)
+
+    for j in list_id:
+        if db.child("Housekeeping").child(j).child("Condition").get().val() == "Dirty":
+            if db.child("Housekeeping").child(j).child("AssignedDate").get().val() == str(
+                    datetime.date(datetime.now())):
+                roomNo = db.child("Housekeeping").child(j).child("RoomNo").get().val()
+                list_roomNo.append(roomNo)
+
+    for j in list_id:
+        if db.child("Housekeeping").child(j).child("Condition").get().val() == "Dirty":
+            if db.child("Housekeeping").child(j).child("AssignedDate").get().val() == str(
+                    datetime.date(datetime.now())):
+                assignedEmployee = db.child("Housekeeping").child(j).child("AssignedEmployee").get().val()
+                list_assignedEmployee.append(assignedEmployee)
+
+    for j in list_id:
+        if db.child("Housekeeping").child(j).child("Condition").get().val() == "Dirty":
+            if db.child("Housekeeping").child(j).child("AssignedDate").get().val() == str(
+                    datetime.date(datetime.now())):
+                assignedTime = db.child("Housekeeping").child(j).child("AssignedTime").get().val()
+                list_assignedTime.append(assignedTime)
+    list_assignedTime.sort(reverse=False)
+
+    for j in list_id:
+        if db.child("Housekeeping").child(j).child("Condition").get().val() == "Dirty":
+            if db.child("Housekeeping").child(j).child("AssignedDate").get().val() == str(
+                    datetime.date(datetime.now())):
+                Condition = db.child("Housekeeping").child(j).child("Condition").get().val()
+                list_condition.append(Condition)
+
+    for j in list_id:
+        if db.child("Housekeeping").child(j).child("Condition").get().val() == "Dirty":
+            if db.child("Housekeeping").child(j).child("AssignedDate").get().val() == str(
+                    datetime.date(datetime.now())):
+                status = db.child("Housekeeping").child(j).child("Status").get().val()
+                list_status.append(status)
+
+    data = zip(list_roomNo, list_roomType, list_status, list_assignedEmployee, list_assignedTime)
+    return data
+
+
+def housekeepingDetails(request):
+    data = getHousekeepingDetails()
+    return render(request, "HousekeepingReport.html", {'data': data})
+
+def getDetailsByRoomType(request):
+    firebase = pyrebase.initialize_app(firebaseconfig)
+    db = firebase.database()
+    data = db.child("Rooms").shallow().get().val()
+
+    list_roomNumber = []
+    list_roomType = []
+    list_roomNo = []
+    list_description = []
+    list_price = []
+
+    for j in data:
+        list_roomNumber.append(j)
+
+    for j in list_roomNumber:
+        if request.POST.get('roomType1') == db.child("Rooms").child(j).child("RoomType").get().val():
+                roomNo = db.child("Rooms").child(j).child("RoomNo").get().val()
+                list_roomNo.append(roomNo)
+
+    for j in list_roomNumber:
+        if request.POST.get('roomType1') == db.child("Rooms").child(j).child("RoomType").get().val():
+            type = db.child("Rooms").child(j).child("RoomType").get().val()
+            list_roomType.append(type)
+
+    for j in list_roomNumber:
+        if request.POST.get('roomType1') == db.child("Rooms").child(j).child("RoomType").get().val():
+            description = db.child("Rooms").child(j).child("Description").get().val()
+            list_description.append(description)
+
+    for j in list_roomNumber:
+        if request.POST.get('roomType1') == db.child("Rooms").child(j).child("RoomType").get().val():
+            price = "Rs. " + db.child("Rooms").child(j).child("Price").get().val()
+            list_price.append(price)
+
+    data = zip(list_roomNo, list_roomType, list_description, list_price)
+    return render(request, "roomDetails.html", {'data': data})
+
