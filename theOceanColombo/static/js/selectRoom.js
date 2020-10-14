@@ -27,7 +27,7 @@ let getNewElement = (function () {
     }
 }());
 
-function addRoom() {
+function addRoom(room,roomQty,roomCost) {
     var roomRow = getNewElement("div");
     var colName = document.createElement("div");
     var colQty = document.createElement("div");
@@ -83,9 +83,12 @@ function addRoom() {
 
 
 
-    var rooomName = String(document.getElementById("room-name").innerHTML);
-    var qty = document.getElementById("roomQty").value;
-    var cost = parseFloat(document.getElementById("roomCost").innerText);
+    // var rooomName = String(document.getElementById("room").value);
+    // var qty = document.getElementById("roomQty").value;
+    // var cost = parseFloat(document.getElementById("roomPrice").value);
+    var roomName = room;
+    var qty = roomQty;
+    var cost = roomCost;
     var total = cost * qty;
 
 
@@ -95,8 +98,8 @@ function addRoom() {
     else {
         pQty.value = "X " + String(qty);
         pCost.value = String(cost);
-        pName.value = rooomName;
-        pTotal.value = String(total);
+        pName.value = roomName;
+        pTotal.value = String(total.toFixed(2));
         btnRemove.innerHTML = "REMOVE";
 
         var rooms = document.getElementById("addedRooms");

@@ -74,6 +74,9 @@
             </div>
 
             <div class="col-xl-6">
+                <input type="hidden" value="{{roomTypeList}}" id="room">
+                <input type="hidden" value="{{roomDescList}}" id="roomDesc">
+                <input type="hidden" value="{{roomPriceList}}" id="roomPrice">
                 <h3 id="room-name">{{roomTypeList}}</h3>
                 <p id="rooom-des">
                     {{roomDescList}}
@@ -95,8 +98,9 @@
                     <div class="col d-xl-flex justify-content-xl-center ">
                         <p>{{roomPriceList}}</p>
                     </div>
-                    <div class="col d-xl-flex align-items-xl-center " style="padding-bottom: 0.9rem;">
-                        <button class="btn btn-warning" onclick="addRoom()">ADD</button>
+                    <div class="col d-xl-flex align-items-xl-center" style="padding-bottom: 0.9rem;">
+                        <button class="btn btn-warning"
+                            onclick="addRoom(document.getElementById('room').value,document.getElementById('roomQty').value,document.getElementById('roomPrice').value)">ADD</button>
                     </div>
                 </div>
             </div>
@@ -104,7 +108,6 @@
                 <div class="d-xl-flex justify-content-xl-center">
                     <p>from</p>
                 </div>
-
                 <div class="d-xl-flex justify-content-xl-center">
                     <h3 id="roomCost">{{roomPriceList}}</h3>
                 </div>

@@ -15,7 +15,7 @@
     <form class="form" onsubmit="return checkDates()" action="/roomBooking/editBooking/" id="editForm" method="POST">
         {% csrf_token %}
     </form>
-    <input name="NIC" form="editForm" value="{{NIC}}">
+    <input name="NIC" form="editForm" value="{{NIC}}" type="hidden">
     <div class="container bg-light">
         <div class="text-warning p-2">
             <h2 class="display-4 text-uppercase text-danger">UPDATE booking</h2>

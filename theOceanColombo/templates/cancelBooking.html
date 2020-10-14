@@ -15,7 +15,7 @@
     <form class="form" action="/roomBooking/deleteBooking/" id="cancellationForm" method="POST">
         {% csrf_token %}
     </form>
-    <input name="NIC" form="cancellationForm" value="{{NIC}}">
+    <input name="NIC" form="cancellationForm" value="{{NIC}}" type="hidden">
     <div class="container bg-light">
         <div class="text-warning p-2">
             <h2 class="display-4 text-uppercase text-danger">Cancel booking</h2>
@@ -71,8 +71,8 @@
             <div class="col">
                 <form>
                     <h3 class="text-uppercase">Please tell us why you are cancelling (Optional)</h3><textarea
-                        class="form-control" style="width: 1093px;height: 100px;" id="cancelReason"
-                        form="cancelForm"></textarea>
+                        class="form-control" style="width: 1093px;height: 100px;" id="cancelReason" name="cancelReason"
+                        form="cancellationForm"></textarea>
                 </form>
             </div>
         </div>

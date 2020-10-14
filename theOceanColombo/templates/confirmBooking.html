@@ -85,7 +85,7 @@
         </div>
     </div>
     <div class="container bg-light">
-        <form action="/roomBooking/addBooking/" id="confirmBookingForm" method="POST">
+        <form id="confirmBookingForm" onsubmit="return cardnumber()" action="/roomBooking/addBooking/" method="POST">
             {% csrf_token %}
             <div class="row">
                 <div class="col p-2">
@@ -114,20 +114,26 @@
                 </div>
                 <div class="col p-2">
                     <h4 class="text-uppercase">card details</h4>
-                    <input class="form-control" placeholder="CARD NUMBER" inputmode="numeric" name="cardNo" id="cardNo">
-                    <input class="form-control" type="text" placeholder="NAME ON CARD" name="nameOnCard"
-                        id="nameOnCard">
+                    <img src="{% static 'images/visaLogo.png'%}" alt="VISA"
+                        style="height: auto;width:50px;padding: 0.3rem;">
+                    <input class="form-control" placeholder="CARD NUMBER" name="cardNo" type="text"
+                        form="confirmBookingForm" id="cardNo" required>
+                    <input class="form-control" type="text" placeholder="NAME ON CARD" name="nameOnCard" id="nameOnCard"
+                        required>
                     <h5 class="text-uppercase">EXPIRY DATE</h5>
                     <div class="form-row">
                         <div class="col p-1">
-                            <input class="form-control" type="number" max="31" placeholder="1" name="expiryDay">
+                            <input class="form-control" type="number" max="31" placeholder="1" name="expiryDay"
+                                id="expiryDay" required>
                         </div>
                         <div class="col d-xl-flex p-1">
-                            <input class="form-control" type="number" max="12" placeholder="1" name="expiryMonth">
+                            <input class="form-control" type="number" max="12" placeholder="1" name="expiryMonth"
+                                id="expiryMonth" required>
                         </div>
                     </div>
                     <h5 class="text-uppercase">cvv</h5>
-                    <input class="form-control" type="text" placeholder="CVV" inputmode="numeric" name="cvv">
+                    <input class="form-control" type="number" placeholder="CVV" inputmode="numeric" name="cvv" id="CVV"
+                        required>
 
 
                 </div>
@@ -149,8 +155,8 @@
                             LIKE TO RECIEVE INFORMATION ABOUT PROMOTIONS AND DETAILS</label></div>
                     <div class="text-center p-2" style="margin-top: 0.5rem;">
                         <button class="btn btn-warning" onclick="demo()">DEMO</button>
-                        <button class="btn btn-success text-uppercase" type="submit"
-                            onclick="checkCreditCard(cardNo,nameOnCard)" id="confirmBooking">confirm
+                        <button class="btn btn-success text-uppercase" type="submit" form="confirmBookingForm"
+                            id="confirmBooking">confirm
                             booking</button>
 
                     </div>
@@ -173,8 +179,23 @@
             document.getElementById("suburb").value = "Dehiwala";
             document.getElementById("city").value = "Colombo";
             document.getElementById("postalCode").value = "008866";
-            document.getElementById("ETA").value = "12:45 AM";
+            document.getElementById("cardNo").value = "4283980011326115";
+            document.getElementById("nameOnCard").value = "Nafeel";
+            document.getElementById("expiryDay").value = "24";
+            document.getElementById("expiryMonth").value = 8;
+            document.getElementById("CVV").value = 863;
+        }
 
+        function cardnumber() {
+            var card = document.getElementById('cardNo')
+            var cardno = /^(?:4[0-9]{12}(?:[0-9]{3})?)$/;
+            if (card.value.match(cardno)) {
+                return true;
+            }
+            else {
+                alert("Not a valid Visa credit card number!");
+                return false;
+            }
         }
     </script>
 </body>

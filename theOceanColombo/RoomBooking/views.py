@@ -182,17 +182,12 @@ def cancelbooking(request):
     print(NIC)
     reason = request.POST.get('cancelReason')
     try:
-        # db.child('Customer').child('Contact Details').child(
-        #     NIC).child('BookingDetails').remove()
-        # db.child('Customer').child('Contact Details').child(
-        #     NIC).child('Rooms').remove()
         db.child('Customer').child('Contact Details').child(NIC).remove()
     except:
         print('unable to delete')
 
-    if reason != "":
-        db.child('Room Booking Cancellation Reason').child(
-            NIC).set({"Reason": reason})
+    db.child('RoomBookingCancellationReason').child(
+        NIC).set({'Reason': reason})
 
     return render(request, 'bookingCancelSuccessful.html', {"NIC": NIC})
 
