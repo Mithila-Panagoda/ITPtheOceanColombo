@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Update meals</title>
+    <title>Table Reservations</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
         integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <style>
@@ -35,10 +35,10 @@
                         <a class="nav-link" href="#">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Resturant POS</a>
+                        <a class="nav-link" href="../loadresturantposhome">Resturant POS</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Menu list</a>
+                        <a class="nav-link" href="../mealmngt">Menu list</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">Sign out</a>
@@ -52,53 +52,48 @@
         </nav>
         
     </header>
-    <form class="addmeal" method="POST" action="/restaurant/updatemeal/">
+    <form class="addmeal" action="/restaurant/bookingtableselection/" method="POST">
         {% csrf_token %}
-    <center><h1>Update Meal</h1></center><br><br>
+    <center><h1>Pick Your Table</h1></center><br><br>
         <div class="form-row">
-        {%for name,desc,price,spice,available,veg in final_data %}
             <div class="form-group col-md-6">
-                <label>Title</label>
-                <input type="text" class="form-control" placeholder="Dish name" name="name" value="{{name}}" readonly>
+                <label>Full Name</label>
+                <input type="text" class="form-control" placeholder="" name="fname"  required>
             </div>
             <div class="form-group col-md-6">
-                <label>Price</label>
-                <input type="number" class="form-control" placeholder="Price" name="price" value="{{price}}">
+                <label>Email</label>
+                <input type="email" class="form-control" name="cemail" required>
             </div>
         </div>
         <div class="form-group">
-            <label>Spiceiness</label>
-            <select name ="spicelvl" class="btn-block btn-lg btn-light dropdown-toggle">
-                <option name="dbop"value="{{spice}}" selected>{{spice}}</option>
-                <option name="opt1" value="Not Spicy">Not Spicy</option>
-                <option name="opt2" value="Normal">Normal</option>
-                <option name="opt3" value="Midly Spicy">Midly Spicy</option>
-                <option name="opt4" value="Very Spicy">Very Spicy</option>
-                <option name="opt5" value="Extra Spicy">Extra Spicy</option>
-            </select>
+            <label>NIC</label>
+            <input type="text" name="cnic" maxlength="14" class="form-control" required>
         </div>
         <div class="form-group">
-            <label>Description</label>
-            <input type="text" class="form-control" placeholder="" name="desc"value="{{desc}}">
+            <label>Contact Number</label>
+            <input type="number" name="cnumber" maxlength="10" class="form-control" required>
         </div>
         <div class="form-group">
-            <label>Availability</label>
-            <select name ="status" class="btn-block btn-lg btn-light dropdown-toggle">
-                <option value="{{available}}" selected  >{{available}}</option>
-                <option name="opt1" value="Yes" class="btn btn-success" >Yes</option>
-                <option name="opt2" value="No"  class="btn btn-danger">no</option>
-            </select>
+            <label>Billing Address</label>
+            <input type="text" name="caddress" class="form-control" required>
         </div>
         <div class="form-group">
-            <label for="veg">Dish Type</label><br>
-            <select name ="veg" class="btn-block btn-lg btn-light dropdown-toggle" required>
-                <option value="{{veg}}" selected>{{veg}}</option>
-                <option name="opt1" value="Vegetarian" class="btn btn-success">Vegetarain</option>
-                <option name="opt2" value="Non Vegetarian"  class="btn btn-danger">Non Vegetarain</option>
-            </select>
+            <label>Booking Date</label>
+            <input type="date" name="arrivalDate" class="form-control" required>
         </div>
-        <input type="submit" class="btn btn-lg btn-success formbtn" value="Confirm Changes">
-        {% endfor %}
+        <div class="form-group">
+            <div class="form-group">
+                <label>Table Name</label><br>
+                <select name ="tblname" class="btn-block btn-lg btn-light dropdown-toggle">
+                    <option value="" selected disabled hidden>Select a table here</option>
+                    {% for tblname in final_data%}
+                    <option name="opt1" value="{{tblname}}">{{tblname}}</option>
+                    {% endfor %}
+                </select>
+            </div>
+        </div>
+        <input type="submit" class="btn btn-lg btn-success formbtn" value="Move to Meal Selection">
+        <input type="button" class="btn btn-lg btn-warning text-white formbtn" value="Skip and Confirm Booking">
     </form>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
         integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous">

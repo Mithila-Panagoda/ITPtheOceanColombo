@@ -5,6 +5,11 @@
 <head>
     <meta charset="UTF-8">
     <title>addmeal</title>
+    <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css'%}">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Alegreya+SC">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Architects+Daughter">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Baloo">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.1.1/aos.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
         integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <style>
@@ -25,10 +30,10 @@
 
 <body>
     <header>
-        <div class="container-fluid">
+        <div class="container-fluid" >
             <img src="{% static 'logo.png' %}" width="110px" height="110px" alt="logo" />
         </div>
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light" data-aos="fade up">
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item">
@@ -52,10 +57,10 @@
         </nav>
         
     </header>
-    <form class="addmeal" action="/restaurant/addmeal/" method="POST">
+    <form class="addmeal" action="/restaurant/addmeal/" method="POST" data-aos="fade up">
         {% csrf_token %}
     <center><h1>Add Meal</h1></center><br><br>
-        <div class="form-row">
+        <div class="form-row" data-aos="fade up">
             <div class="form-group col-md-6">
                 <label>Title</label>
                 <input type="text" class="form-control" placeholder="Dish name" name="name"  required>
@@ -107,6 +112,10 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
         integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
     </script>
+    <script src="{% static 'js/jquery.min.js'%}"></script>
+    <script src="{% static 'bootstrap/js/bootstrap.min.js'%}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.1.1/aos.js"></script>
+    <script src="{%static 'js/script.min.js'%}"></script>
 </body>
 
 </html>

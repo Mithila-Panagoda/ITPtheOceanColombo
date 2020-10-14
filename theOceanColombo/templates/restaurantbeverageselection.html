@@ -1,0 +1,80 @@
+{% load  static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Meal selection</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <style>
+        #card1 {
+            margin-left: auto;
+            margin-right: auto;
+            border: 3px solid black;
+            border-radius: 15px;
+            margin-bottom: 100px;
+            margin-top: 100px;
+            color: #000000;
+        }
+
+        .outline {
+        
+
+        }
+
+        table {
+            
+            margin-left: 100px;
+            max-width: 700px;
+        }
+
+        #pricedata {
+            text-align: center;
+            color: green;
+            font-size: 30px;
+            font-weight: bold;
+        }
+    </style>
+
+<body>
+    <div class="container outline">
+        <table>
+            {% for dname,ddesc,dsize,dtype,dprice in final_data%}
+            <tr>
+                <div id="card1" class="card" style="width: 700px;">
+                    <img class="card-img-top" src="..." alt="Card image cap">
+                    <form action="/restaurant/bookingaddbeveragetocart/" method="POST">
+                        {% csrf_token %}
+                        <div class="card-body">
+                            <h5 class="card-title" style="text-align: center;">{{dname}}</h5>
+                            <p class="card-text" style="text-align: center;">{{ddesc}}</p>
+                            <p style="text-align: center;">Size : {{dsize}} &nbsp&nbsp Type : {{dtype}}</p>
+                            <p id="pricedata" class="card-text">{{dprice}}</p>
+                            <p style="text-align: center;"><input type="number" name="qty" placeholder="Quantity"
+                                    required></p>
+                            <p style="text-align: center;"><input type="submit" class="form-btn btn btn-primary"
+                                    value="Add to cart"></p>
+                        </div>
+                        <input type="hidden" name="drinkname" value="{{dname}}">
+                        <input type="hidden" name="drinkprice" value="{{dprice}}">
+                    </form>
+
+                </div>
+            </tr>
+            {% endfor %}
+
+        </table>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous">
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous">
+    </script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
+    </script>
+</body>
+</head>
