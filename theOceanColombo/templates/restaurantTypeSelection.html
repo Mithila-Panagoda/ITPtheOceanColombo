@@ -1,0 +1,74 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Restaurant Type Selection</title>
+    <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css'%}">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Alegreya+SC">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Architects+Daughter">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Baloo">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.1.1/aos.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <h1 class="text-center" data-aos="fade-up" style="font-family: 'Architects Daughter', cursive;font-size: 50px;color: #dc8a1b;margin-top: 30px;">Where do you want to dine today?</h1>
+                <div class="row">
+                    <div class="col text-center" data-aos="fade-up">
+                        <div class="card" style="margin: 10px;width: 600px;margin-top: 180px;">
+                            <div class="card-body text-center"><img>
+                                <h4 class="card-title">OCEAN BY O!</h4>
+                                <p class="card-text">Roof Top Bar and Restaurant</p>
+                                <form action="/restaurant/loadrestauranttype/" method="POST">
+                                    {% csrf_token %} 
+                                    <label>Guest Count</label>
+                                    <select name="noppl">
+                                        <option value=2>1-2</option>
+                                        <option value=4>3-4</option>
+                                        <option value=8>5-8</option>
+                                        <option value=16>9-16</option>
+                                    </select>
+                                    <br>
+                                    <input  class="btn btn-primary" value="Reserve" type="submit" style="background-color: rgb(4,45,88);font-family: Baloo, cursive;"></div>
+                                     <input type="hidden" name="rtype" value="Ocean by O">
+                                </form>
+                             </div>
+                                
+                    </div>
+                    <div class="col text-center" data-aos="fade-up">
+                        <div class="card" style="margin: 10px;margin-top: 180px;">
+                            <div class="card-body"><img>
+                                <h4 class="card-title">GROUND FLOOR RESTAURANT</h4>
+                                <p class="card-text">Ground Floor buffet and Restaurant</p>
+                                <form action="/restaurant/loadrestauranttype/" method="POST">
+                                    {% csrf_token %} 
+                                    <label>Guest Count</label>
+                                    <select name="noppl">
+                                        <option value=2>1-2</option>
+                                        <option value=4>3-4</option>
+                                        <option value=8>5-8</option>
+                                        <option value=16>9-16</option>
+                                    </select>
+                                    <br>
+                                    <input  class="btn btn-primary" value="Reserve" type="submit" style="background-color: rgb(255,153,0);font-family: Baloo, cursive;"></div>
+                                     <input type="hidden" name="rtype" value="Ground Floor">
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="{% static 'js/jquery.min.js'%}"></script>
+    <script src="{% static 'bootstrap/js/bootstrap.min.js'%}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.1.1/aos.js"></script>
+    <script src="{%static 'js/script.min.js'%}"></script>
+</body>
+
+</html>
