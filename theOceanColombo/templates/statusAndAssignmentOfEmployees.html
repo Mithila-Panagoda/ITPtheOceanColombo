@@ -30,7 +30,7 @@
                         <a class="nav-link" href="../continuousReport">Continuous Report</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="../statusAndAssignmentOfEmployees">Assign Employees</a>
+                        <a class="nav-link" href="../insertAssignedEmployees">Assign Employees</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">Sign out</a>
@@ -79,8 +79,8 @@
                     <label for="condition" class="col-sm-2 col-form-label" onclick = "checkEmployee()">Condition</label>
                     <div class="col-sm-10">
                         <select class="form-control" id="condition" name = "condition">
-                            <option>Clean</option>
                             <option>Dirty</option>
+                            <option>Clean</option>
                         </select>
                         <br>
                     </div>
@@ -100,15 +100,21 @@
                     </div>
                 </div>
                 <div class="form-row">
-                    <div class="col-3">
+                    <div class="col-2">
                         <button id = "select" class="btn btn-warning" type="submit">Submit</button>
                     </div>
-                    <div class="col-3">
-                        <button class="btn btn-secondary" type="reset">Reset</button>
+                    <div class="col-2">
+                        <button class="btn btn-secondary" type="button" onclick = "resetValues()">Reset</button>
                     </div>
 
-                    <div class="col-2">
+                    <div class="col-3">
                         <a onclick="document.location='../roomManagementHome'" class="btn btn-secondary" role="button" aria-pressed="true">Back to Room Management</a>
+                    </div>
+                     <div class="col-3">
+                        <button id = "demoCorrect" class="btn btn-secondary" onclick="displayData()" type = "button">Demo Correct</button>
+                    </div>
+                    <div class="col-2">
+                        <button class="btn btn-secondary" onclick="displayDataWrong()" type = "button">Demo Wrong</button>
                     </div>
                 </div>
                     <br><br><br>
@@ -120,7 +126,25 @@
             y = n.getFullYear();
             m = n.getMonth() + 1;
             d = n.getDate();
-            document.getElementById("assigningDate").value = m + "/" + d + "/" + y;
+            document.getElementById("assigningDate").value = y + "-" + m + "-" + d;
+
+            function displayData(){
+                document.getElementById("roomNumber").value = "R1010";
+                document.getElementById("assignedTime").value = "09:10";
+                document.getElementById("employee").value = "A.B.D.Silva";
+            }
+
+            function displayDataWrong(){
+                document.getElementById("roomNumber").value = "R101";
+                document.getElementById("assignedTime").value = "09:10";
+                document.getElementById("employee").value = "A.B.D.Silva";
+            }
+
+            function resetValues(){
+                document.getElementById("roomNumber").value = "";
+                document.getElementById("assignedTime").value = "";
+                document.getElementById("employee").value = "";
+            }
         </script>
     </main>
 </body>
