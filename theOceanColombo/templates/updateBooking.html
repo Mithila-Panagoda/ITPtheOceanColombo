@@ -12,6 +12,10 @@
 </head>
 
 <body class="text-center">
+    <form class="form" onsubmit="return checkDates()" action="/roomBooking/editBooking/" id="editForm" method="POST">
+        {% csrf_token %}
+    </form>
+    <input name="NIC" form="editForm" value="{{NIC}}" type="hidden">
     <div class="container bg-light">
         <div class="text-warning p-2">
             <h2 class="display-4 text-uppercase text-danger">UPDATE booking</h2>
@@ -23,40 +27,44 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <td class="text-left">BOOKING ID</td>
-                        <td class="text-right" id="bookID">Cell 2</td>
-                    </tr>
-                    <tr>
-                        <td class="text-left">NAME</td>
-                        <td class="text-right" id="name">Cell 4</td>
+                        <td class="text-left"> NIC </td>
+                        <td class="text-right" id="NIC"> {{NIC}} </td>
                     </tr>
                     <tr>
                         <td class="text-left">CHECK - IN</td>
-                        <td class="text-right" id="checkin">Cell 4</td>
+                        <td class="text-right" id="checkin"> {{checkIn}} </td>
                     </tr>
                     <tr>
                         <td class="text-left">CHECK - OUT</td>
-                        <td class="text-right" id="checkout">Cell 4</td>
+                        <td class="text-right" id="checkout">{{checkOut}}</td>
                     </tr>
                 </tbody>
             </table>
         </div>
         <div class="row p-2">
             <div class="col-xl-6 text-center d-xl-flex">
-                <h3 class="text-uppercase">Rooms</h3>
+                <h3 class="text-uppercase text-warning">Rooms</h3>
             </div>
             <div class="col">
-                <h3 class="text-uppercase">REfundable</h3>
+                <h3 class="text-uppercase"></h3>
             </div>
-            <div class="col text-right">
+            <div class="col text-right text-warning">
                 <h3 class="text-uppercase">price</h3>
             </div>
         </div>
+        {% for name,qty,total in rooms %}
         <div class="row p-2">
-            <div class="col-xl-6 text-center d-xl-flex"></div>
-            <div class="col"></div>
-            <div class="col text-right"></div>
+            <div class="col-xl-6 text-center d-xl-flex">
+                <h3 class="text-uppercase">{{name}}</h3>
+            </div>
+            <div class="col">
+                <h3 class="text-uppercase">{{qty}}</h3>
+            </div>
+            <div class="col text-right">
+                <h3 class="text-uppercase">{{total}}</h3>
+            </div>
         </div>
+        {% endfor %}
         <div class="row text-left p-2">
             <div class="col">
                 <h2 class="text-uppercase">change dates</h2>
@@ -64,22 +72,47 @@
         </div>
         <div class="row">
             <div class="col p-3">
-                <form class="text-left"><label style="background-size: auto;font-size: 20px;">CHECK IN
-                        :&nbsp;</label><input class="form-control" id="checkIn" type="date" style="width: 178px;"><label
-                        style="font-size: 20px;">CHECK OUT :&nbsp;</label><input class="form-control" id="checkOut"
-                        type="date" style="width: 178px;"></form>
+                <form class="text-left">
+                    <label style="background-size: auto;font-size: 20px;">CHECK IN:&nbsp;</label>
+                    <input class="form-control" placeholder="{{checkIn}}" id="checkIn" name="checkIn" type="text"
+                        onfocus="(this.type='date')" style="width: 178px;" form="editForm">
+                    <label style="font-size: 20px;">CHECK OUT:&nbsp;</label>
+                    <input class="form-control" id="checkOut" placeholder="{{checkOut}}" name="checkOut" type="text"
+                        onfocus="(this.type='date')" style="width: 178px;" form="editForm">
+                </form>
             </div>
         </div>
         <div class="row">
             <div class="col">
                 <div class="btn-group p-2" role="group"><button class="btn btn-warning" type="button"
-                        style="margin-right: 4.5rem;">CANCEL</button><button class="btn btn-danger"
-                        type="button">CONFIRM</button></div>
+                        href="/roomBooking/selectRoom/" style="margin-right: 4.5rem;">CANCEL</button><button
+                        class="btn btn-danger" type="submit" form="editForm">CONFIRM</button></div>
             </div>
         </div>
     </div>
     <script src=" {% static 'js/jquery.min.js' %}"></script>
     <script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
+    <script>
+        function checkDates() {
+            var checkIn = document.getElementById('checkIn').value;
+            var checkOut = document.getElementById('checkOut').value;
+
+            var indate = new Date(checkIn);
+            var outDate = new Date(checkOut)
+            var currDate = new Date();
+
+            if (indate < currDate) {
+                alert('Choose a valid check in date');
+                return false;
+            } else if (outDate < indate) {
+                alert('Check Out date cannot be before check in date');
+                return false;
+            } else if (checkOut == "{{checkOut}}" && checkIn == "{{checkIn}}") {
+                alert('Chose dates that are not the same as existing ones')
+                return false;
+            }
+        }
+    </script>
 </body>
 
 </html>

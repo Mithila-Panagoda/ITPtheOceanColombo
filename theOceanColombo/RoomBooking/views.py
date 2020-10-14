@@ -4,6 +4,10 @@ from django.core.mail import EmailMessage, send_mail
 from theOceanColombo import settings
 from django.template.loader import render_to_string
 import smtplib
+from django.http import HttpResponse
+from django.template.loader import get_template
+from xhtml2pdf import pisa
+import datetime
 
 # Create your views here.
 
@@ -32,6 +36,8 @@ def loadselectroom(request):
     roomIDList = []
     for i in roomIDs:
         roomIDList.append(i)
+
+    print(roomIDList)
 
     roomTypeList = []
     for i in roomIDList:
@@ -81,13 +87,12 @@ def confirmbooking(request):
         NIC).set(contactDetails)
 
     rooms = {
-        "RoomType": roomName,
         "RoomQty": roomQty,
         "TotalCost": roomTotal
     }
 
     db.child("Customer").child("Contact Details").child(
-        NIC).child("Rooms").set(rooms)
+        NIC).child("Rooms").child(roomName).set(rooms)
 
     booking = {
         "CheckIn": checkIn,
@@ -98,6 +103,16 @@ def confirmbooking(request):
 
     db.child("Customer").child("Contact Details").child(
         NIC).child("BookingDetails").set(booking)
+
+    arrivals = {
+        "ETA": ETA,
+        "Special Requests": splRequests,
+        "RoomName": roomName,
+        "RoomQty": roomQty,
+        "Total": roomTotal,
+    }
+
+    db.child("Arrivals").child(checkIn).child(NIC).set(arrivals)
 
     address = request.POST.get('address')
     suburb = request.POST.get('suburb')
@@ -116,12 +131,13 @@ def confirmbooking(request):
     pwd = settings.EMAIL_HOST_PASSWORD
 
     data = {
+        "NIC": NIC,
         'name': firstName,
         'checkIn': checkIn,
         'checkOut': checkOut,
         'roomType': roomName,
         'roomTotal': roomTotal,
-        'roomQty':roomQty
+        'roomQty': roomQty
     }
 
     emailSubject = 'Your Booking Is Confirmed'
@@ -138,7 +154,7 @@ def confirmbooking(request):
     confirmMail.fail_silently = False
     confirmMail.send()
 
-    return render(request, 'bookingSuccessful.html')
+    return render(request, 'bookingSuccessful.html', {"NIC": NIC})
 
 
 def loadconfirmbooking(request):
@@ -160,20 +176,181 @@ def loadconfirmbooking(request):
 
 
 def cancelbooking(request):
-    return render(request, 'cancelBooking.html')
+    firebase = pyrebase.initialize_app(firebaseconfig)
+    db = firebase.database()
+    NIC = request.POST.get('NIC')
+    print(NIC)
+    reason = request.POST.get('cancelReason')
+    try:
+        db.child('Customer').child('Contact Details').child(NIC).remove()
+    except:
+        print('unable to delete')
+
+    db.child('RoomBookingCancellationReason').child(
+        NIC).set({'Reason': reason})
+
+    return render(request, 'bookingCancelSuccessful.html', {"NIC": NIC})
 
 
 def loadcancelbooking(request):
-    return render(request, 'cancelBooking.html')
+    firebase = pyrebase.initialize_app(firebaseconfig)
+    db = firebase.database()
+    NIC = request.POST.get('NIC')
+
+    checkIn = db.child('Customer').child('Contact Details').child(
+        NIC).child('BookingDetails').child('CheckIn').get().val()
+    checkOut = db.child('Customer').child('Contact Details').child(
+        NIC).child('BookingDetails').child('CheckOut').get().val()
+
+    roomNames = db.child('Customer').child('Contact Details').child(
+        NIC).child('Rooms').shallow().get().val()
+
+    roomsList = []
+    for i in roomNames:
+        roomsList.append(i)
+
+    qtyList = []
+    for i in roomsList:
+        qty = db.child('Customer').child('Contact Details').child(
+            NIC).child('Rooms').child(i).child('RoomQty').get().val()
+        qtyList.append(qty)
+
+    totalList = []
+    for i in roomsList:
+        total = db.child('Customer').child('Contact Details').child(
+            NIC).child('Rooms').child(i).child('TotalCost').get().val()
+        totalList.append(total)
+
+    rooms = zip(roomsList, qtyList, totalList)
+    data = {
+        "NIC": NIC,
+        "checkIn": checkIn,
+        "checkOut": checkOut,
+        "rooms": rooms
+    }
+
+    return render(request, 'cancelBooking.html', data)
 
 
 def updatebooking(request):
-    return render(request, 'updateBooking.html')
+    firebase = pyrebase.initialize_app(firebaseconfig)
+    db = firebase.database()
+    NIC = request.POST.get('NIC')
+    checkIn = request.POST.get('checkIn')
+    checkOut = request.POST.get('checkOut')
+
+    data = {
+        "CheckIn": checkIn,
+        "CheckOut": checkOut
+    }
+    db.child('Customer').child('Contact Details').child(NIC).child(
+        'BookingDetails').update(data)
+
+    return render(request, 'bookingUpdateSuccessful.html')
 
 
 def loadupdatebooking(request):
-    return render(request, 'updateBooking.html')
+    firebase = pyrebase.initialize_app(firebaseconfig)
+    db = firebase.database()
+    NIC = request.POST.get('NIC')
+
+    checkIn = db.child('Customer').child('Contact Details').child(
+        NIC).child('BookingDetails').child('CheckIn').get().val()
+    checkOut = db.child('Customer').child('Contact Details').child(
+        NIC).child('BookingDetails').child('CheckOut').get().val()
+
+    roomNames = db.child('Customer').child('Contact Details').child(
+        NIC).child('Rooms').shallow().get().val()
+
+    roomsList = []
+    for i in roomNames:
+        roomsList.append(i)
+
+    qtyList = []
+    for i in roomsList:
+        qty = db.child('Customer').child('Contact Details').child(
+            NIC).child('Rooms').child(i).child('RoomQty').get().val()
+        qtyList.append(qty)
+
+    totalList = []
+    for i in roomsList:
+        total = db.child('Customer').child('Contact Details').child(
+            NIC).child('Rooms').child(i).child('TotalCost').get().val()
+        totalList.append(total)
+
+    rooms = zip(roomsList, qtyList, totalList)
+    data = {
+        "NIC": NIC,
+        "checkIn": checkIn,
+        "checkOut": checkOut,
+        "rooms": rooms
+    }
+
+    return render(request, 'updateBooking.html', data)
 
 
 def loadbookingconfirmed(request):
     return render(request, 'bookingSuccessful.html')
+
+
+def generateArrivalReport(request):
+    firebase = pyrebase.initialize_app(firebaseconfig)
+    db = firebase.database()
+    tomorrow = datetime.date.today() + datetime.timedelta(days=1)
+
+    NICs = db.child('Arrivals').child(tomorrow).shallow().get().val()
+
+    NICList = []
+
+    for i in NICs:
+        NICList.append(i)
+
+    ETAList = []
+    for i in NICList:
+        ETA = db.child('Arrivals').child(
+            tomorrow).child(i).child('ETA').get().val()
+        ETAList.append(ETA)
+
+    requestList = []
+    for i in NICList:
+        request = db.child('Arrivals').child(
+            tomorrow).child(i).child('Special Requests').get().val()
+        requestList.append(request)
+
+    roomList = []
+    for i in NICList:
+        room = db.child('Arrivals').child(
+            tomorrow).child(i).child('RoomName').get().val()
+        roomList.append(room)
+
+    qtyList = []
+    for i in NICList:
+        qty = db.child('Arrivals').child(
+            tomorrow).child(i).child('RoomQty').get().val()
+        qtyList.append(qty)
+
+    totalList = []
+    for i in NICList:
+        total = db.child('Arrivals').child(
+            tomorrow).child(i).child('Total').get().val()
+        totalList.append(total)
+
+    info = zip(NICList, ETAList, requestList, roomList, qtyList, totalList)
+
+    template_path = 'arrivalReport.html'
+    context = {'date': tomorrow, 'info': info}
+    # Create a Django response object, and specify content_type as pdf
+    response = HttpResponse(content_type='application/pdf')
+    #response['Content-Disposition'] = 'attachment; filename="report.pdf"'
+    response['Content-Disposition'] = 'filename="report.pdf"'
+    # find the template and render it.
+    template = get_template(template_path)
+    html = template.render(context)
+
+    # create a pdf
+    pisa_status = pisa.CreatePDF(
+        html, dest=response)
+    # if error then show some funy view
+    if pisa_status.err:
+        return HttpResponse('We had some errors <pre>' + html + '</pre>')
+    return response

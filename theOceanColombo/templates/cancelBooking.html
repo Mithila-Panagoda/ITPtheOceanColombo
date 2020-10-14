@@ -12,6 +12,10 @@
 </head>
 
 <body class="text-center">
+    <form class="form" action="/roomBooking/deleteBooking/" id="cancellationForm" method="POST">
+        {% csrf_token %}
+    </form>
+    <input name="NIC" form="cancellationForm" value="{{NIC}}" type="hidden">
     <div class="container bg-light">
         <div class="text-warning p-2">
             <h2 class="display-4 text-uppercase text-danger">Cancel booking</h2>
@@ -23,57 +27,64 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <td class="text-left">BOOKING ID</td>
-                        <td class="text-right">Cell 2</td>
-                    </tr>
-                    <tr>
-                        <td class="text-left">NAME</td>
-                        <td class="text-right">Cell 4</td>
+                        <td class="text-left">NIC</td>
+                        <td class="text-right"> {{NIC}} </td>
                     </tr>
                     <tr>
                         <td class="text-left">CHECK - IN</td>
-                        <td class="text-right">Cell 4</td>
+                        <td class="text-right"> {{checkIn}} </td>
                     </tr>
                     <tr>
                         <td class="text-left">CHECK - OUT</td>
-                        <td class="text-right">Cell 4</td>
+                        <td class="text-right"> {{checkOut}} </td>
                     </tr>
                 </tbody>
             </table>
         </div>
+
+
         <div class="row p-2">
             <div class="col-xl-6 text-center d-xl-flex">
-                <h3 class="text-uppercase">Rooms</h3>
+                <h3 class="text-uppercase text-warning">Rooms</h3>
             </div>
             <div class="col">
-                <h3 class="text-uppercase">REfundable</h3>
+                <h3 class="text-uppercase text-warning">Quantity</h3>
             </div>
             <div class="col text-right">
-                <h3 class="text-uppercase">price</h3>
+                <h3 class="text-uppercase text-warning">Total</h3>
             </div>
         </div>
+        {% for name,qty,total in rooms %}
         <div class="row p-2">
-            <div class="col-xl-6 text-center d-xl-flex"></div>
-            <div class="col"></div>
-            <div class="col text-right"></div>
+            <div class="col-xl-6 text-center d-xl-flex">
+                <h3 class="text-uppercase">{{name}}</h3>
+            </div>
+            <div class="col">
+                <h3 class="text-uppercase">{{qty}}</h3>
+            </div>
+            <div class="col text-right">
+                <h3 class="text-uppercase">{{total}}</h3>
+            </div>
         </div>
+        {% endfor %}
         <div class="row text-left p-2">
             <div class="col">
                 <form>
-                    <h3 class="text-uppercase">Please tell us why you are cancelling</h3><textarea class="form-control"
-                        style="width: 1093px;height: 100px;"></textarea>
+                    <h3 class="text-uppercase">Please tell us why you are cancelling (Optional)</h3><textarea
+                        class="form-control" style="width: 1093px;height: 100px;" id="cancelReason" name="cancelReason"
+                        form="cancellationForm"></textarea>
                 </form>
             </div>
         </div>
         <div class="row text-left p-2">
-            <div class="col"><span class="text-uppercase" style="font-size: 22px;">THE ocean colombo will issue refunds
+            <div class="col"><span class="text-uppercase" style="font-size: 22px;">The ocean colombo will issue refunds
                     only for bookings made for refundable rooms</span></div>
         </div>
         <div class="row">
             <div class="col">
-                <div class="btn-group p-2" role="group"><button class="btn btn-warning" type="button"
-                        style="margin-right: 4.5rem;">CANCEL</button><button class="btn btn-danger"
-                        type="button">CONFIRM</button></div>
+                <div class="btn-group p-2" role="group"><a class="btn btn-warning" type="button"
+                        href="/roomBooking/selectRoom/" style="margin-right: 4.5rem;">CANCEL</a>
+                    <button class="btn btn-danger" type="submit" form="cancellationForm">CONFIRM</button></div>
             </div>
         </div>
     </div>

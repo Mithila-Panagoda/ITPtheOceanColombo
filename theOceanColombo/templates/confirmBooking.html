@@ -65,7 +65,7 @@
             <div class="col" id="outsideCol">
                 <div class="row">
                     <div class="col p-2"><span>Estimated Time of Arrival</span>
-                        <input class="float-right" name="ETA" form="confirmBookingForm" type="time" required>
+                        <input class="float-right" id="ETA" name="ETA" form="confirmBookingForm" type="time" required>
                     </div>
                 </div>
                 <div class="row">
@@ -85,47 +85,55 @@
         </div>
     </div>
     <div class="container bg-light">
-        <form action="/roomBooking/addBooking/" id="confirmBookingForm" method="POST">
+        <form id="confirmBookingForm" onsubmit="return cardnumber()" action="/roomBooking/addBooking/" method="POST">
             {% csrf_token %}
             <div class="row">
                 <div class="col p-2">
                     <h4 class="text-uppercase">contact details</h4>
 
-                    <input class="form-control" type="text" placeholder="FIRST NAME" name="first_name" required>
-                    <input class="form-control" type="text" placeholder="LAST NAME" name="last_name" required>
-                    <input class="form-control" type="text" placeholder="E MAIL" inputmode="email" name="email"
+                    <input class="form-control" type="text" placeholder="FIRST NAME" name="first_name" id="fName"
                         required>
-                    <input class="form-control" type="text" placeholder="CONTACT NUMBER" inputmode="numeric"
-                        name="contactNo" required>
-                    <input class="form-control" type="text" placeholder="NIC" name="NIC" required>
+                    <input class="form-control" type="text" placeholder="LAST NAME" name="last_name" id="lName"
+                        required>
+                    <input class="form-control" type="text" placeholder="E MAIL" inputmode="email" name="email"
+                        id="email" required>
+                    <input class="form-control" type="text" maxlength="10" placeholder="CONTACT NUMBER" id="contactNo"
+                        inputmode="numeric" name="contactNo" required>
+                    <input class="form-control" type="text" placeholder="NIC" name="NIC" id="NIC" required>
 
 
                 </div>
                 <div class="col p-2">
                     <h4 class="text-uppercase">billing address</h4>
 
-                    <input class="form-control" type="text" placeholder="ADDRESS" name="address" required>
-                    <input class="form-control" type="text" placeholder="SUBURB" name="suburb" required>
-                    <input class="form-control" type="text" placeholder="CITY" name="city" required>
-                    <input class="form-control" type="text" placeholder="POSTAL CODE" inputmode="numeric"
-                        name="postalCode" required>
+                    <input class="form-control" type="text" placeholder="ADDRESS" name="address" id="address" required>
+                    <input class="form-control" type="text" placeholder="SUBURB" name="suburb" id="suburb" required>
+                    <input class="form-control" type="text" placeholder="CITY" name="city" id="city" required>
+                    <input class="form-control" type="text" placeholder="POSTAL CODE" id="postalCode"
+                        inputmode="numeric" name="postalCode" required>
                 </div>
                 <div class="col p-2">
                     <h4 class="text-uppercase">card details</h4>
-                    <input class="form-control" placeholder="CARD NUMBER" inputmode="numeric" name="cardNo" id="cardNo">
-                    <input class="form-control" type="text" placeholder="NAME ON CARD" name="nameOnCard"
-                        id="nameOnCard">
+                    <img src="{% static 'images/visaLogo.png'%}" alt="VISA"
+                        style="height: auto;width:50px;padding: 0.3rem;">
+                    <input class="form-control" placeholder="CARD NUMBER" name="cardNo" type="text"
+                        form="confirmBookingForm" id="cardNo" required>
+                    <input class="form-control" type="text" placeholder="NAME ON CARD" name="nameOnCard" id="nameOnCard"
+                        required>
                     <h5 class="text-uppercase">EXPIRY DATE</h5>
                     <div class="form-row">
                         <div class="col p-1">
-                            <input class="form-control" type="number" max="31" placeholder="1" name="expiryDay">
+                            <input class="form-control" type="number" max="31" placeholder="1" name="expiryDay"
+                                id="expiryDay" required>
                         </div>
                         <div class="col d-xl-flex p-1">
-                            <input class="form-control" type="number" max="12" placeholder="1" name="expiryMonth">
+                            <input class="form-control" type="number" max="12" placeholder="1" name="expiryMonth"
+                                id="expiryMonth" required>
                         </div>
                     </div>
                     <h5 class="text-uppercase">cvv</h5>
-                    <input class="form-control" type="text" placeholder="CVV" inputmode="numeric" name="cvv">
+                    <input class="form-control" type="number" placeholder="CVV" inputmode="numeric" name="cvv" id="CVV"
+                        required>
 
 
                 </div>
@@ -145,11 +153,12 @@
                             onchange="document.getElementById('confirmBooking').disabled = !this.checked;">I
                             WOULD
                             LIKE TO RECIEVE INFORMATION ABOUT PROMOTIONS AND DETAILS</label></div>
-                    <div class="text-center p-2">
-                        <button class="btn btn-success text-uppercase" type="submit"
-                            onclick="checkCreditCard(cardNo,nameOnCard)" style="margin-top: 0.5rem;"
+                    <div class="text-center p-2" style="margin-top: 0.5rem;">
+                        <button class="btn btn-warning" onclick="demo()">DEMO</button>
+                        <button class="btn btn-success text-uppercase" type="submit" form="confirmBookingForm"
                             id="confirmBooking">confirm
                             booking</button>
+
                     </div>
                 </div>
             </div>
@@ -159,6 +168,36 @@
     <script src="{% static 'js/jquery.min.js' %}"></script>
     <script src="{% static 'js/creditcard.js' %}"></script>
     <script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
+    <script>
+        function demo() {
+            document.getElementById("fName").value = "Nafeel";
+            document.getElementById("lName").value = "Nuhuman";
+            document.getElementById("email").value = "nafeelnuhuman337@gmail.com";
+            document.getElementById("contactNo").value = "0775546631";
+            document.getElementById("NIC").value = "9913901277";
+            document.getElementById("address").value = "52,Flower Rd,Dehiwala";
+            document.getElementById("suburb").value = "Dehiwala";
+            document.getElementById("city").value = "Colombo";
+            document.getElementById("postalCode").value = "008866";
+            document.getElementById("cardNo").value = "4283980011326115";
+            document.getElementById("nameOnCard").value = "Nafeel";
+            document.getElementById("expiryDay").value = "24";
+            document.getElementById("expiryMonth").value = 8;
+            document.getElementById("CVV").value = 863;
+        }
+
+        function cardnumber() {
+            var card = document.getElementById('cardNo')
+            var cardno = /^(?:4[0-9]{12}(?:[0-9]{3})?)$/;
+            if (card.value.match(cardno)) {
+                return true;
+            }
+            else {
+                alert("Not a valid Visa credit card number!");
+                return false;
+            }
+        }
+    </script>
 </body>
 
 </html>
