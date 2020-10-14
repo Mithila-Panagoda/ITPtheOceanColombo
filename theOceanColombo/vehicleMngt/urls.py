@@ -5,7 +5,12 @@ urlpatterns = [
     path("loadvehicle/", views.loadinsertvehicle),
     path("addVehicle/", views.insertvehicle),
     path("loadshowvehicle/" , views.loadavailablev),
-    path("showavailblev/", views.loadavailablev),
-     #path("loadupdate/", views.loadupdatevehicle),
-    #path("updateVehicle/", views.updateVehicle)
+    path("showavailblev/", views.showvehicledetails),
+    path("loadupdatev/", views.loadaupdatev),
+    path("updateVh/", views.updatevehicle),
+    path("deletev/", views.deletevehicle),
+    path("repov/",views.getDriverDetails),
+    path("backendHome/", views.dirBackendHome),
+    path("report/", views.generateVehicleReport)
+    #path("availableL", view.)
 ]

@@ -14,6 +14,33 @@
 </head>
 
 <body>
+<header>
+        <div class="container-fluid">
+            <img src="{% static 'images/logo.png' %}" width="110px" height="110px" alt="logo" />
+        </div>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="../backendHome">Home</a>
+                    </li>
+                    <li class="nav-item">
+
+                        <a class="nav-link" href="../loadvehicle">Insert Vehicle Details</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../loadshowvehicle ">Available Vehicle List</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../HousekeepingReport">Vehicle Report</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Sign out</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
     <div class="container">
         <div class="row">
             <div class="col text-center p-2">
@@ -22,11 +49,20 @@
         </div>
         <div class="row">
             <div class="col">
-                <form method="POST" class="form-group" action="/insertVehicle/addVehicle/">
+                <form method="POST" class="form-group" action="/vehicleMngt/addVehicle/">
                     {% csrf_token %}
-                    <label>NUMBER PLATE :&nbsp;</label><input class="form-control" type="text" placeholder="xx - xxxx" name="NUMBER_PLATE"><label>VEHICLE MODEL :&nbsp;</label><input class="form-control" type="text" name="VEHICLEMODEL">
+                    <label>NUMBER PLATE :&nbsp;</label><input class="form-control" type="text" placeholder="xx - xxxx or xxx-xxxx" name="NUMBER_PLATE" required oninvalid = "this.setCustomValidity('INVALID NUMBER PLATE')" onchange = "try{setCustomValidity('')}catch(e){}" pattern = "[A-Z][A-Z][A-Z][-][0-9]{4}|[A-Z][A-Z][-][0-9]{4}">
+                    <label>VEHICLE MODEL :&nbsp;</label><input class="form-control" type="text" name="VEHICLEMODEL" required>
                     <label>NO. OF SEATS :&nbsp;</label>
-                    <input class="form-control" name="noOfSeats" type="number">
+                    <input class="form-control" name="noOfSeats" type="number" required>
+                    <label>DRIVER :&nbsp;</label>
+                    <select name="dname" class="btn-blok btn-lg btn-light dropdown-toggle">
+                        {% for tableName in final_data%}
+                        <option name ="op1" value="{{tableName}}">{{tableName}}</option>
+                        {% endfor %}
+                </select>
+
+
 
                     <div class="text-right p-2"><button class="btn btn-success text-uppercase" type="submit">confirm</button></div>
                 </form>

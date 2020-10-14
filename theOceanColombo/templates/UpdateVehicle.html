@@ -10,6 +10,32 @@
     <link rel="stylesheet" href="{% static 'css/vehiclemanagement.css'%}">
 </head>
 <body>
+<header>
+        <div class="container-fluid">
+            <img src="{% static 'images/logo.png' %}" width="110px" height="110px" alt="logo" />
+        </div>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="../backendHome">Home</a>
+                    </li>
+                    <li class="nav-item">
+
+                        <a class="nav-link" href="../loadvehicle">Insert Vehicle Details</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../loadshowvehicle ">Available Vehicle List</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../HousekeepingReport">Vehicle Report</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Sign out</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
 
 
     <div class="container">
@@ -20,14 +46,24 @@
         </div>
         <div class="row">
             <div class="col">
-                <form method="POST" class="form-group" action="/updatevehicle/updateVehicle/">
+                {% for noplate,vmodel,noseats,driver in final_list %}
+                <form method="POST" class="form-group" action="/vehicleMngt/updateVh/">
                     {% csrf_token %}
-                    <label>NUMBER PLATE :&nbsp;</label><input class="form-control" type="text" placeholder="xx - xxxx" name="NUMBER_PLATE"><label>VEHICLE MODEL :&nbsp;</label><input class="form-control" type="text" name="VEHICLEMODEL">
+                    <label>NUMBER PLATE :&nbsp;</label>
+                    <input class="form-control"  value="{{noplate}}" type="text" placeholder="xx - xxxx" name="NUMBER_PLATE" readonly required oninvalid = "this.setCustomValidity('INVALID NUMBER PLATE')" onchange = "try{setCustomValidity('')}catch(e){}" pattern = "[A-Z][A-Z][A-Z][-][0-9]{4}|[A-Z][A-Z][-][0-9]{4}">
+                    <label>VEHICLE MODEL :&nbsp;</label>
+                    <input class="form-control" value="{{vmodel}}"type="text" name="VEHICLEMODEL" required>
                     <label>NO. OF SEATS :&nbsp;</label>
-                    <input class="form-control" name="noOfSeats" type="number">
-                    <input class="border rounded border-warning" type="file" accept="image/*">
+                    <input class="form-control" value="{{noseats}}" name="noOfSeats" type="number" required>
+                    <label>DRIVER :&nbsp;</label>
+                            <input name="dname" type="text" value="{{driver}}"readonly>
+                        {% endfor %}
+                </input>
+
                     <div class="text-right p-2"><button class="btn btn-success text-uppercase" type="submit">confirm</button></div>
                 </form>
+
+
             </div>
         </div>
     </div>

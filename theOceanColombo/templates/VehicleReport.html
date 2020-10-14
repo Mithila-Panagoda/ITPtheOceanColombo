@@ -1,0 +1,55 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Vh</title>
+    <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css'%}">
+    <link rel="stylesheet" href="{% static 'https://fonts.googleapis.com/css?family=Aleo'%}">
+    <link rel="stylesheet" href="{% static 'https://cdnjs.cloudflare.com/ajax/libs/aos/2.1.1/aos.css'%}">
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <h1 class="display-1 text-center" data-aos="fade-up" data-aos-duration="250" data-aos-once="true" style="color: rgb(244,195,24);font-size: 60px;font-family: Aleo, serif;margin-top: 20px;">Vehicle Report</h1>
+                <div class="row">
+                    <div class="col" data-aos="fade-up" data-aos-duration="400" style="margin: 20px;">
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th style="background-color: #b1b0b0;">Driver Name</th>
+                                        <th style="background-color: #b1b0b0;">Vehicle Model</th>
+                                        <th style="background-color: #b1b0b0;">Number plate</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for driver,vmodel ,noplate in data %}
+                                    <tr>
+                                        <td> {{driver}}</td>
+                                        <td>{{vmodel}}</td>
+                                        <td>{{noplate}}</td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="row">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="{% static 'js/jquery.min.js'%}"></script>
+    <script src="{% static 'bootstrap/js/bootstrap.min.js'%}"></script>
+    <script src="{% static 'https://cdnjs.cloudflare.com/ajax/libs/aos/2.1.1/aos.js'%}"></script>
+    <script src="{% static 'js/script.min.js'%}"></script>
+</body>
+
+</html>
