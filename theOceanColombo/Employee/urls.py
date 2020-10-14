@@ -6,5 +6,6 @@ urlpatterns = [
     path("newEmployee/", views.Newemployee),
     path("viewEmployee/", views.loadViewemployee),
     path("HireNew/", views.loadNewemployee),
-     path("deletemp/",views.deleteEmp)
+    path("deletemp/",views.deleteEmp),
+    path("GenerateRep/", views.generateempReport)
 ]

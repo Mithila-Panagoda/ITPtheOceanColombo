@@ -1,6 +1,9 @@
+from django.http.response import HttpResponse
 from django.shortcuts import render
 from django.http import request
 import pyrebase
+from django.template.loader import get_template
+from xhtml2pdf import pisa
 
 # Firebase Config
 firebaseconfig = {
@@ -113,6 +116,64 @@ def deleteEmp(request):
         firebase = pyrebase.initialize_app(firebaseconfig)
         db = firebase.database()
         empepf = request.POST.get('empEPF')
+        firstName = db.child("Staff").child("Employee").child(empepf).child("firstName").get().val()
+        nic = db.child("Staff").child("Employee").child(empepf).child("NIC").get().val()
+        Email = db.child("Staff").child("Employee").child(empepf).child("Email").get().val()
+        EmployeeType = db.child("Staff").child("Employee").child(empepf).child("employeeType").get().val()
+        data = {"firstName": firstName,"NIC":nic, "Email": Email ,"employeeType":EmployeeType}
+        db.child("Staff").child("Terminations").child(empepf).set(data)
         db.child("Staff").child("Employee").child(empepf).remove()
         final_data = getempdata()
+
         return render (request,"ViewEmployee.html",{'final_data': final_data})
+
+#generating report
+def generateempReport(request):
+    firebase = pyrebase.initialize_app(firebaseconfig)
+    db = firebase.database()
+    dataT = db.child('Staff').child('Terminations').shallow().get().val()
+    list_empepf=[]
+    for i in dataT:
+        list_empepf.append(i)
+
+    list_empFname=[]
+    for i in list_empepf:
+        query = db.child('Staff').child('Terminations').child(i).child('firstName').get().val()
+        list_empFname.append(query)
+
+        print(list_empFname)
+
+    list_nic=[]
+    for i in list_empepf:
+            query = db.child('Staff').child('Terminations').child(i).child('NIC').get().val()
+            list_nic.append(query)
+
+    list_email=[]
+    for i in list_empepf:
+            query = db.child('Staff').child('Terminations').child(i).child('Email').get().val()
+            list_email.append(query)
+
+    list_empType=[]
+    for i in list_empepf:
+            query = db.child('Staff').child('Terminations').child(i).child('employeeType').get().val()
+            list_empType.append(query)
+
+          
+    term = zip(list_empepf,list_empFname,list_nic,list_email,list_empType) 
+  #converting HTML to PDF  
+    template_path = "EmpReport.html"
+    context = {'term': term}
+    response = HttpResponse(content_type ='application/pdf')
+    response['Content-Disposition'] = 'filename= "Termination report.pdf"'
+    template = get_template(template_path)
+    html = template.render(context)
+
+    pisa_status = pisa.CreatePDF(
+        html, dest=response)
+    if pisa_status.err:
+        return HttpResponse('Error Generating Report <pre>' + html + '</pre>')
+    return response
+    
+
+
+              

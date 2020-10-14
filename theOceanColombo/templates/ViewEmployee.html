@@ -23,7 +23,7 @@
        {% csrf_token %}
       <button class="btn">HIRE NEW EMPLOYEE</button>
    </form>
-      <button class="btn2">Generate Report</button>
+      <a href="{% static '../Employee/GenerateRep/'%}" class="btn2">Generate Report</a>
       <br><br><br><br>
       <form class="srch" action="/searchEmployee/">
         <input type="text" placeholder="Search" name="search">

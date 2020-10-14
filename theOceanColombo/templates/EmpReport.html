@@ -1,0 +1,42 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="em">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"  content="width=device-width, initial-scale=1.0">
+    <title>Employee Termination Report</title>
+</head>
+<body>
+    <h1>Employee Termination Report</h1>
+    <table>
+        <tr>
+            <th>EPF</th>
+            <th>Name</th>
+            <th>NIC</th>
+            <th>Email</th>
+            <th>Employment Type</th>
+        </tr>
+        {% for EPF, firstName, NIC, Email, employeeType in term %}
+        <tr>
+                <td> {{EPF}} </td>
+                <td>{{firstName}}</td>
+                <td>{{NIC}}</td>
+                <td>{{Email}}</td>
+                <td>{{employeeType}}</td>
+        
+        </tr>
+        {% endfor %}
+    </table>
+
+    <style>
+        table,
+        th,
+        td{
+            border: 1px solid black;
+            text-align: left;
+            padding: 0.5rem;
+        }
+    </style>
+</body>
+</html>
