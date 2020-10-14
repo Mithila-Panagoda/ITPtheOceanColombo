@@ -7,12 +7,39 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     <title>Vehicle Management</title>
     <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css'%}">
-    <link rel="stylesheet" href="{% static 'https://fonts.googleapis.com/css?family=Baloo'%}">
-    <link rel="stylesheet" href="{% static 'https://fonts.googleapis.com/css?family=Copse'%}">
-    <link rel="stylesheet" href="{% static 'https://cdnjs.cloudflare.com/ajax/libs/aos/2.1.1/aos.css'%}">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Baloo">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Copse">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.1.1/aos.css">
     <link rel="stylesheet" href="{% static 'css/styles.min.css'%}">
 </head>
 
+<header>
+        <div class="container-fluid">
+            <img src="{% static 'images/logo.png' %}" width="110px" height="110px" alt="logo" />
+        </div>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="../backendHome">Home</a>
+                    </li>
+                    <li class="nav-item">
+
+                        <a class="nav-link" href="../loadvehicle">Insert Vehicle Details</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../loadshowvehicle ">Available Vehicle List</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../HousekeepingReport">Vehicle Report</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Sign out</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
 <body class="text-center">
     <div class="container">
         <div class="row">
@@ -28,21 +55,32 @@
                                 <th style="background-color: #b1b0b0;">NUMBER PLATE</th>
                                 <th style="background-color: #b1b0b0;">VEHICLE MODEL</th>
                                 <th style="background-color: #b1b0b0;color: rgb(7,7,7);">NO.OF SEATS</th>
+                                <th style="background-color: #b1b0b0;color: rgb(7,7,7);">DRIVERS</th>
                                 <th style="background-color: #b1b0b0;"></th>
                                 <th style="background-color: #b1b0b0;"></th>
-                                <th style="background-color: #b1b0b0;"></th>
+
                             </tr>
                         </thead>
                         <tbody>
-                        {% for noplate,vmodel,noseats in final_list %}
+                        {% for noplate,vmodel,noseats,driver in final_list %}
                             <tr>
                                 <td>{{noplate}}</td>
                                 <td>{{vmodel}}</td>
                                 <td>{{noseats}}</td>
-                                <td><button class="btn btn-primary align-content-center" type="button" style="background-color: rgb(255,184,0);color: rgb(7,7,7);font-family: Baloo, cursive;">UPDATE</button></td>
-                                <td><button class="btn btn-primary" type="button" style="background-color: rgb(255,15,0);color: rgb(7,7,7);font-family: Baloo, cursive;">REMOVE</button></td>
-                                <td><button class="btn btn-primary" type="button" style="background-color: rgb(66,163,7);color: rgb(7,7,7);font-family: Baloo, cursive;">STATUS</button></td>
-                            </tr>
+                                <td>{{driver}}</td>
+                                <td>
+                                    <form method="POST" class="form-group" action="/vehicleMngt/loadupdatev/">
+                                        {% csrf_token %}
+                                        <input class="btn btn-primary align-content-center" type="submit" value="Update" style="background-color: rgb(255,184,0);color: rgb(7,7,7);font-family: Baloo, cursive;"></input>
+                                        <input type="hidden"  name="number_plate" value="{{noplate}}">
+                                    </form>
+                                </td>
+                                <td>
+                                    <form method="POST" class="form-group" action="/vehicleMngt/deletev/">
+                                       {% csrf_token %}
+                                        <button class="btn btn-primary" type="submit" style="background-color: rgb(255,15,0);color: rgb(7,7,7);font-family: Baloo, cursive;">Remove</button>
+                                        <input type="hidden"  name="number_plate" value="{{noplate}}">
+                                    </form>
                            {% endfor %}
                         </tbody>
                     </table>
@@ -50,14 +88,22 @@
             </div>
         </div>
         <div class="row">
-
-            <div class="col"><form method="POST" class="form-group" action="/insertVehicle/loadvehicle/">{% csrf_token %}<button class="btn btn-success" type="submit">ADD VEHICLES</button></form><button class="btn btn-secondary" type="button">CHECK DAILT RECORDS</button></div>
+            <div class="col">
+                <form method="POST" class="form-group" action="/vehicleMngt/loadvehicle/">
+                    {% csrf_token %}
+                    <button class="btn btn-success" type="submit">ADD VEHICLES</button>
+                </form>
+                <form method="POST" class="form-group" action="/vehicleMngt/repov/">
+                    {% csrf_token %}
+                <a class="btn btn-secondary" href="/vehicleMngt/report/" type="submit">CHECK THE VEHICLE RECORDS</a>
+                </form>
+            </div>
             </form>
         </div>
     </div>
     <script src="{% static 'js/jquery.min.js'%}"></script>
     <script src="{% static 'bootstrap/js/bootstrap.min.js'%}"></script>
-    <script src="{% static 'https://cdnjs.cloudflare.com/ajax/libs/aos/2.1.1/aos.js'%}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.1.1/aos.js"></script>
     <script src="{% static 'js/script.min.js'%}"></script>
 </body>
 
