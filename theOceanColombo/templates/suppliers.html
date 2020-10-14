@@ -4,34 +4,40 @@
             Suppliers
         </title>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-       
+        {% load static %}
     </head>
     <body>
-
+<header>
+        <div class="container-fluid">
+            <img src="{% static 'images/logo.png' %}" width="110px" height="110px" alt="logo" />
+        </div>
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
               <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
-                  <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                 <li class="nav-item active">
+                  <a class="nav-link" href="../loadbackendhomepage/">Home <span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item active">
-                    <a class="nav-link" href="../inventory">Inventory <span class="sr-only">(current)</span></a>
+                    <a class="nav-link" href="../loadshowstock/">Inventory <span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item active">
-                    <a class="nav-link" href="../addstock">Add Stock <span class="sr-only">(current)</span></a>
+                    <a class="nav-link" href="../loadaddstock/">Add Stock <span class="sr-only">(current)</span></a>
                   </li>
                   <li class="nav-item active">
-                    <a class="nav-link" href="../loadaddsupplier">Add Suppliers <span class="sr-only">(current)</span></a>
+                    <a class="nav-link" href="../loadaddsupplier/">Add Suppliers <span class="sr-only">(current)</span></a>
                   </li>
                   <li class="nav-item active">
-                    <a class="nav-link" href="../suppliers">View Suppliers <span class="sr-only">(current)</span></a>
+                    <a class="nav-link" href="../loadshowsupplier/">View Suppliers <span class="sr-only">(current)</span></a>
+                  </li>
+                   <li class="nav-item active">
+                    <a class="nav-link" href="../createlists/">Create Lists <span class="sr-only">(current)</span></a>
                   </li>
                   <li class="nav-item active">
-                    <a class="nav-link" href="../purchaseOrders/">Send Purchase Orders <span class="sr-only">(current)</span></a>
+                    <a class="nav-link" href="../loadpurchaseorder/">Send Purchase Orders <span class="sr-only">(current)</span></a>
                   </li>
                   <li class="nav-item active">
-                    <a class="nav-link" href="#">Reports <span class="sr-only">(current)</span></a>
+                    <a class="nav-link" href="../getlist_idforrepo/">Reports <span class="sr-only">(current)</span></a>
                   </li>
               </ul>
               <form class="form-inline my-2 my-lg-0">
@@ -40,6 +46,7 @@
               </form>
             </div>
           </nav>
+</header>
           <br>
           <br>
           <h1 class=text-center style="color: #DC8A1B">Suppliers</h1>
@@ -66,7 +73,7 @@
               </tr>
             </thead>
             <tbody>
-            {% for sup_id,sup_name,nic,email,address,reg_no in final_list %}
+            {% for sup_id,sup_name,nic,email,address,reg_no in final_suplist %}
             <tr>
                 <th scope="row">{{sup_id}} &nbsp;</th>
                 <td>{{sup_name}}</td>
@@ -78,12 +85,14 @@
                     <form method="post" action="/inventory/loadeditsupplier/">
                     {% csrf_token %}
                     <button type="submit" class="btn btn-warning">Edit</button>
-                        <input type="hidden" name="sup_id" value="{{sup_id}}">
+                    <input type="hidden" name="sup_id" value="{{sup_id}}">
                     </form>
                 </td>
                 <td>
-                    <form method="post" action="">
-                    <button type="button" class="btn btn-danger">Remove</button>
+                    <form method="post" action="/inventory/deletesupplier/">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-danger">Remove</button>
+                    <input type="hidden" name="sup_id" value="{{sup_id}}">
                     </form>
                 </td>
 

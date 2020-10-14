@@ -1,3 +1,5 @@
+import uuid
+
 from django.shortcuts import render
 from django.http import request
 import pyrebase
@@ -33,8 +35,32 @@ def addsupplier(request):
 
     data = {"Suppliername": suppliername, "nic": nic, "Registeredno": registeredno, "Email": email, "Address": address}
     db.child("Supplier").child(supplierid).set(data)
-    final_list=showsupplier()
-    return render(request, "suppliers.html",{"final_list":final_list})
+    final_list = showsupplier()
+    return render(request, "suppliers.html", {"final_list": final_list})
+
+
+def getsupemailsfun():
+    firebase = pyrebase.initialize_app(firebaseconfig)
+    db = firebase.database()
+
+    stock_ids = db.child('Supplier').shallow().get().val()
+    list_supids = []
+    for i in stock_ids:
+        list_supids.append(i)
+    print(list_supids)
+
+    list_supemails = []
+    for i in list_supids:
+        sup_emails = db.child('Supplier').child(i).child('Email').get().val()
+        list_supemails.append(sup_emails)
+    print(list_supemails)
+
+    return list_supemails
+
+
+def getsupemails(request):
+    final_list = getsupemailsfun()
+    return render(request, "purchaseOrders.html", {"final_list": final_list})
 
 
 def showsupplier():
@@ -87,7 +113,9 @@ def loadshowsupplier(request):
 
 
 def loadeditsupplier(request):
-    return render(request, "editSupplier.html")
+    sup_id = request.POST.get('sup_id')
+    final_suplist = getsinglesupplier(sup_id)
+    return render(request, "editSupplier.html", {'final_suplist': final_suplist})
 
 
 def getsinglesupplier(sup_id):
@@ -96,16 +124,49 @@ def getsinglesupplier(sup_id):
     list_supids = []
     list_supids.append(sup_id)
 
-    list_snames = []
-    list_snames.append(db.child("Stock").child(sup_id).child("StockName").get().val())
+    list_supnames = []
+    list_supnames.append(db.child("Supplier").child(sup_id).child("Suppliername").get().val())
 
-    list_uprices = []
-    list_uprices.append(db.child("Stock").child(sup_id).child("UnitPrice").get().val())
+    list_nics = []
+    list_nics.append(db.child("Supplier").child(sup_id).child("nic").get().val())
 
-    list_res_levels = []
-    list_res_levels.append(db.child("Stock").child(sup_id).child("ReOrderLevel").get().val())
-    comb_lists = zip(list_supids, list_snames, list_uprices, list_res_levels)
+    list_supemails = []
+    list_supemails.append(db.child("Supplier").child(sup_id).child("Email").get().val())
+
+    list_supaddress = []
+    list_supaddress.append(db.child("Supplier").child(sup_id).child("Address").get().val())
+
+    list_supregno = []
+    list_supregno.append(db.child("Supplier").child(sup_id).child("Registeredno").get().val())
+
+    comb_lists = zip(list_supids, list_supnames, list_nics, list_supemails, list_supaddress, list_supregno)
     return comb_lists
+
+
+def updatesupplier(request):
+    firebase = pyrebase.initialize_app(firebaseconfig)
+    db = firebase.database()
+    supplierid = request.POST.get('SupplierId')
+    suppliername = request.POST.get('SupplierName')
+    nic = request.POST.get('nic')
+    registeredno = request.POST.get('registeredno')
+    email = request.POST.get('email')
+    address = request.POST.get('address')
+
+    data = {"Suppliername": suppliername, "nic": nic, "Registeredno": registeredno, "Email": email, "Address": address}
+    db.child("Supplier").child(supplierid).set(data)
+
+    final_suplist = showsupplier()
+    return render(request, "suppliers.html", {'final_suplist': final_suplist})
+
+
+def deletesupplier(request):
+    firebase = pyrebase.initialize_app(firebaseconfig)
+    db = firebase.database()
+    supplierid = request.POST.get('sup_id')
+    db.child("Supplier").child(supplierid).remove()
+    final_suplist = showsupplier()
+    return render(request, "suppliers.html", {'final_suplist': final_suplist})
 
 
 # inventory
@@ -150,15 +211,21 @@ def showstock():
         list_uprices.append(st_uprices)
     print(list_uprices)
 
+    list_quantities = []
+    for i in list_sids:
+        st_quantity = db.child('Stock').child(i).child('Quantity').get().val()
+        list_quantities.append(st_quantity)
+    print(list_quantities)
+
     list_res_levels = []
     for i in list_sids:
         st_res_levels = db.child('Stock').child(i).child('ReOrderLevel').get().val()
         list_res_levels.append(st_res_levels)
     print(list_res_levels)
 
-    comb_lists = zip(list_sids, list_snames, list_uprices, list_res_levels)
+    final_list = zip(list_sids, list_snames, list_quantities,list_uprices, list_res_levels)
 
-    return comb_lists
+    return final_list
 
 
 def loadshowstock(request):
@@ -167,26 +234,31 @@ def loadshowstock(request):
 
 
 def loadeditstock(request):
-    stockid = request.POST.get('stockid')
-    final_list = getsinglestock(stockid)
+    print("heloooooo")
+    Stockid = request.POST.get('stockid')
+    print("stock ID: ",Stockid)
+    final_list = getsinglestock(Stockid)
+    print(final_list)
     return render(request, "editstock.html", {"final_list": final_list})
 
 
 def getsinglestock(stockid):
+    print("testinggggg")
     firebase = pyrebase.initialize_app(firebaseconfig)
     db = firebase.database()
-    list_sids = []
-    list_sids.append(stockid)
-
-    list_snames = []
-    list_snames.append(db.child("Stock").child(stockid).child("StockName").get().val())
-
+    list_sids = [stockid]
+    list_snames = [db.child("Stock").child(stockid).child("StockName").get().val()]
+    print("listNames : ",list_snames)
     list_uprices = []
-    list_uprices.append(db.child("Stock").child(stockid).child("UnitPrice").get().val())
+    list_uprices.append(db.child('Stock').child(stockid).child('UnitPrice').get().val())
+    list_quantities = []
+    list_quantities.append(db.child("Stock").child(stockid).child("Quantity").get().val())
 
     list_res_levels = []
     list_res_levels.append(db.child("Stock").child(stockid).child("ReOrderLevel").get().val())
-    comb_lists = zip(list_sids, list_snames, list_uprices, list_res_levels)
+    print(list_res_levels)
+    comb_lists = zip(list_sids, list_snames,list_quantities, list_uprices, list_res_levels)
+    print("COMBO LIST",comb_lists)
     return comb_lists
 
 
@@ -215,3 +287,191 @@ def deletestock(request):
     db.child("Stock").child(stockid).remove()
     final_list = showstock()
     return render(request, "inventorypage.html", {"final_list": final_list})
+
+
+# create lists
+def createlists(request):
+    return render(request, "createlists.html")
+
+
+def getstockids(request):
+    list_sids = getstockidsfun()
+    print(list_sids)
+    return render(request, "createlists.html", {"list_sids": list_sids})
+
+
+def getstockidsfun():
+    firebase = pyrebase.initialize_app(firebaseconfig)
+    db = firebase.database()
+
+    stock_ids = db.child('Stock').shallow().get().val()
+    list_sids = []
+    for i in stock_ids:
+        list_sids.append(i)
+    print(list_sids)
+
+    return list_sids
+
+
+def addlist(request):
+    firebase = pyrebase.initialize_app(firebaseconfig)
+    db = firebase.database()
+    listid = request.POST.get('listid')
+    print(listid)
+    stockid = request.POST.get('stockid')
+    # stockname = request.POST.get('stockname')
+    quantity = request.POST.get('Quantity')
+    data = {"Stockid": stockid, "Quantity": quantity}
+    db.child('Order Lists').child(listid).child(stockid).set(data)
+    list_sids = getstockidsfun()
+    # list_lists=showlists()
+
+    return render(request, "createlists.html", {"list_sids": list_sids})
+
+
+def showlists(listid):
+    firebase = pyrebase.initialize_app(firebaseconfig)
+    db = firebase.database()
+
+    list_sids = db.child('Order Lists').child(listid).shallow().get().val()
+    list_list_sid = []
+    for i in list_sids:
+        list_list_sid.append(i)
+    print(list_list_sid)
+
+    list_stockid = []
+    for i in list_list_sid:
+        list_sid = db.child('Order Lists').child(listid).child(i).child('Stockid').get().val()
+        list_stockid.append(list_sid)
+    print(list_stockid)
+
+    list_quantities = []
+    for i in list_list_sid:
+        st_quantities = db.child('Order Lists').child(listid).child(i).child('Quantity').get().val()
+        list_quantities.append(st_quantities)
+    print(list_quantities)
+
+    comb_lists = zip(list_list_sid, list_stockid, list_quantities)
+
+    return comb_lists
+
+
+def getsinglestock(listid):
+    firebase = pyrebase.initialize_app(firebaseconfig)
+    db = firebase.database()
+    list_listid = []
+    list_listid.append(listid)
+
+    list_sid = [] = []
+    list_sid.append(db.child("Stock").child(listid).child("StockName").get().val())
+
+    list_quantities = []
+    list_quantities.append(db.child("Stock").child(listid).child("UnitPrice").get().val())
+
+    comb_lists = zip(list_listid, list_sid, list_quantities)
+    return comb_lists
+
+
+def loadlisttable(request):
+    firebase = pyrebase.initialize_app(firebaseconfig)
+    db = firebase.database()
+    listid = request.POST.get('listid')
+    final_list = showlists(listid)
+
+    return render(request, "createlists.html", {"final_list": final_list})
+
+
+def deletelist(request):
+    firebase = pyrebase.initialize_app(firebaseconfig)
+    db = firebase.database()
+    list_list_sid = request.POST.get('list_list_sid')
+    # list_list_sid = request.POST.get('list_list_sid')
+    print(list_list_sid)
+    db.child('Order Lists').child(list_list_sid).remove()
+    final_list = showlists(list_list_sid)
+    return render(request, "createlists.html", {"final_list": final_list})
+
+
+# purchase orders
+def loadpurchaseorder(request):
+    return render(request, "purchaseOrders.html")
+
+
+def getlistidsfun():
+    firebase = pyrebase.initialize_app(firebaseconfig)
+    db = firebase.database()
+
+    listid = db.child('Order Lists').shallow().get().val()
+    list_listid = []
+    for i in listid:
+        list_listid.append(i)
+    print(list_listid)
+    return list_listid
+
+
+def getlist_idsrep(request):
+    list_listid = getlistidsfun()
+    return render(request, "purchaseOrders.html", {"list_listid": list_listid})
+
+
+def addlisttosupplier(request):
+    firebase = pyrebase.initialize_app(firebaseconfig)
+    db = firebase.database()
+    supemail = request.POST.get('supemail')
+    print(supemail)
+    # stockid = request.POST.get('stockid')
+    # stockname = request.POST.get('stockname')
+    date = request.POST.get('date')
+    print(date)
+
+    listid = request.POST.get('listsid')
+    print(listid)
+    uid = uuid.uuid1()
+    data = {"SupplierEmail": supemail, "Date": date, "ListId": listid}
+    db.child('Purchase Order').child(uid).set(data)
+    list_listid = getlistidsfun()
+
+    return render(request, "purchaseOrders.html", {"list_listid": list_listid})
+
+
+def generaterepo(request):
+    firebase = pyrebase.initialize_app(firebaseconfig)
+    db = firebase.database()
+
+    list_id = request.POST.get('listsid')
+    data = db.child('Purchase Order').shallow().get().val()
+    datalists=db.child('Order Lists').child(list_id).shallow().get().val()
+    print(datalists)
+    list_poids = []
+    for i in data:
+        list_poids.append(i)
+    print("blaaaa",list_poids)
+    print(list_id)
+    list_supemails = []
+    for i in list_poids:
+        if list_id == db.child('Purchase Order').child(i).child('ListId').get().val():
+            supemail = db.child('Purchase Order').child(i).child('SupplierEmail').get().val()
+            list_supemails.append(supemail)
+    print("EMAIL!!!",list_supemails)
+
+    list_stockids=[]
+    for i in datalists:
+        list_stockids.append(i)
+    print(list_stockids)
+
+    list_quantities = []
+    for i in list_stockids:
+        stock_ids=db.child('Order Lists').child(list_id).child(i).child('Quantity').get().val()
+        list_quantities.append(stock_ids)
+    print(list_quantities)
+
+    final_list=zip(list_supemails,list_stockids,list_quantities)
+    return render(request, "inventoryreports.html", {"final_list": final_list})
+
+
+def getlist_idforrepo(request):
+    list_listid = getlistidsfun()
+    return render(request, "inventoryreports.html", {"list_listid": list_listid})
+
+def loadbackendhomepage(request):
+    return render(request, "BackendHome.html")
