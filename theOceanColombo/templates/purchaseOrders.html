@@ -1,21 +1,21 @@
 <html>
     <head>
         <title>
-            Add Supplier Information
+            Purchase Orders
         </title>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-        {% load static %}
+    {% load static %}
     </head>
     <body>
-<header>
-        <div class="container-fluid">
+    <HEADER>
+         <div class="container-fluid">
             <img src="{% static 'images/logo.png' %}" width="110px" height="110px" alt="logo" />
         </div>
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
               <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
+                 <li class="nav-item active">
                   <a class="nav-link" href="../loadbackendhomepage/">Home <span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item active">
@@ -46,62 +46,55 @@
               </form>
             </div>
           </nav>
-</header>
+        </HEADER>
           <br>
           <br>
-          <!--Add Supplier Form-->
-          <h1 class=text-center style="color: #DC8A1B">Enter Supplier Details</h1>
+          <!--Add purchase orders Form-->
+
+          <h1 class=text-center style="color: #DC8A1B">Purchase Orders</h1>
           
           <div class = "container">
             
-          <form class = "container-fluid" method="post" ACTION="/inventory/addsupplierdb/" >
+          <form class = "container-fluid" method="post" action="/inventory/addlisttosupplier/">
               {% csrf_token %}
             <div class="form-group">
-              <label for="exampleFormControlInput1">Supplier ID: </label>
-              <input type="name" class="form-control"  placeholder="Supplier ID" name="SupplierId"  required oninvalid = "this.setCustomValidity('Invalid Supplier ID')" onchange = "try{setCustomValidity('')}catch(e){}" pattern = "[Ss][0-9]{4}">
-          </div>
-            <div class="form-group">
-                <label for="exampleFormControlInput1">Supplier Name: </label>
-                <input type="name" class="form-control" id="name" placeholder="Supplier Name" name="SupplierName" required>
-            </div>
-
-            <div class="form-group">
-                <label for="exampleFormControlInput1">Nic: </label>
-                <input type="name" class="form-control" id="nic" placeholder="Nic" name="nic" required oninvalid = "this.setCustomValidity('Invalid NIC')" onchange = "try{setCustomValidity('')}catch(e){}" pattern = "[0-9]{9}[Vv]">
-            </div>
-
-            <div class="form-group">
-                <label for="exampleFormControlInput1">Registration No: </label>
-                <input type="name" class="form-control" id="rno" placeholder="Registration No" name="registeredno">
-            </div>
-
-            <div class="form-group">
-                <label for="exampleFormControlInput1">Email: </label>
-                <input type="email" class="form-control" id="eml" placeholder="email@gmail.com" name="email" required>
-            </div>
-
-            <div class="form-group">
-                <label for="exampleFormControlInput1">Address: </label>
-                <input type="name" class="form-control" id="adrs" placeholder="Address" name="address">
+              <label for="exampleFormControlInput1">Supplier Email: </label>
+              <input type="email" class="form-control" id="name" placeholder="Supplier Email" name="supemail" required>
             </div>
             
-            <br>
-            <button type="submit" class="btn btn-warning">Add Supplier</button>
+            <div class="form-group">
+                <label for="exampleFormControlInput1">Date: </label>
+                <input type="date" class="form-control" id="date" name="date">
+            </div>
 
+            <div class="form-group">
+                <label for="exampleFormControlInput1">Choose List: </label>
+                <select class="form-control"  name="listsid">
+                    {% for listid in list_listid%}
+                    <option>{{listid}}</option>
+                    {% endfor %}
+                </select>
+            </div>
+
+
+            <br>
+            <button type="submit" class="btn btn-warning">Send List</button>
+            <button type="button" class="btn btn-danger">Cancel</button>
+        
           </form>
-              <table> <tr><td>
-              <form method="post" action="/inventory/loadaddsupplier/">
-                  {% csrf_token %}
-                  <button type="submit" class="btn btn-danger">Cancel</button>
-              </form>
-              </td>
-              <td>
-               <form class = "container-fluid" method="post" action="/inventory/loadshowsupplier/">
-                   {% csrf_token %}
-                <button type="submit" class="btn btn-warning">Show Supplier</button>
-            </form>
-              </td></tr></table>
           </div>
+          </div>
+
+          <th>
+            <div class="card" style="  height: 45rem;" >
+              <div class="card-body">
+
+          </div>
+              </div>
+            </div>
+          </th>
+          </tr>
+        </table> 
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>

@@ -4,16 +4,20 @@
             Inventory
         </title>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-       
+       {% load static %}
     </head>
     <body>
+<header>
+    <div class="container-fluid">
+            <img src="{% static 'images/logo.png' %}" width="110px" height="110px" alt="logo" />
+        </div>
 
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
               <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
-                  <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                  <a class="nav-link" href="../loadbackendhomepage/">Home <span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item active">
                     <a class="nav-link" href="../loadshowstock/">Inventory <span class="sr-only">(current)</span></a>
@@ -22,16 +26,19 @@
                     <a class="nav-link" href="../loadaddstock/">Add Stock <span class="sr-only">(current)</span></a>
                   </li>
                   <li class="nav-item active">
-                    <a class="nav-link" href="../inventory/loadaddsupplier/">Add Suppliers <span class="sr-only">(current)</span></a>
+                    <a class="nav-link" href="../loadaddsupplier/">Add Suppliers <span class="sr-only">(current)</span></a>
                   </li>
                   <li class="nav-item active">
-                    <a class="nav-link" href="../inventory/loadshowsupplier/">View Suppliers <span class="sr-only">(current)</span></a>
+                    <a class="nav-link" href="../loadshowsupplier/">View Suppliers <span class="sr-only">(current)</span></a>
+                  </li>
+                   <li class="nav-item active">
+                    <a class="nav-link" href="../createlists/">Create Lists <span class="sr-only">(current)</span></a>
                   </li>
                   <li class="nav-item active">
-                    <a class="nav-link" href="../purchaseOrders/">Send Purchase Orders <span class="sr-only">(current)</span></a>
+                    <a class="nav-link" href="../loadpurchaseorder/">Send Purchase Orders <span class="sr-only">(current)</span></a>
                   </li>
                   <li class="nav-item active">
-                    <a class="nav-link" href="#">Reports <span class="sr-only">(current)</span></a>
+                    <a class="nav-link" href="../getlist_idforrepo/">Reports <span class="sr-only">(current)</span></a>
                   </li>
               </ul>
               <form class="form-inline my-2 my-lg-0">
@@ -40,17 +47,23 @@
               </form>
             </div>
           </nav>
+    </header>
           <br>
           <br>
           <h1 class=text-center style="color: #DC8A1B">Inventory</h1>
-         <form method="post" action="/inventory/loadaddsupplier/" >
-             {% csrf_token %}
-             <button type="submit" class="btn btn-secondary">Add Supplier</button>
-         </form>
-         <form method="post" action="/inventory/loadshowstock/">
-              {% csrf_token %}
-          <button type="submit" class="btn btn-secondary">View Supplier</button>
+        <table> <tr><td>
+             <form method="post" action="/inventory/loadaddsupplier/" >
+                 {% csrf_token %}
+                 <button type="submit" class="btn btn-secondary">Add Supplier</button>
              </form>
+            </td>
+            <td>
+             <form method="post" action="/inventory/loadshowstock/">
+                 {% csrf_token %}
+                 <button type="submit" class="btn btn-secondary">View Supplier</button>
+             </form>
+            </td>
+         </tr></table>
         <br>
         <br>
           <table class="table table-striped">
@@ -61,21 +74,19 @@
                 <th scope="col">Quantity</th>
                 <th scope="col">Unit Price</th>
                 <th scope="col">Re-Order Level</th>
-                <th scope="col">Status</th>
                 <th scope="col"></th>
                 <th scope="col"></th>
                
               </tr>
             </thead>
             <tbody>
-            {% for stockid,stockname,unitprice,reoderlevel in final_list %}
+            {% for stockid,stockname,quantities,unitprice,reoderlevel in final_list %}
             <tr>
                 <th scope="row">{{stockid}} &nbsp;</th>
                 <td>{{stockname}}</td>
-                <td>{{reoderlevel}}</td>
+                <td>{{quantities}}</td>
                 <td>{{unitprice}}</td>
-                <td>10kg</td>
-                <td style="color: darkgreen;">In-Stock</td>
+                 <td>{{reoderlevel}}</td>
                 <td>
                     <form method="post" action="/inventory/loadeditstock/">
                     {% csrf_token %}

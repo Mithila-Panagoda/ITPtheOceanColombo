@@ -1,21 +1,21 @@
 <html>
     <head>
         <title>
-            Add Supplier Information
+            Purchase Orders
         </title>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-        {% load static %}
+    {% load static %}
     </head>
     <body>
-<header>
-        <div class="container-fluid">
+    <HEADER>
+         <div class="container-fluid">
             <img src="{% static 'images/logo.png' %}" width="110px" height="110px" alt="logo" />
         </div>
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            
+
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
               <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
+                  <li class="nav-item active">
                   <a class="nav-link" href="../loadbackendhomepage/">Home <span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item active">
@@ -46,62 +46,88 @@
               </form>
             </div>
           </nav>
-</header>
+        </HEADER>
           <br>
           <br>
-          <!--Add Supplier Form-->
-          <h1 class=text-center style="color: #DC8A1B">Enter Supplier Details</h1>
-          
+          <!--Add create lists Form-->
+
+            <div class="card" style="  height: 45rem;" >
+              <div class="card-body">
+                <h1 class=text-center style="color: #DC8A1B">Create Lists</h1>
+
           <div class = "container">
-            
-          <form class = "container-fluid" method="post" ACTION="/inventory/addsupplierdb/" >
-              {% csrf_token %}
+
+          <form class = "container-fluid" method="post" action="/inventory/addlist/">
+               {% csrf_token %}
             <div class="form-group">
-              <label for="exampleFormControlInput1">Supplier ID: </label>
-              <input type="name" class="form-control"  placeholder="Supplier ID" name="SupplierId"  required oninvalid = "this.setCustomValidity('Invalid Supplier ID')" onchange = "try{setCustomValidity('')}catch(e){}" pattern = "[Ss][0-9]{4}">
-          </div>
-            <div class="form-group">
-                <label for="exampleFormControlInput1">Supplier Name: </label>
-                <input type="name" class="form-control" id="name" placeholder="Supplier Name" name="SupplierName" required>
+              <label for="exampleFormControlInput1">List ID: </label>
+              <input type="name" class="form-control" id="name" placeholder="List Name" name="listid">
             </div>
 
             <div class="form-group">
-                <label for="exampleFormControlInput1">Nic: </label>
-                <input type="name" class="form-control" id="nic" placeholder="Nic" name="nic" required oninvalid = "this.setCustomValidity('Invalid NIC')" onchange = "try{setCustomValidity('')}catch(e){}" pattern = "[0-9]{9}[Vv]">
+              <label for="exampleFormControlInput1">Stock ID: </label>
+              <select type="name" class="form-control" id="stockid" placeholder="Stock ID" name="stockid">
+                    {% for list_listid in list_sids%}
+
+                    <option>{{list_listid}}</option>
+                  {% endfor %}
+              </select>
             </div>
+
+
+            <!--<div class="form-group">
+              <label for="exampleFormControlInput1">Stock Name: </label>
+              <input type="name" class="form-control" id="name" placeholder="Stock Name" name="stockname">
+            </div>
+            <--!>
 
             <div class="form-group">
-                <label for="exampleFormControlInput1">Registration No: </label>
-                <input type="name" class="form-control" id="rno" placeholder="Registration No" name="registeredno">
+              <label for="exampleFormControlInput1">Quantity: </label>
+              <input type="name" class="form-control" id="name" placeholder="Quantity" name="Quantity">
             </div>
-
-            <div class="form-group">
-                <label for="exampleFormControlInput1">Email: </label>
-                <input type="email" class="form-control" id="eml" placeholder="email@gmail.com" name="email" required>
-            </div>
-
-            <div class="form-group">
-                <label for="exampleFormControlInput1">Address: </label>
-                <input type="name" class="form-control" id="adrs" placeholder="Address" name="address">
-            </div>
-            
-            <br>
-            <button type="submit" class="btn btn-warning">Add Supplier</button>
-
+                <button type="submit" class="btn btn-success">Add</button>
           </form>
-              <table> <tr><td>
-              <form method="post" action="/inventory/loadaddsupplier/">
+              <form class = "container-fluid" method="post" action="/inventory/loadlisttable/">
                   {% csrf_token %}
-                  <button type="submit" class="btn btn-danger">Cancel</button>
+                  <label for="exampleFormControlInput1">Enter Order list ID: </label>
+                  <input type="name" class="form-control" id="name" placeholder="ENTER LIST ID" name="listid">
+                  <br>
+                  <button type="submit" class="btn btn-success">Show Table</button>
               </form>
-              </td>
-              <td>
-               <form class = "container-fluid" method="post" action="/inventory/loadshowsupplier/">
-                   {% csrf_token %}
-                <button type="submit" class="btn btn-warning">Show Supplier</button>
-            </form>
-              </td></tr></table>
+
+            <table class="table table-striped">
+              <thead>
+                <tr>
+
+                  <th scope="col">Stock ID</th>
+                  <th scope="col">Quantity</th>
+                  <th scope="col"></th>
+                </tr>
+              </thead>
+              <tbody>
+              {% for list_list_sid,st_id,quantity in final_list%}
+                <tr>
+
+                  <td>{{st_id}}</td>
+                  <td>{{quantity}}</td>
+                  <td></td>
+                </tr>
+              {% endfor %}
+               <br>
+
+              </tbody>
+            </table>
+
+
+
+
+        </div>
           </div>
+              </div>
+            </div>
+          </th>
+          </tr>
+        </table>
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
