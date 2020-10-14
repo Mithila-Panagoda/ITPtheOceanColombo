@@ -13,12 +13,46 @@
       <path>
         <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
         <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:ITPtheOceanColombo" type="e8cecc67:BranchNodeDescriptor" />
       </path>
     </expand>
     <select />
   </component>
   <component name="ChangeListManager">
+
+    <list default="true" id="f483ffcf-1734-4d60-adbc-d530f5533040" name="Default Changelist" comment="inventory_crm app updated">
+
+    <list default="true" id="915050ee-64f4-4635-b147-1c647bd589cf" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/theOceanColombo/static/bootstrap/css/bootstrap.min.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/theOceanColombo/static/bootstrap/js/bootstrap.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/theOceanColombo/static/css/styles.min.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/theOceanColombo/static/js/jquery.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/theOceanColombo/static/js/script.min.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/ITPTheOceanColombo.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/ITPTheOceanColombo.iml" afterDir="false" />
+
+
+    <list default="true" id="f483ffcf-1734-4d60-adbc-d530f5533040" name="Default Changelist" comment="inventory_crm app added">
+      <change afterPath="$PROJECT_DIR$/theOceanColombo/templates/Messages.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/theOceanColombo/templates/SendMessages.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/theOceanColombo/templates/addStock.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/theOceanColombo/templates/addSupplier.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/theOceanColombo/templates/editSupplier.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/theOceanColombo/templates/editstock.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/theOceanColombo/templates/inventorypage.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/theOceanColombo/templates/suppliers.html" afterDir="false" />
+
+      <change beforePath="$PROJECT_DIR$/.idea/ITPTheOceanColombo.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/ITPTheOceanColombo.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/theOceanColombo/inventory/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/theOceanColombo/inventory/views.py" afterDir="false" />
+
+      <change beforePath="$PROJECT_DIR$/theOceanColombo/templates/addSupplier.html" beforeDir="false" afterPath="$PROJECT_DIR$/theOceanColombo/templates/addSupplier.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/theOceanColombo/templates/inventorypage.html" beforeDir="false" afterPath="$PROJECT_DIR$/theOceanColombo/templates/inventorypage.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/theOceanColombo/templates/suppliers.html" beforeDir="false" afterPath="$PROJECT_DIR$/theOceanColombo/templates/suppliers.html" afterDir="false" />
+
+      <change beforePath="$PROJECT_DIR$/theOceanColombo/restaurant/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/theOceanColombo/restaurant/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/theOceanColombo/theOceanColombo/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/theOceanColombo/theOceanColombo/urls.py" afterDir="false" />
+
+    <list default="true" id="f483ffcf-1734-4d60-adbc-d530f5533040" name="Default Changelist" comment="insert without image">
 
     <list default="true" id="f483ffcf-1734-4d60-adbc-d530f5533040" name="Default Changelist" comment="">
       <change afterPath="$PROJECT_DIR$/theOceanColombo/ComplaintManagement/__init__.py" afterDir="false" />
@@ -6028,17 +6062,37 @@
       <change afterPath="$PROJECT_DIR$/venv/Scripts/sqlformat.exe" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/venv/pyvenv.cfg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/ITPTheOceanColombo.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/ITPTheOceanColombo.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/theOceanColombo/theOceanColombo/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/theOceanColombo/theOceanColombo/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/theOceanColombo/theOceanColombo/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/theOceanColombo/theOceanColombo/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/theOceanColombo/roomManagement/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/theOceanColombo/roomManagement/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/theOceanColombo/roomManagement/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/theOceanColombo/roomManagement/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/theOceanColombo/templates/InsertRoomDetails.html" beforeDir="false" afterPath="$PROJECT_DIR$/theOceanColombo/templates/InsertRoomDetails.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/theOceanColombo/templates/RoomManagementHome.html" beforeDir="false" afterPath="$PROJECT_DIR$/theOceanColombo/templates/RoomManagementHome.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/theOceanColombo/templates/UpdateRoomDetails.html" beforeDir="false" afterPath="$PROJECT_DIR$/theOceanColombo/templates/UpdateRoomDetails.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/theOceanColombo/templates/roomDetails.html" beforeDir="false" afterPath="$PROJECT_DIR$/theOceanColombo/templates/roomDetails.html" afterDir="false" />
+    <list default="true" id="f483ffcf-1734-4d60-adbc-d530f5533040" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/ITPTheOceanColombo.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/ITPTheOceanColombo.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/theOceanColombo/templates/addbeverage.html" beforeDir="false" afterPath="$PROJECT_DIR$/theOceanColombo/templates/addbeverage.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="HTML File" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="minuli_inv_crm" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectId" id="1iaZr2wIaH3fnMSjgmfYMQPbtFT" />
@@ -6050,7 +6104,27 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="TERMINAL_CUSTOM_COMMANDS_GOT_IT" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/theOceanColombo/static" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\User\PycharmProjects\ITPtheOceanColombo\theOceanColombo\static" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\User\PycharmProjects\ITPtheOceanColombo\theOceanColombo\templates" />
+      <recent name="C:\Users\User\PycharmProjects\ITPtheOceanColombo\theOceanColombo\static" />
+      <recent name="C:\Users\User\PycharmProjects\ITPtheOceanColombo\theOceanColombo\assets" />
+
+
+    <property name="DefaultHtmlFileTemplate" value="HTML File" />
+
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
+
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
 
@@ -6069,6 +6143,94 @@
 
     </key>
   </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Minuli Lokuliyanage\PycharmProjects\ITPtheOceanColombo\theOceanColombo\templates" />
+
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration default="true" type="PythonConfigurationType" factoryName="Python">
+
+      <module name="ITPtheOceanColombo" />
+
+      <module name="ITPTheOceanColombo" />
+
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration default="true" type="Tox" factoryName="Tox">
+
+      <module name="ITPtheOceanColombo" />
+
+      <module name="ITPTheOceanColombo" />
+
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <method v="2" />
+    </configuration>
+    <configuration default="true" type="tests" factoryName="Doctests">
+
+      <module name="ITPtheOceanColombo" />
+
+      <module name="ITPTheOceanColombo" />
+
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="" />
+      <option name="CLASS_NAME" value="" />
+      <option name="METHOD_NAME" value="" />
+      <option name="FOLDER_NAME" value="" />
+      <option name="TEST_TYPE" value="TEST_SCRIPT" />
+      <option name="PATTERN" value="" />
+      <option name="USE_PATTERN" value="false" />
+      <method v="2" />
+    </configuration>
+    <configuration default="true" type="tests" factoryName="Unittests">
+
+      <module name="ITPtheOceanColombo" />
+
+      <module name="ITPTheOceanColombo" />
+
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;&quot;" />
+      <option name="_new_targetType" value="&quot;PATH&quot;" />
+      <method v="2" />
+    </configuration>
+  </component>
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -6080,6 +6242,76 @@
       <option name="presentableId" value="Default" />
       <updated>1602147858454</updated>
     </task>
+
+    <task id="LOCAL-00001" summary="Vehicle Inserting is done">
+      <created>1602222970845</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1602222970845</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Vehicle Inserting and retrieving are done">
+      <created>1602396819514</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1602396819514</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
+    <servers />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+    <MESSAGE value="Vehicle Inserting is done" />
+    <MESSAGE value="Vehicle Inserting and retrieving are done" />
+    <option name="LAST_COMMIT_MESSAGE" value="Vehicle Inserting and retrieving are done" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="223" y="72" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1602182601362">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state x="223" y="72" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1536.834@0.0.1536.834" timestamp="1602182601362" />
+    <state x="526" y="219" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1602235619113">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state x="526" y="219" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1536.834@0.0.1536.834" timestamp="1602235619113" />
+    <state x="223" y="0" key="CommitChangelistDialog2" timestamp="1602396817345">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state x="223" y="0" key="CommitChangelistDialog2/0.0.1536.834@0.0.1536.834" timestamp="1602396817345" />
+    <state x="549" y="172" key="FileChooserDialogImpl" timestamp="1602171274573">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state x="549" y="172" key="FileChooserDialogImpl/0.0.1536.834@0.0.1536.834" timestamp="1602171274573" />
+    <state x="361" y="150" key="Vcs.Push.Dialog.v2" timestamp="1602396853313">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state x="361" y="150" key="Vcs.Push.Dialog.v2/0.0.1536.834@0.0.1536.834" timestamp="1602396853313" />
+
+
+    <task id="LOCAL-00001" summary="inventory_crm app added">
+      <created>1602153811574</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1602153811574</updated>
+
+    <task id="LOCAL-00001" summary="insert without image">
+      <created>1602256777240</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1602256777240</updated>
+
+    </task>
+    <task id="LOCAL-00002" summary="inventory_crm app updated">
+      <created>1602395352280</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1602395352280</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -6092,6 +6324,22 @@
         </entry>
       </map>
     </option>
+
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="inventory_crm app added" />
+    <MESSAGE value="inventory_crm app updated" />
+    <option name="LAST_COMMIT_MESSAGE" value="inventory_crm app updated" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="361" y="150" key="Vcs.Push.Dialog.v2" timestamp="1602395563519">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state x="361" y="150" key="Vcs.Push.Dialog.v2/0.0.1536.834@0.0.1536.834" timestamp="1602395563519" />
+    <state x="450" y="205" key="git4idea.merge.GitPullDialog" timestamp="1602154349626">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state x="450" y="205" key="git4idea.merge.GitPullDialog/0.0.1536.834@0.0.1536.834" timestamp="1602154349626" />
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
 
@@ -6108,13 +6356,14 @@
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="initial" />
-    <option name="LAST_COMMIT_MESSAGE" value="initial" />
+    <MESSAGE value="insert without image" />
+    <option name="LAST_COMMIT_MESSAGE" value="insert without image" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="147" y="65" key="DiffContextDialog" timestamp="1602154522159">
+    <state x="147" y="65" key="DiffContextDialog" timestamp="1602256939169">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="147" y="65" key="DiffContextDialog/0.0.1536.824@0.0.1536.824" timestamp="1602154522159" />
+    <state x="147" y="65" key="DiffContextDialog/0.0.1536.824@0.0.1536.824" timestamp="1602256939169" />
     <state x="549" y="167" key="FileChooserDialogImpl" timestamp="1602173748009">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -6127,6 +6376,10 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="602" y="115" key="RollbackChangesDialog/0.0.1536.824@0.0.1536.824" timestamp="1602154551726" />
+    <state x="361" y="145" key="Vcs.Push.Dialog.v2" timestamp="1602257005450">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="361" y="145" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1602257005450" />
     <state x="578" y="326" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1602185659006">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -6135,6 +6388,7 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="450" y="201" key="git4idea.merge.GitPullDialog/0.0.1536.824@0.0.1536.824" timestamp="1602154622520" />
+
 
   </component>
 </project>

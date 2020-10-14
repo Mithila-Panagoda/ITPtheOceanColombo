@@ -1,0 +1,119 @@
+{% load  static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Update Beverage</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <style>
+        .addmeal {
+            width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            margin-top: 5vh;
+        }
+
+        .formbtn {
+            width: 200px;
+            padding: 10px;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="container-fluid">
+            <img src="{% static 'images/logo.png' %}" width="110px" height="110px" alt="logo" />
+        </div>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Resturant POS</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Menu list</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Sign out</a>
+                    </li>
+                </ul>
+                <form class="form-inline my-2 my-lg-0">
+                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                </form>
+            </div>
+        </nav>
+        
+    </header>
+    
+    <form class="addmeal", action="/restaurant/updatebeverage/" method="POST">
+        {% csrf_token %}
+    <center><h1>Update Beverage</h1></center><br><br>
+        <div class="form-row">
+    {%for name,desc,price,spice,size,available in final_data %}
+            <div class="form-group col-md-6">
+                <label>Title</label>
+                <input type="text" class="form-control" placeholder="beverage name" name="name" value="{{name}}" readonly>
+            </div>
+            <div class="form-group col-md-6">
+                <label>Price</label>
+                <input type="number" class="form-control" placeholder="Price" name="price" value="{{price}}" required>
+            </div>
+        </div>
+        <div class="form-group">
+            <label>size</label><br>
+            <select name ="size" class="btn-block btn-lg btn-light dropdown-toggle" required>
+                <option name="s1" value="Small">Small</option>
+                <option name="s2" value="Regular">Regular</option>
+                <option name="s3" value="Medium">Medium</option>
+                <option name="s4" value="Large">Large</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label>Description</label>
+            <input type="text" class="form-control" placeholder="" name="desc" value="{{desc}}" required>
+        </div>
+        <div class="form-group">
+            <label>Availability</label><br>
+            <select name ="status" class="btn-block btn-lg btn-light dropdown-toggle">
+                <option name="opt1" value="Yes" class="btn btn-success" selected>Yes</option>
+                <option name="opt2" value="No"  class="btn btn-danger">no</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <div class="form-group">
+                <label for="inputCity">Type</label><br>
+                <select name="drink" class="btn-block btn-lg btn-light dropdown-toggle">
+                    <option name="drink1" value="cocktail" class="dropdown-item btn-outline-danger">cocktail</option>
+                    <option name="drink2" value="mocktail" class="dropdown-item">mocktail</option>
+                    <option name="drink3" value="milkshake" class="dropdown-item">milkshake</option>
+                    <option name="drink4" value="softDrink" class="dropdown-item">soft drink</option>
+                    <option name="drink5" value="Tea" class="dropdown-item"selected>Tea</option>
+                    <option name="drink6" value="Bubble Tea" class="dropdown-item">Bubble Tea</option>
+                </select>
+            </div>
+        </div>
+        <input type="submit" class="btn btn-lg btn-success formbtn" value="Update beverage">
+        <input type="reset" class="btn btn-lg btn-warning text-white formbtn" value="Reset">
+    {% endfor %}
+    </form>
+    
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous">
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous">
+    </script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
+    </script>
+</body>
+
+</html>

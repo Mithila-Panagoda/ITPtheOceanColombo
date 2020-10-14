@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Send Messages</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+              <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                  <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">Message <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">Create Groups <span class="sr-only">(current)</span></a>
+                  </li>
+                  <li class="nav-item active">
+                    <a class="nav-link" href="#">View Groups<span class="sr-only">(current)</span></a>
+                  </li>
+                  <li class="nav-item active">
+                    <a class="nav-link" href="#">Send Messages <span class="sr-only">(current)</span></a>
+                  </li>
+                  <li class="nav-item active">
+                    <a class="nav-link" href="#">Reports <span class="sr-only">(current)</span></a>
+                  </li>
+              </ul>
+
+              <form class="form-inline my-2 my-lg-0" >
+                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                <button type="button" class="btn btn-outline-warning">Search</button>
+              </form>
+            </div>
+          </nav>
+          <br>
+          <form method="post" action="/directmessage/">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-warning">Create Message</button>
+          </form>
+
+ <h1 class=text-center style="color: #DC8A1B">Send Messages</h1>
+
+          <div class = "container">
+
+          <form class = "container-fluid" method="post" ACTION="/" >
+              {% csrf_token %}
+            <div class="form-group">
+              <label for="exampleFormControlInput1">Message ID: </label>
+              <input type="name" class="form-control" id="name" placeholder="Message ID" name="Message Id">
+          </div>
+            <div class="form-group">
+                <label for="exampleFormControlInput1">Date: </label>
+                <input type="date" class="form-control">
+            </div>
+
+            <div class="form-group" >
+                <label for="exampleFormControlInput1">Choose Messages: </label>
+                <select class="form-control" >
+                    <option>Message 01</option>
+                    <option>Message 02</option>
+                    <option>Message 03</option>
+                    <option>Message 04</option>
+                </select>
+
+                <br>
+
+            </div>
+            <div class="form-group">
+                <label for="exampleFormControlTextarea1">Message: </label>
+                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Selected message here" name="message">
+
+                </textarea>
+            </div>
+
+            <br>
+            <button type="submit" class="btn btn-warning">Send Message</button>
+            <button type="button" class="btn btn-danger">Cancel</button>
+
+          </form>
+          </div>
+
+
+
+</body>
+</html>

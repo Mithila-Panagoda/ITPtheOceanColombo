@@ -1,0 +1,82 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+        <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+       <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+       <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+        <style>
+      #default-picker{
+            width: 100px;
+            }
+            #answer{
+            border:3px solid black;
+            width:250px;
+            border-radius: 15px ;
+            text-align: center;
+            }
+
+
+
+
+        </style>
+    </head>
+    <body></body>
+    <br>
+        <div class="jumbotron text-center">
+            
+            <h1>Vehicle Booking</h1>
+          </div>
+
+
+
+   <table class="table">
+  <thead>
+    <tr>
+      <th scope="col">
+
+<ul id="navlist">
+          <div class="card" style="width: 18rem;">
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item"><b>Choose the date</b></li>
+            </ul>
+          </div>
+    <input type ="date" name="">
+</ul>
+
+      <th scope="col">
+          <div class="card" style="width: 18rem;">
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item"><b>Choose the Time</b></li>
+            </ul>
+         </div>
+        <div class="md-form md-outline">
+     <input type="time" id="default-picker" class="form-control" placeholder="Select time">
+   </div>
+      </th>
+
+      <th scope="col">
+          <form action="/action_page.php">
+               <div class="card" style="width: 18rem;">
+            <ul class="list-group list-group-flush">
+              <label for="answer">Return back to Hotel:</label>
+                <select name="answer" id="answer">
+      <option value="answer1">Yes</option>
+      <option value="answer2">No</option>
+  </select>
+            </ul>
+          </div>
+       </form>
+      </th>
+    </tr>
+
+  </thead>
+   </table>
+
+
+
+    </body>
+</html>

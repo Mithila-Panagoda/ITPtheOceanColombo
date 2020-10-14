@@ -1,0 +1,106 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Beverage managment</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+   <style>
+        #drinkdesc{width:450px;}
+        .drinkoptions{width:100px;}
+   </style>     
+</head>
+
+<body>
+    <p id="test"></p>
+    <header>
+        <div class="container-fluid">
+            <img src="{% static 'images/logo.png' %}" width="110px" height="110px" alt="logo" />
+        </div>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../loadupdatemeal">update meals</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../loadupdatebeverage">update beverages</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Sign out</a>
+                    </li>
+                </ul>
+                <form class="form-inline my-2 my-lg-0">
+                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                </form>
+            </div>
+        </nav>
+
+    </header>
+
+    </div>
+    </nav>
+    <br>
+    <br>
+    <h1 class=text-center style="color: #DC8A1B">Beverage Managment</h1>
+    <br>
+    <form method="get" action="/restaurant/mealhome/">
+        <input type="submit" name="btnbevmngt" value="Meal Managment" class="linebreaks">
+    </form>
+    <br>
+    <form method="get" action="/restaurant/loaddrink/">
+        <input type="submit" class="btn btn-secondary" name="btnaddmeal" value="Add Beverage">
+    </form>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">Beverage Name</th>
+                <th scope="col">Description</th>
+                <th scope="col">price</th>
+                <th scope="col">Size</th>
+                <th scope="col">type</th>
+                <th scope="col">avalability</th>
+                <th scope="col">Edit</th>
+                <th scope="col">Remove</th>
+
+            </tr>
+        </thead>
+        <tbody>
+                {%for name,desc,price,Size,type,available in final_data %}
+                <tr>
+                    <td scope="row"> {{name}} </td>
+                    <td id="drinkdesc">{{desc}}</td>
+                    <td>{{price}}/=</td>
+                    <td>{{Size}}</td>
+                    <td>{{type}}</td>
+                    <td>{{available}}</td>
+                    <td class="drinkoptions">
+                        <form method="POST" action="/restaurant/loadUpdateBeverage/">
+                            {% csrf_token %}
+                            <input type="submit" name="btn_send" value="Edit" class="btn btn-outline-primary btn-block color-white">
+                            <input type="hidden" name="drinkName" value ="{{name}}">
+                        </form>
+                    </td>
+                    <td class="drinkoptions">
+                        <form method="POST" action="/restaurant/deletebeverage/">
+                            {% csrf_token %}
+                            <input type="submit" class="btn btn-outline-warning btn-block" value="Remove">
+                            <input type="hidden" name="drinkname" value ="{{name}}">
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+        </tbody>
+    </table>
+</body>
+
+</html>
