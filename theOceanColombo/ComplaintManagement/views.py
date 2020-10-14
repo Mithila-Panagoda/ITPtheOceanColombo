@@ -29,7 +29,7 @@ def complaintFrontend(request):
     phnNo = request.POST.get('phn')
     feed = request.POST.get('feed')
     data = {"Name": name, "Email": email, "phnNumber": phnNo, "Feed": feed}
-    db.child("Complaint").child("customerFeedback").child(name).set(data)
+    db.child("AComplaint").child("customerFeed").child(name).set(data)
     return render(request, "complaintfrontend.html")
 
 
@@ -79,18 +79,4 @@ def complaintTypereply(request):
 
 
 
-
-def complaintCheckReplyLoad(request):
-    return render(request, "complaintCheckReply.html")
-def complaintCheckReply(request):
-    return render(request, "complaintUpdate.html")
-
-
-def complaintUpdateLoad(request):
-    return render(request, "complaintUpdate.html")
-def complaintUpdate(request):
-    return render(request, "complaintCheckReply.html")
-
-def complaintViewLoad(request):
-    return render(request, "complaintView.html")
 

@@ -5,6 +5,10 @@
   <meta charset="UTF-8">
   <title>View Ledgers</title>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+     {% load static %}
+        <div class="container-fluid">
+            <img src="{% static 'images/logo.png' %}" width="110px" height="110px" alt="logo" />
+        </div>
 
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
 
@@ -16,24 +20,21 @@
             <ul class="navbar-nav mr-auto">
 
           <li class="nav-item">
-                <a class="nav-link" href="#">Home</a>
+                <a class="nav-link" href="../Backend"/>Home</a>
           </li>
           <li class="nav-item">
-                <a class="nav-link" href="../Expenses1">Expenses </a>
+                <a class="nav-link" href="../ExpenseslistLoad/"> View Expenses </a>
           </li>
           <li class="nav-item">
-                <a class="nav-link" href="../AddRevenue">Revenue</a>
-          </li>
-          <li class="nav-item">
-                <a class="nav-link" href="../Capital">Capital Account</a>
-          </li>
-          <li class="nav-item">
-                <a class="nav-link" href="../Expenses7">Ledgers</a>
-          </li>
-          <li class="nav-item">
-                <a class="nav-link" href="../Expenses9">Reports</a>
+                <a class="nav-link" href="../AddRevenue/">Revenue</a>
           </li>
 
+          <li class="nav-item">
+                <a class="nav-link" href="../ExledgersLoad/">Ledgers</a>
+          </li>
+          <li class="nav-item">
+                <a class="nav-link" href="../ExpensesReportsLoad/">Reports</a>
+          </li>
             </ul>
 
             <form class="form-inline my-2 my-lg-0">
@@ -58,48 +59,34 @@
       <table class="table">
         <thead>
           <tr>
-            <th>Date</th>
+            <th>Type</th>
+              <th>date</th>
+              <th>Amount</th>
             <th>Description</th>
-            <th>Amount</th>
 
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td></td>
-            <td></td>
-            <td></td>
+        {% for type,date,price,description  in  list_all %}
+         <tr>
 
-          </tr>
-          <tr>
-            <td></td>
-            <td></td>
-            <td></td>
+             <td>{{type}}</td>
+             <td>{{date}}</td>
+             <td>{{price}}</td>
+             <td>{{description}}</td>
 
-
-          </tr>
-          <tr>
-            <td></td>
-            <td></td>
-            <td></td>
+         </tr>
 
 
-          </tr>
+             {% endfor %}
+
+
+
+
         </tbody>
       </table>
-      <form>
-        <div class=container>
-          <div class="row">
-            <div class="col">
-              <button type="button" class="btn btn-secondary btn-lg">Back</button>
-            </div>
-
-          </div>
-          <form>
 
 
-
-          </form>
         </div>
 
 
