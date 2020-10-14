@@ -1,7 +1,7 @@
-<!DOCTYPE html>    
-<html>    
-<head>    
-    <title>Register</title>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Edit Profile</title>
   <meta name='viewport' content='width=device-width, initial-scale=1'>
 <script src='https://kit.fontawesome.com/a076d05399.js'></script>
 <!--Get your own code at fontawesome.com-->
@@ -92,7 +92,7 @@ body {
           margin-left: 2%;
           padding-right: 10px;
         }
-        
+
         /* Style the form icons */
         .icon {
           padding: 10px;
@@ -102,7 +102,7 @@ body {
           text-align: center;
           margin-right:1%;
         }
-        
+
         /* Style the input fields */
         .input-field {
           width: 50%;
@@ -110,11 +110,11 @@ body {
           outline: none;
           margin-right:2%;
         }
-        
+
         .input-field:focus {
           border: 2px solid dodgerblue;
         }
-        
+
         /* Set a style for the submit button */
         .registerbtn {
           background-color: orange;
@@ -126,13 +126,13 @@ body {
           opacity: 0.9;
           margin-left:2%;
         }
-        
+
         .btn:hover {
           opacity: 1;
         }</style>
-</head>    
+</head>
 <body>
-<form method="post" class="form_group" action="/addCustomerRegistration/addCustomer/">
+<form method="post" class="form_group" action="/updateCustomerDetails/">
    {% csrf_token %}
     <h1>Customer Registration</h1><br>
   <div class="topnav">
@@ -142,8 +142,8 @@ body {
       <a href="#promotion">Promotion</a>
     <input type="text" placeholder="Search..">
   </div>
-    <div class="register">  
-   
+    <div class="register">
+
   <div class="container">
 
     <hr>
@@ -154,12 +154,6 @@ body {
       <input class="input-field" type="text" placeholder="First name   " name="fname" id="fname" required>
       <label for="lname" class="icon"><i class='fas fa-user-alt' style='font-size: 24px'></i></label>
       <input class="input-field" type="text" placeholder="Last name" name="lname" id="lname" required>
-    </div>
-    <br>
-
-    <div class="input-container">
-      <label for="nic"class="icon"><i class='fas fa-address-card' style='font-size: 24px'></i></label>
-    <input class="input-field" type="text" placeholder="NIC" name="nic">
     </div>
     <br>
 
@@ -183,33 +177,26 @@ body {
         <input type="radio" name="gender" value="female"> Female
             <input type="radio" name="gender" value="other"> Other
     </div>
-    <br>
-    <div class="input-container">
 
-      <label for="psw" class="icon"><i class='fas fa-key' style='font-size: 24px'></i></label>
-    <input class="input-field" type="password" placeholder="Password" name="psw">
-    <label for="psw-repeat"></label>
-      <input type="password" placeholder="Repeat Password" name="psw-repeat" id="psw-repeat" required>
-    </div>
     <br>
     <div class="input-container">
 
       <label for="dob" class="icon"><i class='far fa-calendar-alt' style='font-size: 24px'></i></label>
     <input class="input-field" type="date" placeholder="dob" name="dob">
     </div>
-   
+
     <hr>
 
-    <p>By creating an account you agree to our <a href="#">Terms & Privacy</a>.</p>
-    <button type="submit" class="registerbtn">Register</button>
+    <button type="submit" class="registerbtn">Save Changes</button><br><br>
+    <button type="submit" class="registerbtn">Cancel</button>
+    <br><br>
+
   </div>
 
-  <div class="container signin">
-    <p>Already have an account? <a href="#">Sign in</a>.</p>
-  </div>
 
-    
+
+
 </div>
 </form>
-</body>    
+</body>
 </html>
