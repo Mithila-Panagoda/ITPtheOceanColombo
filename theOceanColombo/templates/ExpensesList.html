@@ -5,7 +5,10 @@
     <title>Expenses List</title>
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-
+     {% load static %}
+    <div class="container-fluid">
+            <img src="{% static 'images/logo.png' %}" width="110px" height="110px" alt="logo" />
+        </div>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
 
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -16,22 +19,20 @@
             <ul class="navbar-nav mr-auto">
 
           <li class="nav-item">
-                <a class="nav-link" href="#">Home</a>
+                <a class="nav-link" href="../Backend"/>Home</a>
           </li>
           <li class="nav-item">
-                <a class="nav-link" href="../Expenses1">Expenses </a>
+                <a class="nav-link" href="../ExpenseslistLoad/"> View Expenses </a>
           </li>
           <li class="nav-item">
-                <a class="nav-link" href="../AddRevenue">Revenue</a>
+                <a class="nav-link" href="../AddRevenue/">Revenue</a>
+          </li>
+
+          <li class="nav-item">
+                <a class="nav-link" href="../ExaddExpensesLoad/">Ledgers</a>
           </li>
           <li class="nav-item">
-                <a class="nav-link" href="../Capital">Capital Account</a>
-          </li>
-          <li class="nav-item">
-                <a class="nav-link" href="../Expenses7">Ledgers</a>
-          </li>
-          <li class="nav-item">
-                <a class="nav-link" href="../Expenses9">Reports</a>
+                <a class="nav-link" href="../ExpensesReportsLoad/">Reports</a>
           </li>
 
             </ul>
@@ -100,14 +101,10 @@
 
         <div class=container>
           <div class="row">
-            <div class="col-sm-2">
-                <form action="/Expenses1/" method="get">
-                        <button type="button" onclick="document.location='/Expenses1/'" class="btn btn-secondary ">Add New</button>
-                </form>
-            </div>
+
             <div class="col">
                 <form>
-                    <button type="button" class="btn btn-warning ">Add to Account</button>
+                    <button type="button" class="btn btn-warning ">Add new expenses</button>
                 </form>
             </div>
           </div>

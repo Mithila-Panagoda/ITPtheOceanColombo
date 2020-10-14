@@ -5,6 +5,10 @@
   <meta charset="UTF-8">
   <title>Ledgers</title>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+     {% load static %}
+    <div class="container-fluid">
+            <img src="{% static 'images/logo.png' %}" width="110px" height="110px" alt="logo" />
+        </div>
 
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
 
@@ -16,22 +20,20 @@
             <ul class="navbar-nav mr-auto">
 
           <li class="nav-item">
-                <a class="nav-link" href="#">Home</a>
+                <a class="nav-link" href="../Backend"/>Home</a>
           </li>
           <li class="nav-item">
-                <a class="nav-link" href="../Expenses1">Expenses </a>
+                <a class="nav-link" href="../ExpenseslistLoad/"> View Expenses </a>
           </li>
           <li class="nav-item">
-                <a class="nav-link" href="../AddRevenue">Revenue</a>
+                <a class="nav-link" href="../AddRevenue/">Revenue</a>
+          </li>
+
+          <li class="nav-item">
+                <a class="nav-link" href="../ExledgersLoad/">Ledgers</a>
           </li>
           <li class="nav-item">
-                <a class="nav-link" href="../Capital">Capital Account</a>
-          </li>
-          <li class="nav-item">
-                <a class="nav-link" href="../Expenses7">Ledgers</a>
-          </li>
-          <li class="nav-item">
-                <a class="nav-link" href="../Expenses9">Reports</a>
+                <a class="nav-link" href="../ExpensesReportsLoad/">Reports</a>
           </li>
 
             </ul>
@@ -56,31 +58,25 @@
         <br>
         <div class="row">
           <div class="col-sm-8">
-            <form class="container" action="/action_page.php">
+            <form class="container" action="">
               <div class="form-group row">
                 <label for="date1" class="col-sm-2 col-form-label">From</label>
-                <div class="col-sm-5">
+                <div class="col-sm-12">
                   <input type="date" class="form-control" id="date1" placeholder="enter date">
                 </div>
               </div>
 
               <br>
-              <div class="form-group row">
-                <label for="date2" class="col-sm-2 col-form-label">To</label>
-                <div class="col-sm-5">
-                  <input type="date" class="form-control" id="date2" placeholder="enter date">
 
-                </div>
-              </div>
               <br>
               <form class="form-inline">
                 <div class="form-group row">
                   <label for="inputState" class="col-sm-2 col-form-label">Search</label>
-                  <div class="col-sm-7">
+                  <div class="col-sm-12">
                     <select id="inputState" class="form-control">
                       <option selected>Electricity bill</option>
                       <option>Water bill</option>
-                      <option>payroll</option>
+                      <option>food </option>
                       <option>..</option>
                     </select>
                   </div>

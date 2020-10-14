@@ -6,6 +6,10 @@
   <title>Revenue List</title>
 
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+     {% load static %}
+    <div class="container-fluid">
+            <img src="{% static 'images/logo.png' %}" width="110px" height="110px" alt="logo" />
+        </div>
 
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
 
@@ -16,23 +20,21 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
 
-          <li class="nav-item">
-                <a class="nav-link" href="#">Home</a>
+           <li class="nav-item">
+                <a class="nav-link" href="../Backend"/>Home</a>
           </li>
           <li class="nav-item">
-                <a class="nav-link" href="../Expenses1">Expenses </a>
+                <a class="nav-link" href="../ExpenseslistLoad/"> View Expenses </a>
           </li>
           <li class="nav-item">
-                <a class="nav-link" href="../AddRevenue">Revenue</a>
+                <a class="nav-link" href="../AddRevenue/">Revenue</a>
+          </li>
+
+          <li class="nav-item">
+                <a class="nav-link" href="../ExaddExpensesLoad/">Ledgers</a>
           </li>
           <li class="nav-item">
-                <a class="nav-link" href="../Capital">Capital Account</a>
-          </li>
-          <li class="nav-item">
-                <a class="nav-link" href="../Expenses7">Ledgers</a>
-          </li>
-          <li class="nav-item">
-                <a class="nav-link" href="../Expenses9">Reports</a>
+                <a class="nav-link" href="../ExpensesReportsLoad/">Reports</a>
           </li>
 
             </ul>

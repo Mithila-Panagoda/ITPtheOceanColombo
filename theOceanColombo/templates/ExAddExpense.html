@@ -1,11 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
     <meta charset="UTF-8">
     <title>add expenses</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+     {% load static %}
 </head>
 <body>
+    <header>
+    <div class="container-fluid">
+            <img src="{% static 'images/logo.png' %}" width="110px" height="110px" alt="logo" />
+        </div>
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
 
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -16,22 +22,20 @@
             <ul class="navbar-nav mr-auto">
 
           <li class="nav-item">
-                <a class="nav-link" href="#">Home</a>
+                <a class="nav-link" href="../Backend"/>Home</a>
           </li>
           <li class="nav-item">
-                <a class="nav-link" href="../Expenses1">Expenses </a>
+                <a class="nav-link" href="../ExpenseslistLoad/"> View Expenses </a>
           </li>
           <li class="nav-item">
-                <a class="nav-link" href="../AddRevenue">Revenue</a>
+                <a class="nav-link" href="../AddRevenue/">Revenue</a>
+          </li>
+
+          <li class="nav-item">
+                <a class="nav-link" href="../ExaddExpensesLoad/">insert exception</a>
           </li>
           <li class="nav-item">
-                <a class="nav-link" href="../Capital">Capital Account</a>
-          </li>
-          <li class="nav-item">
-                <a class="nav-link" href="../Expenses7">Ledgers</a>
-          </li>
-          <li class="nav-item">
-                <a class="nav-link" href="../Expenses9">Reports</a>
+                <a class="nav-link" href="../ExpensesReportsLoad/">Reports</a>
           </li>
 
             </ul>
@@ -42,6 +46,7 @@
             </form>
       </div>
   </nav>
+    </header>
   <br>
       <h1 class="text-center"  style="color:#DC8A1B">Addition of Expenses</h1>
           <br>
@@ -51,56 +56,112 @@
           {% csrf_token %}
           <div class="container-fluid">
 
+
               <div class="form-group row">
                   <label   class="col-sm-2 col-form-label">ExpenseId</label>
-                      <div class="col-sm-5">
-                            <input type="text"  name="id1" class="form-control" pattern = "[Ee][0-9]{4}" required>
+                      <div class="col-sm-12">
+                            <input type="text"  name="id1" id="id1" class="form-control" placeholder="expenseid" pattern = "[Ee][0-9]{4}" required>
                       </div>
             </div>
 
                <div class="form-group row">
-                    <label for="roomType" class="col-sm-2 col-form-label">Room Type</label>
-                    <div class="col-sm-5">
-                        <select class="form-control" id="roomType" name = "type1">
+                    <label  class="col-sm-2 col-form-label">Expenses Type</label>
+                    <div class="col-sm-12">
+                        <select class="form-control" id="Type1" name = "type1">
                             <option>Electricity bill</option>
                             <option>water bill</option>
-                            <option>resturent</option>
-                            <option>decoration</option>
+                            <option>resturent </option>
+                            <option>maintainse </option>
+                            <option>Transport</option>
+                            <option>Food & beverages</option>
+                            <option>pay roll</option>
+                            <option>Others</option>
+
                         </select>
-                        <br>
                     </div>
                 </div>
-            <div class="form-group row">
-                  <label   class="col-sm-2 col-form-label">Date</label>
-                      <div class="col-sm-5">
-                            <input type="date"  name="date1" class="form-control" placeholder="enter date" required>
-                      </div>
-            </div>
-    <br>
+
+
           <div class="form-group row">
                   <label class="col-sm-2 col-form-label">Price</label>
-                      <div class="col-sm-5">
-                          <input type="numbers"  class="form-control"   name="price1" placeholder="Price" required>
+                      <div class="col-sm-12">
+                          <input type="numbers"  class="form-control" id="price1"  name="price1" placeholder="Price" step = " 0.01" required>
                       </div>
           </div>
+
     </br>
             <div class="form-group row">
                   <label  class="col-sm-2 col-form-label">Description</label>
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" name="des1" placeholder="Description" >
+                        <div class="col-sm-12">
+                            <input type="text"  id="des1"class="form-control" name="des1" placeholder="Description" maxlength="50>
                         </div>
+             </div>
+             <br>
+              <div class="form-group row">
+                  <label   class="col-sm-2 col-form-label"> Bill Date</label>
+                            <br>
+                      <div class="col-sm-12">
+                            <input type="date" id ="date1" name="date1" class="form-control" placeholder="enter date" required>
+                      </div>
               </div>
 
+
+
     <br>
     <br>
-                        <div class="col-sm-4">
-                                <button type="submit"  class="btn btn-warning ">Submit</button>
-                        </div>
 
                     </div>
+          <td>                      <table>
+                                        <td>
+                                       <div class="col-sm-6">
+                                             <button type="submit"  class="btn btn-warning ">Submit</button>
+                                        </div>
+
+
+      </td>
+                                    <td>
+
+
+                                    </td>
+                                    <td>
+                                        <div class="col-sm-6">
+                                             <button type="submit"  onclick="demobuttoncorrect()" class="btn btn-warning ">Demo Correct butoon</button>
+                                        </div>
+                                    </td>
+                                     <td>
+                                        <div class="col-sm-6">
+                                             <button type="submit" onclick="demobuttonWrong()" class="btn btn-warning ">Demo wrong button</button>
+                                        </div>
+                                    </td>
+
+
+                                    </table>
+                </td>
+      </div>
+      </div>
                 </form>
             </div>
+  <script>
+      n=new Date();
+      y=new1.getFulYear();
+      m=new1.getMonth() + 1;
+      d=new1.getDate();
+      document.getElementById("currentdate").value = y + "-" +m +"-" + d;
 
+      function demobuttoncorrect(){
+        document.getElementById("id1").value="E1289";
+        document.getElementById(price1).value = "56000.00";
+        document.getElementById(des1).value ="paid";
+        document.getElementById(date1).value ="";
+        }
+
+        function demobuttonWrong(){
+            document.getElementById("id1").value="Ex128900";
+            document.getElementById(Type1).value ="";
+            document.getElementById(price1).value ="";
+            document.getElementById(des1).value ="";
+        }
+  </script>
 
 </body>
 </html>
