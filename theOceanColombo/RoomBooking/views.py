@@ -71,9 +71,9 @@ def confirmbooking(request):
     checkOut = request.POST.get('checkOut')
     ETA = request.POST.get('ETA')
     roomName = request.POST.get('roomName')
-    roomQty = request.POST.get('roomQty')
-    roomCost = request.POST.get('roomCost')
-    roomTotal = request.POST.get('roomTotal')
+    roomQty = int(request.POST.get('roomQty'))
+    roomCost = float(request.POST.get('roomCost'))
+    roomTotal = getRoomTotal(roomQty, roomCost)
     splRequests = request.POST.get('splRequests')
 
     contactDetails = {
@@ -354,3 +354,7 @@ def generateArrivalReport(request):
     if pisa_status.err:
         return HttpResponse('We had some errors <pre>' + html + '</pre>')
     return response
+
+
+def getRoomTotal(qty, cost):
+    return qty * cost

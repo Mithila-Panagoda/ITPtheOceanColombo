@@ -96,7 +96,7 @@ function addRoom(room,roomQty,roomCost) {
         alert("select number of rooms");
     }
     else {
-        pQty.value = "X " + String(qty);
+        pQty.value = String(qty);
         pCost.value = String(cost);
         pName.value = roomName;
         pTotal.value = String(total.toFixed(2));
